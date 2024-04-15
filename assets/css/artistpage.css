@@ -1,0 +1,43 @@
+.bi {
+  cursor: pointer;
+}
+
+.amico img {
+  border-radius: 320px;
+  width: 60px;
+  display: block;
+  float: left;
+  margin-right: 20px;
+  margin-top: 10px;
+}
+
+.container svg {
+  display: flex;
+  float: left;
+}
+/*ANIMAZIONE IMG USER*/
+@keyframes pulse {
+  0% {
+    transform: scale(0.9);
+    filter: blur(0px);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.1);
+    filter: blur(0px);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.9);
+    filter: blur(0px);
+    opacity: 0.7;
+  }
+}
+
+.pulse-icon {
+  transition: transform 0.3s ease-in-out;
+}
+
+.pulse-icon:hover {
+  animation: pulse 2s infinite ease-in-out;
+}
