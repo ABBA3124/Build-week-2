@@ -29,5 +29,6 @@ const read = (result) => {
     console.log(type)
     const artist = element.artist.name
     console.log(artist)
+    console.log('prova')
   })
 }
