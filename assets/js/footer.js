@@ -96,3 +96,17 @@ function getVolumeIcon(percentage) {
     return '<i class="bi bi-volume-up me-3 fs-5"></i>'
   }
 }
+
+// Gestione del clic sull'icona del volume per mutare/demutare
+cambioIconaInBaseAlVolume.addEventListener('click', () => {
+  if (audioPlayer.volume > 0) {
+    audioPlayer.volume = 0
+    volumeSlider.value = 0
+    updateVolumeIcon(0) // Aggiorna l'icona a mutato
+  } else {
+    let lastVolume = 0.5
+    audioPlayer.volume = lastVolume
+    volumeSlider.value = lastVolume
+    updateVolumeIcon(lastVolume * 100) // Ripristina l'icona precedente
+  }
+})
