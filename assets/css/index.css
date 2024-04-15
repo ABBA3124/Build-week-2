@@ -1,0 +1,13 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  /* height: 100vh; */
+}
+#scroll {
+  height: 65vh;
+}
+#navmenu {
+  height: 35vh;
+}
