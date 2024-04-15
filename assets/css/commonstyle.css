@@ -1,0 +1,14 @@
+* {
+  box-sizing: border-box;
+}
+main {
+  overflow: hidden;
+}
+
+#scroll {
+  height: 65vh;
+}
+#navmenu {
+  height: 35vh;
+  overflow-x: hidden;
+}
