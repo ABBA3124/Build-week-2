@@ -1,3 +1,12 @@
+const url = 'https://deezerdevs-deezer.p.rapidapi.com/search?q=maneskin'
+const options = {
+  method: 'GET',
+  headers: {
+    'X-RapidAPI-Key': '50cb9d0834msh6916f2733fc1e75p1d758cjsnb17cfee22a1d',
+    'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com',
+  },
+}
+
 window.onload = () => {
   handleFetch()
 }
