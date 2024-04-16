@@ -25,11 +25,11 @@ function searchItems() {
         }
         return response.json()
       })
-      .then((data) => {
-        console.log(data.data)
-        displayResults(data.data, query)
-        displayArtistResults(data.data, query)
-        displayAlbumResults(data.data, query)
+      .then((result) => {
+        console.log(result.data)
+        displayResults(result.data, query)
+        displayArtistResults(result.data, query)
+        displayAlbumResults(result.data, query)
       })
       .catch((error) => {
         console.error('Fetch error:', error.message)
@@ -48,7 +48,7 @@ function displayResults(results, query) {
     return
   }
   let output = `<h2>Risultato più rilevante: <span class="fw-bold">${inputCerca.value.trim()}</span></h2>
-  <h3>Brani:</h3><div class="overflow-scroll overflow-x-hidden" style="height: 500px">`
+  <h3>Brani:</h3><div class="overflow-scroll overflow-x-hidden" style="height: 260px">`
   results.forEach((element) => {
     output += `<ul><li class="search-result-item" data-audio-src="${element.preview}" data-title="${element.title}" data-artist="${element.artist.name}" data-album-cover="${element.album.cover}">
       <div class="d-flex" style="cursor: pointer;">
