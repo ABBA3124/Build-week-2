@@ -19,36 +19,22 @@
   </head>
   <body class="bg-black text-white">
     <main>
-      <div class="row">
+      <div class="row" style="height: 100%">
         <div class="col-3">
-          <div id="navmenu" class="container p-2 m-2 w-auto">
-            <div class="p-3 m-3 w-auto">
+          <div id="" class="ms-2 mt-3">
+            <div class="mb-1">
               <a href="#" class="spotify-link d-inline-flex align-items-center">
                 <div class="link-content">
-                  <svg
-                    width="35"
-                    height="35"
-                    fill="currentColor"
-                    data-encore-id="icon"
-                    role="img"
-                    aria-hidden="true"
-                    class="bi bneLcE home-icon QbaKKdcHNA2x3_YJvpYu"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M12.5 3.247a1 1 0 0 0-1 0L4 7.577V20h4.5v-6a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v6H20V7.577l-7.5-4.33zm-2-1.732a3 3 0 0 1 3 0l7.5 4.33a2 2 0 0 1 1 1.732V21a1 1 0 0 1-1 1h-6.5a1 1 0 0 1-1-1v-6h-3v6a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V7.577a2 2 0 0 1 1-1.732l7.5-4.33z"
-                    ></path>
-                  </svg>
-                  <span id="homeButton" class="ms-2">Home</span>
+                  <i class="bi bi-house-door-fill fs-3"></i>
+                  <span id="homeButton" class="ms-3">Home</span>
                 </div>
               </a>
             </div>
-            <div class="p-3 m-3 w-auto">
+            <div class="mb-1">
               <a href="#" class="spotify-link d-inline-flex align-items-center" id="searchTrigger">
                 <div class="link-content">
                   <svg
-                    width="35"
-                    height="35"
+                    height="30"
                     fill="currentColor"
                     data-encore-id="icon"
                     role="img"
@@ -64,89 +50,73 @@
                 </div>
               </a>
             </div>
-            <div class="p-2 m-3 w-auto">
+            <div class="">
+              <a href="#" class="d-inline-flex align-items-center">
+                <div class="link-content">
+                  <svg
+                    data-encore-id="icon"
+                    fill="currentColor"
+                    aria-hidden="true"
+                    height="30"
+                    viewBox="0 0 24 24"
+                    class="bi bneLcE bg-black"
+                  >
+                    <path
+                      d="M3 22a1 1 0 0 1-1-1V3a1 1 0 0 1 2 0v18a1 1 0 0 1-1 1zM15.5 2.134A1 1 0 0 0 14 3v18a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V6.464a1 1 0 0 0-.5-.866l-6-3.464zM9 2a1 1 0 0 0-1 1v18a1 1 0 1 0 2 0V3a1 1 0 0 0-1-1z"
+                    ></path>
+                  </svg>
+                  <span class="ms-3">La tua libreria</span>
+                </div>
+              </a>
+            </div>
+            <div class="mb-1 mt-4">
+              <a href="#" class="d-inline-flex align-items-center">
+                <div class="link-content">
+                  <i class="bi bi-plus-square-fill fs-3 rounded" style="margin-left: 1px"></i>
+                  <span class="ms-2">Crea playlist</span>
+                </div>
+              </a>
+            </div>
+            <div class="mb-1">
               <a href="#" class="spotify-link d-inline-flex align-items-center">
                 <div class="link-content">
                   <img
                     src="./assets/imgs/main/artworks-y6qitUuZoS6y8LQo-5s2pPA-t500x500.jpg"
                     alt=""
-                    width="40"
-                    class="bi"
+                    height="30"
+                    class="bi rounded"
                   />
-                  <span class="ms-2">I brani che ti piacciono</span>
+                  <span class="ms-3">I brani che ti piacciono</span>
                 </div>
               </a>
             </div>
-            <div class="p-2 m-3 w-auto">
+            <div class="mb-1">
               <a href="#" class="spotify-link d-inline-flex align-items-center">
                 <div class="link-content">
-                  <img src="./assets/imgs/main/artwork-episodi.png" alt="" width="40" class="bi" />
-                  <span class="ms-2">I Tuoi Episodi</span>
+                  <img src="./assets/imgs/main/artwork-episodi.png" alt="" height="30" class="rounded" />
+                  <span class="ms-3">I Tuoi Episodi</span>
                 </div>
               </a>
             </div>
           </div>
+          <hr />
           <div class="scroll-wrapper">
             <div class="overflow-scroll overflow-x-hidden" id="scroll">
               <div class="libraryIcon">
                 <div class="row align-items-center">
-                  <div class="col-6">
-                    <svg
-                      data-encore-id="icon"
-                      fill="currentColor"
-                      aria-hidden="true"
-                      width="50"
-                      height="50"
-                      viewBox="0 0 24 24"
-                      class="bi bneLcE my-4 ms-4"
-                    >
-                      <path
-                        d="M3 22a1 1 0 0 1-1-1V3a1 1 0 0 1 2 0v18a1 1 0 0 1-1 1zM15.5 2.134A1 1 0 0 0 14 3v18a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V6.464a1 1 0 0 0-.5-.866l-6-3.464zM9 2a1 1 0 0 0-1 1v18a1 1 0 1 0 2 0V3a1 1 0 0 0-1-1z"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div class="col-6">
-                    <div class="icons d-flex justify-content-end">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="40"
-                        height="40"
-                        fill="currentColor"
-                        class="bi bi-plus-lg mx-1"
-                        viewBox="0 0 16 16"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"
-                        />
-                      </svg>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="40"
-                        height="40"
-                        fill="currentColor"
-                        class="bi bi-arrow-right mx-3"
-                        viewBox="0 0 16 16"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
-                        />
-                      </svg>
-                    </div>
-                  </div>
+                  <div class="col-6"></div>
                 </div>
               </div>
-              <div class="container p-3 ms-4 w-auto mb-5">
+              <div class="" style="margin-bottom: 110px">
                 <div class="playlist-container">
                   <h2>Playlist</h2>
-                  <div class="playlist-list" id="playlistContainer">
+                  <div class="playlist-list p-2" id="playlistContainer">
                     <div class="playlist row align-items-center gx-3 my-4 position-relative">
                       <div class="col-auto">
                         <img src="./assets/imgs/search/image-1.jpeg" alt="Album 1" width="70" />
                       </div>
                       <div class="col">
-                        <p class="playlist-name">Playlist 1</p>
+                        <p class="playlist-name">Yahia<br />Melodic Odyssey</p>
                       </div>
                       <div class="col-auto ms-auto pe-4 position-absolute top-0 end-0">
                         <button class="btn btn-dark delete-playlist d-none">
@@ -159,7 +129,7 @@
                         <img src="./assets/imgs/search/image-2.jpg" alt="Album 1" width="70" />
                       </div>
                       <div class="col">
-                        <p class="playlist-name">Playlist 2</p>
+                        <p class="playlist-name">Nikita<br />Neon Nights</p>
                       </div>
                       <div class="col-auto ms-auto pe-4 position-absolute top-0 end-0">
                         <button class="btn btn-dark delete-playlist d-none">
@@ -172,7 +142,7 @@
                         <img src="./assets/imgs/search/image-3.jpg" alt="Album 1" width="70" />
                       </div>
                       <div class="col">
-                        <p class="playlist-name">Playlist 3</p>
+                        <p class="playlist-name">Cristian<br />Top Music For Radio Maria</p>
                       </div>
                       <div class="col-auto ms-auto pe-4 position-absolute top-0 end-0">
                         <button class="btn btn-dark delete-playlist d-none">
@@ -182,10 +152,19 @@
                     </div>
                     <div class="playlist row align-items-center gx-3 my-4 position-relative">
                       <div class="col-auto">
-                        <img src="./assets/imgs/search/image-4.jpg" alt="Album 1" width="70" />
+                        <img
+                          height="70"
+                          aria-hidden="false"
+                          draggable="false"
+                          loading="lazy"
+                          src="https://i.scdn.co/image/ab67616d00001e02072e9faef2ef7b6db63834a3"
+                          data-testid="card-image"
+                          alt=""
+                          class="mMx2LUixlnN_Fu45JpFB yMQTWVwLJ5bV8VGiaqU3 yOKoknIYYzAE90pe7_SE Yn2Ei5QZn19gria6LjZj"
+                        />
                       </div>
                       <div class="col">
-                        <p class="playlist-name">Playlist 4</p>
+                        <p class="playlist-name">ABBA<br />Top Song For ASTROWORLD</p>
                       </div>
                       <div class="col-auto ms-auto pe-4 position-absolute top-0 end-0">
                         <button class="btn btn-dark delete-playlist d-none">
@@ -195,10 +174,21 @@
                     </div>
                     <div class="playlist row align-items-center gx-3 my-4 position-relative">
                       <div class="col-auto">
-                        <img src="https://via.placeholder.com/70" alt="Album 1" />
+                        <img
+                          height="70"
+                          aria-hidden="true"
+                          draggable="false"
+                          loading="eager"
+                          src="https://i.scdn.co/image/ab6761610000101f7b113c043124cddf04397e77"
+                          data-testid="entity-image"
+                          alt="6ix9ine"
+                          class=""
+                          style="border-radius: 50px"
+                        />
                       </div>
                       <div class="col">
-                        <p class="playlist-name">Playlist 5</p>
+                        <p class="playlist-name m-0">6ix9ine</p>
+                        <p class="playlist-name m-0">Artista</p>
                       </div>
                       <div class="col-auto ms-auto pe-4 position-absolute top-0 end-0">
                         <button class="btn btn-dark delete-playlist d-none">
@@ -208,10 +198,26 @@
                     </div>
                     <div class="playlist row align-items-center gx-3 my-4 position-relative">
                       <div class="col-auto">
-                        <img src="https://via.placeholder.com/70" alt="Album 1" />
+                        <img
+                          style="border-radius: 50px"
+                          width="70"
+                          height="70"
+                          aria-hidden="true"
+                          draggable="false"
+                          loading="eager"
+                          src="https://i.scdn.co/image/1a44043542c997ef835c89e185f0cf79d7402153"
+                          data-testid="entity-image"
+                          alt="50 Cent"
+                          class=""
+                          srcset="
+                            https://i.scdn.co/image/1a44043542c997ef835c89e185f0cf79d7402153 32w,
+                            https://i.scdn.co/image/1a44043542c997ef835c89e185f0cf79d7402153 64w
+                          "
+                        />
                       </div>
                       <div class="col">
-                        <p class="playlist-name">Playlist 6</p>
+                        <p class="playlist-name m-0">50 Cent</p>
+                        <p class="m-0">Artista</p>
                       </div>
                       <div class="col-auto ms-auto pe-4 position-absolute top-0 end-0">
                         <button class="btn btn-dark delete-playlist d-none">
@@ -221,10 +227,21 @@
                     </div>
                     <div class="playlist row align-items-center gx-3 my-4 position-relative">
                       <div class="col-auto">
-                        <img src="https://via.placeholder.com/70" alt="Album 1" />
+                        <img
+                          height="70"
+                          aria-hidden="true"
+                          draggable="false"
+                          loading="eager"
+                          src="https://i.scdn.co/image/ab6761610000101f4bfa622806527d4dd894185a"
+                          data-testid="entity-image"
+                          alt="Marracash"
+                          class=""
+                          style="border-radius: 50px"
+                        />
                       </div>
                       <div class="col">
-                        <p class="playlist-name">Playlist 7</p>
+                        <p class="playlist-name m-0">Marracash</p>
+                        <p class="playlist-name m-0 fs-6">Artista</p>
                       </div>
                       <div class="col-auto ms-auto pe-4 position-absolute top-0 end-0">
                         <button class="btn btn-dark delete-playlist d-none">
@@ -234,10 +251,21 @@
                     </div>
                     <div class="playlist row align-items-center gx-3 my-4 position-relative">
                       <div class="col-auto">
-                        <img src="https://via.placeholder.com/70" alt="Album 1" />
+                        <img
+                          height="70"
+                          aria-hidden="true"
+                          draggable="false"
+                          loading="eager"
+                          src="https://i.scdn.co/image/ab6761610000101f6be070445b03e0b63147c2c1"
+                          data-testid="entity-image"
+                          alt="Post Malone"
+                          class=""
+                          style="border-radius: 50px"
+                        />
                       </div>
                       <div class="col">
-                        <p class="playlist-name">Playlist 8</p>
+                        <p class="playlist-name m-0">Post Malone</p>
+                        <p class="playlist-name m-0">Artista</p>
                       </div>
                       <div class="col-auto ms-auto pe-4 position-absolute top-0 end-0">
                         <button class="btn btn-dark delete-playlist d-none">
@@ -247,10 +275,21 @@
                     </div>
                     <div class="playlist row align-items-center gx-3 my-4 position-relative">
                       <div class="col-auto">
-                        <img src="https://via.placeholder.com/70" alt="Album 1" />
+                        <img
+                          height="70"
+                          aria-hidden="true"
+                          draggable="false"
+                          loading="eager"
+                          src="https://i.scdn.co/image/ab6761610000101f7b113c043124cddf04397e77"
+                          data-testid="entity-image"
+                          alt="6ix9ine"
+                          class=""
+                          style="border-radius: 50px"
+                        />
                       </div>
                       <div class="col">
-                        <p class="playlist-name">Playlist 9</p>
+                        <p class="playlist-name m-0">6ix9ine</p>
+                        <p class="playlist-name m-0">Artista</p>
                       </div>
                       <div class="col-auto ms-auto pe-4 position-absolute top-0 end-0">
                         <button class="btn btn-dark delete-playlist d-none">

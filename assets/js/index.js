@@ -12,7 +12,7 @@ homeButton.addEventListener('click', function () {
  const limit = 16;
 
 function searchRandomTracks() {
-  const randomQueries = ['rock', 'pop', 'jazz', 'classical', 'metal' ];  
+  const randomQueries = ['italian', 'sfera', 'travisscott', 'jazz', 'classical', 'metal' ];  
   const query = randomQueries[Math.floor(Math.random() * randomQueries.length)];
   const url = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${encodeURIComponent(query)}&limit=${limit}`;
   const options = {
