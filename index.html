@@ -26,15 +26,15 @@
               <div class="container p-3 m-3 w-auto">
                 <div>
                   <a href="#"><i class="bi bi-three-dots fs-4"></i></a>
-                  <a href="#"
-                    ><h5><i class="bi bi-house-door-fill me-2 fs-4"></i>Home</h5>
-                  </a>
-                  <a href="#"
+                  <a href="#" id=""
+                    ><h5><i class="bi bi-house-door-fill me-2 fs-4"></i>Home</h5></a
+                  >
+                  <a href="#" id="searchTrigger"
                     ><h5><i class="bi bi-search me-2 fs-4"></i>Cerca</h5></a
                   >
-                  <a href="#">
-                    <h5><i class="bi bi-list-columns-reverse me-2 fs-4"></i>La tua libreria</h5>
-                  </a>
+                  <a href="#"
+                    ><h5><i class="bi bi-list-columns-reverse me-2 fs-4"></i>La tua libreria</h5></a
+                  >
                 </div>
                 <div class="mt-4">
                   <a href="#"
@@ -113,9 +113,19 @@
         </div>
 
         <div class="col-7 bg-dark">
-          <div>
-            <input type="text" id="searchGeneral" />
-            <button type="button" class="btn btn-primary" id="btnSearchGeneral">cerca</button>
+          <div class="d-flex align-items-center mt-5">
+            <i id="indietro" class="bi bi-chevron-left icon-nav"></i>
+            <i id="avanti" class="bi bi-chevron-right icon-nav"></i>
+            <div id="searchArea" class="search-box align-items-center ms-3" style="display: none">
+              <i class="bi bi-search search-icon"></i>
+              <input
+                type="text"
+                id="searchGeneral"
+                class="form-control search-input"
+                placeholder="Cosa vuoi ascoltare?"
+              />
+              <i id="clearIcon" class="bi bi-x"></i>
+            </div>
           </div>
           <div id="containerTitoli"></div>
         </div>
@@ -215,7 +225,7 @@
     <footer class="bg-dark ps-3 pe-3 pb-2 position-fixed bottom-0 w-100">
       <div class="d-flex justify-content-between align-items-center">
         <div class="d-flex align-items-center">
-          <div>
+          <div id="immagineBranoInRiproduzione">
             <img src="./assets/imgs/main/image-1.jpg" alt="prova" height="50" class="pe-3" />
           </div>
           <div class="d-flex flex-column">
@@ -260,7 +270,7 @@
             role="img"
             aria-hidden="true"
             viewBox="0 0 16 16"
-            class="Svg-sc-ytk21e-0 dYnaPI me-3"
+            class="Svg-sc-ytk21e-0 dYnaPI me-1"
             height="15"
           >
             <path
@@ -272,7 +282,7 @@
             role="img"
             aria-hidden="true"
             viewBox="0 0 16 16"
-            class="Svg-sc-ytk21e-0 dYnaPI me-3"
+            class="Svg-sc-ytk21e-0 dYnaPI me-1"
             height="15"
           >
             <path
@@ -283,7 +293,7 @@
             data-encore-id="icon"
             role="presentation"
             aria-hidden="true"
-            class="Svg-sc-ytk21e-0 dYnaPI me-3"
+            class="Svg-sc-ytk21e-0 dYnaPI"
             viewBox="0 0 16 16"
             height="15"
           >
@@ -294,7 +304,7 @@
           </svg>
           <div class="volume-control">
             <div id="cambioIconaInBaseAlVolume">
-              <i class="bi bi-volume-up me-3 fs-5"></i>
+              <i class="bi bi-volume-up fs-5"></i>
             </div>
             <input
               type="range"
@@ -311,7 +321,7 @@
             role="img"
             aria-hidden="true"
             viewBox="0 0 16 16"
-            class="Svg-sc-ytk21e-0 dYnaPI me-3"
+            class="Svg-sc-ytk21e-0 dYnaPI me-2"
             height="15"
           >
             <path

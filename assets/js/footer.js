@@ -4,6 +4,14 @@ const progressContainer = document.getElementById('progressContainer')
 const currentTimeElement = document.getElementById('current-time')
 const durationElement = document.getElementById('duration')
 
+document.addEventListener("DOMContentLoaded", function() {
+  if (audioPlayer) {
+    audioPlayer.volume = 0.5;  // allo start volume è 50% troppo forte al 100 ahahha
+  }
+});
+
+
+
 audioPlayer.addEventListener('loadedmetadata', () => {
   durationElement.textContent = formatTime(audioPlayer.duration)
 })
@@ -87,16 +95,17 @@ function updateVolumeIcon(percentage) {
 
 function getVolumeIcon(percentage) {
   if (percentage === 0) {
-    return '<i class="bi bi-volume-mute me-3 fs-5"></i>'
+    return '<i class="bi bi-volume-mute  fs-5"></i>'
   } else if (percentage < 15) {
-    return '<i class="bi bi-volume-off me-3 fs-5"></i>'
+    return '<i class="bi bi-volume-off  fs-5"></i>'
   } else if (percentage < 50) {
-    return '<i class="bi bi-volume-down me-3 fs-5"></i>'
+    return '<i class="bi bi-volume-down fs-5"></i>'
   } else {
-    return '<i class="bi bi-volume-up me-3 fs-5"></i>'
+    return '<i class="bi bi-volume-up fs-5"></i>'
   }
 }
 
+let lastVolume = 0.5
 // Gestione del clic sull'icona del volume per mutare/demutare
 cambioIconaInBaseAlVolume.addEventListener('click', () => {
   if (audioPlayer.volume > 0) {
@@ -104,9 +113,10 @@ cambioIconaInBaseAlVolume.addEventListener('click', () => {
     volumeSlider.value = 0
     updateVolumeIcon(0) // Aggiorna l'icona a mutato
   } else {
-    let lastVolume = 0.5
     audioPlayer.volume = lastVolume
     volumeSlider.value = lastVolume
     updateVolumeIcon(lastVolume * 100) // Ripristina l'icona precedente
   }
 })
+
+
