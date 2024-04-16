@@ -1,3 +1,4 @@
+// ricerca canzoni Cristian
 const inputSearch = document.getElementById('searchGeneral')
 
 const options = {
@@ -102,3 +103,4 @@ const displayAlbumResults = (results) => {
   output += '</div>'
   containerAlbum.innerHTML = output
 }
+// fine ricerca Cristian
