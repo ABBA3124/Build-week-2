@@ -165,35 +165,6 @@ function updatePlayButton() {
   playIcon.classList.add('bi-pause-circle-fill')
 }
 
-const clearPage = () => {
-  document.getElementById('containerTitoli').value = ''
-  document.getElementById('containerArtist').value = ''
-  document.getElementById('containerAlbum').value = ''
-}
-
-const handleFetch = async (url) => {
-  try {
-    const response = await fetch(url, options)
-    if (response.ok) {
-      const result = await response.json()
-      // console.log(result.data)
-      clearPage()
-      if (result.data.length === 0) {
-        const containerTitoli = document.getElementById('containerTitoli')
-        containerAlbum.innerHTML = `<p>Non ci sono risultati della ricerca</p>`
-      } else {
-        displayTrackResults(result.data)
-        displayAlbumResults(result.data)
-        displayArtistResults(result.data)
-      }
-    } else {
-      throw new Error('Errore nella fetch')
-    }
-  } catch (error) {
-    console.error(error)
-  }
-}
-
 btnCerca.addEventListener('click', function () {
   let searchArea = document.getElementById('searchArea')
   if (searchArea.style.display === 'none' || searchArea.style.display === '') {
