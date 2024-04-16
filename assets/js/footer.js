@@ -100,23 +100,13 @@ function getVolumeIcon(percentage) {
 // Gestione del clic sull'icona del volume per mutare/demutare
 cambioIconaInBaseAlVolume.addEventListener('click', () => {
   if (audioPlayer.volume > 0) {
-    audioPlayer.volume = 0;
-    volumeSlider.value = 0;
-    updateVolumeIcon(0); // Aggiorna l'icona a mutato
+    audioPlayer.volume = 0
+    volumeSlider.value = 0
+    updateVolumeIcon(0) // Aggiorna l'icona a mutato
   } else {
     let lastVolume = 0.5
-    audioPlayer.volume = lastVolume;
-    volumeSlider.value = lastVolume;
-    updateVolumeIcon(lastVolume * 100); // Ripristina l'icona precedente
+    audioPlayer.volume = lastVolume
+    volumeSlider.value = lastVolume
+    updateVolumeIcon(lastVolume * 100) // Ripristina l'icona precedente
   }
-});
-
-
-const url = 'https://deezerdevs-deezer.p.rapidapi.com/search?q='
-const options = {
-  method: 'GET',
-  headers: {
-    'X-RapidAPI-Key': '50cb9d0834msh6916f2733fc1e75p1d758cjsnb17cfee22a1d',
-    'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com',
-  },
-}
+})
