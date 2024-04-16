@@ -29,3 +29,14 @@
     height: 25px;
   }
 }
+
+#hero-img #img-cover {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  object-position: right;
+}
+
+.card-song {
+  margin-inline-start: 10px;
+}
