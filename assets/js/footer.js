@@ -93,6 +93,8 @@ function updateVolumeIcon(percentage) {
   volumeIconContainer.innerHTML = getVolumeIcon(percentage) // Imposta l'icona appropriata
 }
 
+
+//funzione per la giusta icona del volume 
 function getVolumeIcon(percentage) {
   if (percentage === 0) {
     return '<i class="bi bi-volume-mute  fs-5"></i>'
@@ -105,7 +107,6 @@ function getVolumeIcon(percentage) {
   }
 }
 
-let lastVolume = 0.5
 // Gestione del clic sull'icona del volume per mutare/demutare
 cambioIconaInBaseAlVolume.addEventListener('click', () => {
   if (audioPlayer.volume > 0) {
@@ -113,9 +114,10 @@ cambioIconaInBaseAlVolume.addEventListener('click', () => {
     volumeSlider.value = 0
     updateVolumeIcon(0) // Aggiorna l'icona a mutato
   } else {
+    let lastVolume = 0.5
     audioPlayer.volume = lastVolume
     volumeSlider.value = lastVolume
-    updateVolumeIcon(lastVolume * 100) // Ripristina l'icona precedente
+    updateVolumeIcon(lastVolume * 100) // Ripristina l'icona e il volume al 50%
   }
 })
 
