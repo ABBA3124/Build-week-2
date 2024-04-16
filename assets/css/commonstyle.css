@@ -11,7 +11,7 @@ main {
   height: 65vh;
 }
 #navmenu {
-  height: 35vh;
+  height: 30vh;
   overflow-x: hidden;
 }
 
@@ -59,4 +59,32 @@ main {
 
 .pulse-icon:hover {
   animation: pulse 2s infinite ease-in-out;
+}
+
+.spotify-link {
+  color: #f1f1f1; /* Colore verde di Spotify */
+  text-decoration: none; /* Rimuove il sottolineato */
+}
+
+.spotify-link:hover .link-content {
+  background-color: rgba(
+    37,
+    37,
+    37,
+    0.1
+  ); /* Sfondo leggermente più chiaro al passaggio del mouse */
+}
+
+.link-content {
+  display: flex;
+  align-items: center;
+}
+
+.link-content span {
+  font-size: 18px;
+}
+
+.link-content i {
+  font-size: 24px;
+  margin-right: 10px;
 }
