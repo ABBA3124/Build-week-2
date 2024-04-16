@@ -87,11 +87,12 @@ function displayArtistResults(results, query) {
   let output = `<h3 class="mt-4">Artisti:</h3>`
   output += `<div class="overflow-scroll overflow-x-hidden d-flex flex-wrap justify-content-evenly" style="height: 165px">`
   results.forEach((element) => {
-    output += `<div class="my-2 py-1 px-2 rounded cardContainer">
+    output += `<a href="assets/html/artistpage.html?artistId=${element.artist.id}">
+                <div class="my-2 py-1 px-2 rounded cardContainer">
                 <img style="border-radius: 50%;" src="${element.artist.picture}" height="100">
                 <p class="fw-bold m-0 mb-2" style="font-size: 15px;">${element.artist.name}</p>
                 <p class="m-0" style="font-size: 12px;">Artista</p>
-              </div>`
+              </div></a>`
   })
   output += `</div>`
   containerArtist.innerHTML = output
