@@ -6,13 +6,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 homeButton.addEventListener('click', function () {
   searchRandomTracks()
+  let searchArea = document.getElementById('searchArea')
+  searchArea.style.display = 'none'
 })
-
+ const limit = 24;
 
 function searchRandomTracks() {
   const randomQueries = ['rock', 'pop', 'jazz', 'classical', 'metal' ];  
   const query = randomQueries[Math.floor(Math.random() * randomQueries.length)];
-  const url = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${encodeURIComponent(query)}`;
+  const url = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${encodeURIComponent(query)}&limit=${limit}`;
   const options = {
       method: 'GET',
       headers: {
@@ -42,9 +44,9 @@ function searchRandomTracks() {
 function displayResults2(results, query) {
   const containerTitoli = document.getElementById('containerTitoli');
   let output = `
-                <div class="overflow-scroll overflow-x-hidden" style="height: 260px;">`;
+                <div class="d-flex flex-wrap justify-content-around  mt-3" >`;
   results.forEach(element => {
-      output += `<ul>
+      output += `<div class="w-25">
                     <li class="search-result-item" data-audio-src="${element.preview}" data-title="${element.title}" data-artist="${element.artist.name}" data-album-cover="${element.album.cover}">
                       <div class="d-flex" style="cursor: pointer;">
                         <img src="${element.album.cover}" alt="Copertina dell'album" height="50">
@@ -55,7 +57,7 @@ function displayResults2(results, query) {
                         </div>
                       </div>
                     </li>
-                 </ul>`;
+                 </div>`;
   });
   output += `</div>`;
   containerTitoli.innerHTML = output;
