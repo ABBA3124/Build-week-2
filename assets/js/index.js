@@ -1,4 +1,3 @@
-const inputCerca = document.getElementById('searchGeneral')
 const inputSearch = document.getElementById('searchGeneral')
 
 const options = {
@@ -13,12 +12,13 @@ window.onload = () => {
   inputSearch.addEventListener('input', searchItems)
 }
 
-const searchItems = () => {
-  clearPage()
-  const query = inputCerca.value.trim()
+const searchItems = (event) => {
+  const query = inputSearch.value.trim()
   const url = `https://deezerdevs-deezer.p.rapidapi.com/search?q=
                 ${encodeURIComponent(query)}`
-  handleFetch(url)
+  if (query !== '') {
+    handleFetch(url)
+  }
 }
 
 const clearPage = () => {
@@ -33,6 +33,7 @@ const handleFetch = async (url) => {
     if (response.ok) {
       const result = await response.json()
       // console.log(result.data)
+      clearPage()
       if (result.data.length === 0) {
         const containerTitoli = document.getElementById('containerTitoli')
         containerAlbum.innerHTML = `<p>Non ci sono risultati della ricerca</p>`
@@ -51,13 +52,12 @@ const handleFetch = async (url) => {
 
 const displayTrackResults = (results) => {
   const containerTitoli = document.getElementById('containerTitoli')
-  let output = `<h2>Risultato più rilevante: <span class="fw-bold">${inputCerca.value.trim()}<span></h2>
+  let output = `<h2>Risultato più rilevante: <span class="fw-bold">${inputSearch.value.trim()}<span></h2>
   <h3>Brani:</h3>`
-  output += `<div class="overflow-scroll overflow-x-hidden" style="height: 250px">`
+  output += `<div class="overflow-scroll overflow-x-hidden" style="height: 260px"><ul>`
   results.forEach((element) => {
-    output += '<ul>'
-    output += `<li>
-                <div class="d-flex">
+    output += `<li class="rounded cardContainer">
+                <div class="d-flex align-items-center py-2 ps-2">
                   <img style="border-radius: 4px;" src="${element.album.cover}" alt="immagine inerente al brano" height="50">
                   <div class="ms-2">
                     <p class="fw-bold m-0 mb-2" style="font-size: 15px;">${element.title}</p>
@@ -66,18 +66,17 @@ const displayTrackResults = (results) => {
                 </div>
               </li>
     `
-    output += '</ul>'
   })
-  output += '</div>'
+  output += '</ul></div>'
   containerTitoli.innerHTML = output
 }
 
 const displayArtistResults = (results) => {
   const containerArtist = document.getElementById('containerArtist')
   let output = `<h3 class="mt-4">Artisti:</h3>`
-  output += `<div class="overflow-scroll overflow-x-hidden d-flex flex-wrap justify-content-evenly" style="height: 155px">`
+  output += `<div class="overflow-scroll overflow-x-hidden d-flex flex-wrap justify-content-evenly" style="height: 165px">`
   results.forEach((element) => {
-    output += `<div class="my-2 mx-2">
+    output += `<div class="my-2 py-1 px-2 rounded cardContainer">
                 <img style="border-radius: 50%;" src="${element.artist.picture}" height="100">
                 <p class="fw-bold m-0 mb-2" style="font-size: 15px;">${element.artist.name}</p>
                 <p class="m-0" style="font-size: 12px;">Artista</p>
@@ -92,11 +91,13 @@ const displayAlbumResults = (results) => {
   let output = `<h3 class="mt-4">Album:</h3>`
   output += `<div class="overflow-scroll overflow-x-hidden d-flex flex-wrap justify-content-evenly" style="height: 120px">`
   results.forEach((element) => {
-    output += `<div class="my-2 mx-2">
-                <img style="border-radius: 4px;" src="${element.album.cover}" height="50px">
-                <p class="fw-bold m-0 mb-2" style="font-size: 15px;">${element.artist.name}</p>
-                <p class="m-0" style="font-size: 12px;">Album</p>
-              </div>`
+    output += `<a href="assets/html/albumpage.html?albumId=${element.album.id}">
+                <div class="py-2 px-2 rounded cardContainer">
+                  <img style="border-radius: 4px;" src="${element.album.cover}" height="50px">
+                  <p class="fw-bold m-0 mb-2" style="font-size: 15px;">${element.artist.name}</p>
+                  <p class="m-0" style="font-size: 12px;">Album</p>
+                </div>
+              </a>`
   })
   output += '</div>'
   containerAlbum.innerHTML = output
