@@ -21,43 +21,69 @@
     <main>
       <div class="row">
         <div class="col-3">
-          <div id="navmenu">
-            <div class="container p-3 m-3 w-auto">
-              <div class="container p-3 m-3 w-auto">
-                <div>
-                  <a href="#"><i class="bi bi-three-dots fs-4"></i></a>
-                  <a href="#" id=""
-                    ><h5><i class="bi bi-house-door-fill me-2 fs-4"></i>Home</h5></a
+          <div id="navmenu" class="container p-2 m-2 w-auto">
+            <div class="p-3 m-3 w-auto">
+              <a href="#" class="spotify-link d-inline-flex align-items-center">
+                <div class="link-content">
+                  <svg
+                    width="35"
+                    height="35"
+                    fill="currentColor"
+                    data-encore-id="icon"
+                    role="img"
+                    aria-hidden="true"
+                    class="bi bneLcE home-icon QbaKKdcHNA2x3_YJvpYu"
+                    viewBox="0 0 24 24"
                   >
-                  <a href="#" id="searchTrigger"
-                    ><h5><i class="bi bi-search me-2 fs-4"></i>Cerca</h5></a
-                  >
-                  <a href="#"
-                    ><h5><i class="bi bi-list-columns-reverse me-2 fs-4"></i>La tua libreria</h5></a
-                  >
+                    <path
+                      d="M12.5 3.247a1 1 0 0 0-1 0L4 7.577V20h4.5v-6a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v6H20V7.577l-7.5-4.33zm-2-1.732a3 3 0 0 1 3 0l7.5 4.33a2 2 0 0 1 1 1.732V21a1 1 0 0 1-1 1h-6.5a1 1 0 0 1-1-1v-6h-3v6a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V7.577a2 2 0 0 1 1-1.732l7.5-4.33z"
+                    ></path>
+                  </svg>
+                  <span id="homeButton" class="ms-2">Home</span>
                 </div>
-                <div class="mt-4">
-                  <a href="#"
-                    ><h5><i class="bi bi-plus-square-fill me-2 fs-4"></i>Crea playlist</h5></a
+              </a>
+            </div>
+            <div class="p-3 m-3 w-auto">
+              <a href="#" class="spotify-link d-inline-flex align-items-center" id="searchTrigger">
+                <div class="link-content">
+                  <svg
+                    width="35"
+                    height="35"
+                    fill="currentColor"
+                    data-encore-id="icon"
+                    role="img"
+                    aria-hidden="true"
+                    class="bi bneLcE search-icon QbaKKdcHNA2x3_YJvpYu"
+                    viewBox="0 0 24 24"
                   >
-                  <a href="#">
-                    <h5>
-                      <div class="bg-primary d-inline-block rounded me-2">
-                        <i class="bi bi-heart-fill fs-6 m-1"></i>
-                      </div>
-                      Brani che ti piacciono
-                    </h5>
-                  </a>
-                  <a href="#">
-                    <h5>
-                      <div class="bg-success d-inline-block rounded me-2">
-                        <i class="bi bi-bookmark-fill fs-6 m-1"></i>
-                      </div>
-                      I tuoi episodi
-                    </h5>
-                  </a>
+                    <path
+                      d="M10.533 1.27893C5.35215 1.27893 1.12598 5.41887 1.12598 10.5579C1.12598 15.697 5.35215 19.8369 10.533 19.8369C12.767 19.8369 14.8235 19.0671 16.4402 17.7794L20.7929 22.132C21.1834 22.5226 21.8166 22.5226 22.2071 22.132C22.5976 21.7415 22.5976 21.1083 22.2071 20.7178L17.8634 16.3741C19.1616 14.7849 19.94 12.7634 19.94 10.5579C19.94 5.41887 15.7138 1.27893 10.533 1.27893ZM3.12598 10.5579C3.12598 6.55226 6.42768 3.27893 10.533 3.27893C14.6383 3.27893 17.94 6.55226 17.94 10.5579C17.94 14.5636 14.6383 17.8369 10.533 17.8369C6.42768 17.8369 3.12598 14.5636 3.12598 10.5579Z"
+                    ></path>
+                  </svg>
+                  <span class="ms-2">Cerca</span>
                 </div>
-              </div>
+              </a>
+            </div>
+            <div class="p-2 m-3 w-auto">
+              <a href="#" class="spotify-link d-inline-flex align-items-center">
+                <div class="link-content">
+                  <img
+                    src="./assets/imgs/main/artworks-y6qitUuZoS6y8LQo-5s2pPA-t500x500.jpg"
+                    alt=""
+                    width="40"
+                    class="bi"
+                  />
+                  <span class="ms-2">I brani che ti piacciono</span>
+                </div>
+              </a>
+            </div>
+            <div class="p-2 m-3 w-auto">
+              <a href="#" class="spotify-link d-inline-flex align-items-center">
+                <div class="link-content">
+                  <img src="./assets/imgs/main/artwork-episodi.png" alt="" width="40" class="bi" />
+                  <span class="ms-2">I Tuoi Episodi</span>
+                </div>
+              </a>
             </div>
           </div>
           <div class="scroll-wrapper">
@@ -241,7 +267,7 @@
 
         <!-- ------------------------------------------------------------------- -->
 
-        <div class="col-7 bg-dark">
+        <div class="col-7 bg-dark overflow-scroll overflow-x-hidden" id="centro">
           <div class="d-flex align-items-center mt-5">
             <i id="indietro" class="bi bi-chevron-left icon-nav"></i>
             <i id="avanti" class="bi bi-chevron-right icon-nav"></i>
@@ -256,6 +282,7 @@
               <i id="clearIcon" class="bi bi-x"></i>
             </div>
           </div>
+          <div id="containerLaunchHomePage"></div>
           <div id="containerTitoli"></div>
           <div id="containerArtist"></div>
           <div id="containerAlbum"></div>
@@ -369,7 +396,7 @@
         </div>
         <div class="d-flex">
           <div class="player text-center">
-            <audio id="audioPlayer" src="./SICKO MODE.mp3"></audio>
+            <audio id="audioPlayer" src="./In Da Club International Version.mp3"></audio>
             <i class="bi bi-shuffle fs-6 me-3"></i>
             <i class="bi bi-skip-start-fill fs-5 me-3"></i>
             <button id="bottoneplay" onclick="togglePlay()">
@@ -470,6 +497,5 @@
     </footer>
     <script src="./assets/js/footer.js"></script>
     <script src="./assets/js/index.js"></script>
-    <script src="./assets/js/common.js"></script>
   </body>
 </html>
