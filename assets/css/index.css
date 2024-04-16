@@ -20,16 +20,16 @@
 
 .playlist:hover {
   transform: scale(1.05);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 10px 4px 0px rgba(0, 0, 0, 0.1);
 }
 
 /*BARRA SCORRIMENTO PLAYLIST*/
 #scroll::-webkit-scrollbar {
-  width: 20px;
+  width: 10px;
 }
 
 #scroll::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: black;
 }
 
 #scroll::-webkit-scrollbar-thumb {
@@ -144,5 +144,5 @@
 
 /* fine abba commit */
 #centro {
-  height: 760px;
+  height: 768px;
 }

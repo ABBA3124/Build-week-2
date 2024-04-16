@@ -19,7 +19,7 @@
   </head>
   <body class="bg-black text-white">
     <main>
-      <div class="row">
+      <div class="row" style="height: 100%">
         <div class="col-3">
           <div id="" class="ms-2 mt-3">
             <div class="mb-1">
@@ -99,6 +99,7 @@
               </a>
             </div>
           </div>
+          <hr />
           <div class="scroll-wrapper">
             <div class="overflow-scroll overflow-x-hidden" id="scroll">
               <div class="libraryIcon">
@@ -106,16 +107,16 @@
                   <div class="col-6"></div>
                 </div>
               </div>
-              <div class="container p-3 ms-4 w-auto mb-5">
+              <div class="" style="margin-bottom: 110px">
                 <div class="playlist-container">
                   <h2>Playlist</h2>
-                  <div class="playlist-list" id="playlistContainer">
+                  <div class="playlist-list p-2" id="playlistContainer">
                     <div class="playlist row align-items-center gx-3 my-4 position-relative">
                       <div class="col-auto">
                         <img src="./assets/imgs/search/image-1.jpeg" alt="Album 1" width="70" />
                       </div>
                       <div class="col">
-                        <p class="playlist-name">Playlist 1</p>
+                        <p class="playlist-name">Yahia<br />Melodic Odyssey</p>
                       </div>
                       <div class="col-auto ms-auto pe-4 position-absolute top-0 end-0">
                         <button class="btn btn-dark delete-playlist d-none">
@@ -128,7 +129,7 @@
                         <img src="./assets/imgs/search/image-2.jpg" alt="Album 1" width="70" />
                       </div>
                       <div class="col">
-                        <p class="playlist-name">Playlist 2</p>
+                        <p class="playlist-name">Nikita<br />Neon Nights</p>
                       </div>
                       <div class="col-auto ms-auto pe-4 position-absolute top-0 end-0">
                         <button class="btn btn-dark delete-playlist d-none">
@@ -141,7 +142,7 @@
                         <img src="./assets/imgs/search/image-3.jpg" alt="Album 1" width="70" />
                       </div>
                       <div class="col">
-                        <p class="playlist-name">Playlist 3</p>
+                        <p class="playlist-name">Cristian<br />Top Music For Radio Maria</p>
                       </div>
                       <div class="col-auto ms-auto pe-4 position-absolute top-0 end-0">
                         <button class="btn btn-dark delete-playlist d-none">
@@ -151,10 +152,19 @@
                     </div>
                     <div class="playlist row align-items-center gx-3 my-4 position-relative">
                       <div class="col-auto">
-                        <img src="./assets/imgs/search/image-4.jpg" alt="Album 1" width="70" />
+                        <img
+                          height="70"
+                          aria-hidden="false"
+                          draggable="false"
+                          loading="lazy"
+                          src="https://i.scdn.co/image/ab67616d00001e02072e9faef2ef7b6db63834a3"
+                          data-testid="card-image"
+                          alt=""
+                          class="mMx2LUixlnN_Fu45JpFB yMQTWVwLJ5bV8VGiaqU3 yOKoknIYYzAE90pe7_SE Yn2Ei5QZn19gria6LjZj"
+                        />
                       </div>
                       <div class="col">
-                        <p class="playlist-name">Playlist 4</p>
+                        <p class="playlist-name">ABBA<br />Top Song For ASTROWORLD</p>
                       </div>
                       <div class="col-auto ms-auto pe-4 position-absolute top-0 end-0">
                         <button class="btn btn-dark delete-playlist d-none">
@@ -164,10 +174,21 @@
                     </div>
                     <div class="playlist row align-items-center gx-3 my-4 position-relative">
                       <div class="col-auto">
-                        <img src="https://via.placeholder.com/70" alt="Album 1" />
+                        <img
+                          height="70"
+                          aria-hidden="true"
+                          draggable="false"
+                          loading="eager"
+                          src="https://i.scdn.co/image/ab6761610000101f7b113c043124cddf04397e77"
+                          data-testid="entity-image"
+                          alt="6ix9ine"
+                          class=""
+                          style="border-radius: 50px"
+                        />
                       </div>
                       <div class="col">
-                        <p class="playlist-name">Playlist 5</p>
+                        <p class="playlist-name m-0">6ix9ine</p>
+                        <p class="playlist-name m-0">Artista</p>
                       </div>
                       <div class="col-auto ms-auto pe-4 position-absolute top-0 end-0">
                         <button class="btn btn-dark delete-playlist d-none">
@@ -177,10 +198,26 @@
                     </div>
                     <div class="playlist row align-items-center gx-3 my-4 position-relative">
                       <div class="col-auto">
-                        <img src="https://via.placeholder.com/70" alt="Album 1" />
+                        <img
+                          style="border-radius: 50px"
+                          width="70"
+                          height="70"
+                          aria-hidden="true"
+                          draggable="false"
+                          loading="eager"
+                          src="https://i.scdn.co/image/1a44043542c997ef835c89e185f0cf79d7402153"
+                          data-testid="entity-image"
+                          alt="50 Cent"
+                          class=""
+                          srcset="
+                            https://i.scdn.co/image/1a44043542c997ef835c89e185f0cf79d7402153 32w,
+                            https://i.scdn.co/image/1a44043542c997ef835c89e185f0cf79d7402153 64w
+                          "
+                        />
                       </div>
                       <div class="col">
-                        <p class="playlist-name">Playlist 6</p>
+                        <p class="playlist-name m-0">50 Cent</p>
+                        <p class="m-0">Artista</p>
                       </div>
                       <div class="col-auto ms-auto pe-4 position-absolute top-0 end-0">
                         <button class="btn btn-dark delete-playlist d-none">
@@ -190,10 +227,21 @@
                     </div>
                     <div class="playlist row align-items-center gx-3 my-4 position-relative">
                       <div class="col-auto">
-                        <img src="https://via.placeholder.com/70" alt="Album 1" />
+                        <img
+                          height="70"
+                          aria-hidden="true"
+                          draggable="false"
+                          loading="eager"
+                          src="https://i.scdn.co/image/ab6761610000101f4bfa622806527d4dd894185a"
+                          data-testid="entity-image"
+                          alt="Marracash"
+                          class=""
+                          style="border-radius: 50px"
+                        />
                       </div>
                       <div class="col">
-                        <p class="playlist-name">Playlist 7</p>
+                        <p class="playlist-name m-0">Marracash</p>
+                        <p class="playlist-name m-0 fs-6">Artista</p>
                       </div>
                       <div class="col-auto ms-auto pe-4 position-absolute top-0 end-0">
                         <button class="btn btn-dark delete-playlist d-none">
@@ -203,10 +251,21 @@
                     </div>
                     <div class="playlist row align-items-center gx-3 my-4 position-relative">
                       <div class="col-auto">
-                        <img src="https://via.placeholder.com/70" alt="Album 1" />
+                        <img
+                          height="70"
+                          aria-hidden="true"
+                          draggable="false"
+                          loading="eager"
+                          src="https://i.scdn.co/image/ab6761610000101f6be070445b03e0b63147c2c1"
+                          data-testid="entity-image"
+                          alt="Post Malone"
+                          class=""
+                          style="border-radius: 50px"
+                        />
                       </div>
                       <div class="col">
-                        <p class="playlist-name">Playlist 8</p>
+                        <p class="playlist-name m-0">Post Malone</p>
+                        <p class="playlist-name m-0">Artista</p>
                       </div>
                       <div class="col-auto ms-auto pe-4 position-absolute top-0 end-0">
                         <button class="btn btn-dark delete-playlist d-none">
@@ -216,10 +275,21 @@
                     </div>
                     <div class="playlist row align-items-center gx-3 my-4 position-relative">
                       <div class="col-auto">
-                        <img src="https://via.placeholder.com/70" alt="Album 1" />
+                        <img
+                          height="70"
+                          aria-hidden="true"
+                          draggable="false"
+                          loading="eager"
+                          src="https://i.scdn.co/image/ab6761610000101f7b113c043124cddf04397e77"
+                          data-testid="entity-image"
+                          alt="6ix9ine"
+                          class=""
+                          style="border-radius: 50px"
+                        />
                       </div>
                       <div class="col">
-                        <p class="playlist-name">Playlist 9</p>
+                        <p class="playlist-name m-0">6ix9ine</p>
+                        <p class="playlist-name m-0">Artista</p>
                       </div>
                       <div class="col-auto ms-auto pe-4 position-absolute top-0 end-0">
                         <button class="btn btn-dark delete-playlist d-none">
