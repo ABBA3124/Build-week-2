@@ -60,57 +60,186 @@
               </div>
             </div>
           </div>
-          <div class="overflow-scroll overflow-x-hidden" id="scroll">
-            <div class="container p-3 m-3 w-auto">
-              <p>prova contenuto da scrollare</p>
-              <p>prova contenuto da scrollare</p>
-              <p>prova contenuto da scrollare</p>
-              <p>prova contenuto da scrollare</p>
-              <p>prova contenuto da scrollare</p>
-              <p>prova contenuto da scrollare</p>
-              <p>prova contenuto da scrollare</p>
-              <p>prova contenuto da scrollare</p>
-              <p>prova contenuto da scrollare</p>
-              <p>prova contenuto da scrollare</p>
-              <p>prova contenuto da scrollare</p>
-              <p>prova contenuto da scrollare</p>
-              <p>prova contenuto da scrollare</p>
-              <p>prova contenuto da scrollare</p>
-              <p>prova contenuto da scrollare</p>
-              <p>prova contenuto da scrollare</p>
-              <p>prova contenuto da scrollare</p>
-              <p>prova contenuto da scrollare</p>
-              <p>prova contenuto da scrollare</p>
-              <p>prova contenuto da scrollare</p>
-              <p>prova contenuto da scrollare</p>
-              <p>prova contenuto da scrollare</p>
-              <p>prova contenuto da scrollare</p>
-              <p>prova contenuto da scrollare</p>
-              <p>prova contenuto da scrollare</p>
-              <p>prova contenuto da scrollare</p>
-              <p>prova contenuto da scrollare</p>
-              <p>prova contenuto da scrollare</p>
-              <p>prova contenuto da scrollare</p>
-              <p>prova contenuto da scrollare</p>
-              <p>prova contenuto da scrollare</p>
-              <p>prova contenuto da scrollare</p>
-              <p>prova contenuto da scrollare</p>
-              <p>prova contenuto da scrollare</p>
-              <p>prova contenuto da scrollare</p>
-              <p>prova contenuto da scrollare</p>
-              <p>prova contenuto da scrollare</p>
-              <p>prova contenuto da scrollare</p>
-              <p>prova contenuto da scrollare</p>
-              <p>prova contenuto da scrollare</p>
-              <p>prova contenuto da scrollare</p>
-              <p>prova contenuto da scrollare</p>
-              <p>prova contenuto da scrollare</p>
-              <p>prova contenuto da scrollare</p>
-              <p>prova contenuto da scrollare</p>
-              <p>prova contenuto da scrollare</p>
+          <div class="scroll-wrapper">
+            <div class="overflow-scroll overflow-x-hidden" id="scroll">
+              <div class="libraryIcon">
+                <div class="row align-items-center">
+                  <div class="col-6">
+                    <svg
+                      data-encore-id="icon"
+                      fill="currentColor"
+                      aria-hidden="true"
+                      width="50"
+                      height="50"
+                      viewBox="0 0 24 24"
+                      class="bi bneLcE my-4 ms-4"
+                    >
+                      <path
+                        d="M3 22a1 1 0 0 1-1-1V3a1 1 0 0 1 2 0v18a1 1 0 0 1-1 1zM15.5 2.134A1 1 0 0 0 14 3v18a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V6.464a1 1 0 0 0-.5-.866l-6-3.464zM9 2a1 1 0 0 0-1 1v18a1 1 0 1 0 2 0V3a1 1 0 0 0-1-1z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="col-6">
+                    <div class="icons d-flex justify-content-end">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="40"
+                        height="40"
+                        fill="currentColor"
+                        class="bi bi-plus-lg mx-1"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"
+                        />
+                      </svg>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="40"
+                        height="40"
+                        fill="currentColor"
+                        class="bi bi-arrow-right mx-3"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="container p-3 ms-4 w-auto mb-5">
+                <div class="playlist-container">
+                  <h2>Playlist</h2>
+                  <div class="playlist-list" id="playlistContainer">
+                    <div class="playlist row align-items-center gx-3 my-4 position-relative">
+                      <div class="col-auto">
+                        <img src="./assets/imgs/search/image-1.jpeg" alt="Album 1" width="70" />
+                      </div>
+                      <div class="col">
+                        <p class="playlist-name">Playlist 1</p>
+                      </div>
+                      <div class="col-auto ms-auto pe-4 position-absolute top-0 end-0">
+                        <button class="btn btn-dark delete-playlist d-none">
+                          <i class="bi bi-x"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="playlist row align-items-center gx-3 my-4 position-relative">
+                      <div class="col-auto">
+                        <img src="./assets/imgs/search/image-2.jpg" alt="Album 1" width="70" />
+                      </div>
+                      <div class="col">
+                        <p class="playlist-name">Playlist 2</p>
+                      </div>
+                      <div class="col-auto ms-auto pe-4 position-absolute top-0 end-0">
+                        <button class="btn btn-dark delete-playlist d-none">
+                          <i class="bi bi-x"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="playlist row align-items-center gx-3 my-4 position-relative">
+                      <div class="col-auto">
+                        <img src="./assets/imgs/search/image-3.jpg" alt="Album 1" width="70" />
+                      </div>
+                      <div class="col">
+                        <p class="playlist-name">Playlist 3</p>
+                      </div>
+                      <div class="col-auto ms-auto pe-4 position-absolute top-0 end-0">
+                        <button class="btn btn-dark delete-playlist d-none">
+                          <i class="bi bi-x"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="playlist row align-items-center gx-3 my-4 position-relative">
+                      <div class="col-auto">
+                        <img src="./assets/imgs/search/image-4.jpg" alt="Album 1" width="70" />
+                      </div>
+                      <div class="col">
+                        <p class="playlist-name">Playlist 4</p>
+                      </div>
+                      <div class="col-auto ms-auto pe-4 position-absolute top-0 end-0">
+                        <button class="btn btn-dark delete-playlist d-none">
+                          <i class="bi bi-x"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="playlist row align-items-center gx-3 my-4 position-relative">
+                      <div class="col-auto">
+                        <img src="https://via.placeholder.com/70" alt="Album 1" />
+                      </div>
+                      <div class="col">
+                        <p class="playlist-name">Playlist 5</p>
+                      </div>
+                      <div class="col-auto ms-auto pe-4 position-absolute top-0 end-0">
+                        <button class="btn btn-dark delete-playlist d-none">
+                          <i class="bi bi-x"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="playlist row align-items-center gx-3 my-4 position-relative">
+                      <div class="col-auto">
+                        <img src="https://via.placeholder.com/70" alt="Album 1" />
+                      </div>
+                      <div class="col">
+                        <p class="playlist-name">Playlist 6</p>
+                      </div>
+                      <div class="col-auto ms-auto pe-4 position-absolute top-0 end-0">
+                        <button class="btn btn-dark delete-playlist d-none">
+                          <i class="bi bi-x"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="playlist row align-items-center gx-3 my-4 position-relative">
+                      <div class="col-auto">
+                        <img src="https://via.placeholder.com/70" alt="Album 1" />
+                      </div>
+                      <div class="col">
+                        <p class="playlist-name">Playlist 7</p>
+                      </div>
+                      <div class="col-auto ms-auto pe-4 position-absolute top-0 end-0">
+                        <button class="btn btn-dark delete-playlist d-none">
+                          <i class="bi bi-x"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="playlist row align-items-center gx-3 my-4 position-relative">
+                      <div class="col-auto">
+                        <img src="https://via.placeholder.com/70" alt="Album 1" />
+                      </div>
+                      <div class="col">
+                        <p class="playlist-name">Playlist 8</p>
+                      </div>
+                      <div class="col-auto ms-auto pe-4 position-absolute top-0 end-0">
+                        <button class="btn btn-dark delete-playlist d-none">
+                          <i class="bi bi-x"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="playlist row align-items-center gx-3 my-4 position-relative">
+                      <div class="col-auto">
+                        <img src="https://via.placeholder.com/70" alt="Album 1" />
+                      </div>
+                      <div class="col">
+                        <p class="playlist-name">Playlist 9</p>
+                      </div>
+                      <div class="col-auto ms-auto pe-4 position-absolute top-0 end-0">
+                        <button class="btn btn-dark delete-playlist d-none">
+                          <i class="bi bi-x"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+
+        <!-- ------------------------------------------------------------------- -->
 
         <div class="col-7 bg-dark">
           <div class="d-flex align-items-center mt-5">
@@ -128,7 +257,11 @@
             </div>
           </div>
           <div id="containerTitoli"></div>
+          <div id="containerArtist"></div>
+          <div id="containerAlbum"></div>
         </div>
+
+        <!-- ------------------------------------------------------------------- -->
 
         <div class="col-2 d-inline-flex p-2 justify-content-around d-md-block">
           <div>
@@ -335,13 +468,8 @@
         </div>
       </div>
     </footer>
-
-    <script src="./assets/js/index.js"></script>
     <script src="./assets/js/footer.js"></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-    ></script>
+    <script src="./assets/js/index.js"></script>
+    <script src="./assets/js/common.js"></script>
   </body>
 </html>

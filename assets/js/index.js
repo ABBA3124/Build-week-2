@@ -1,3 +1,5 @@
+// start abba
+
 const btnCerca = document.getElementById("searchTrigger"); // Assumi che questo sia il bottone per mostrare/nascondere la barra di ricerca
 const inputCerca = document.getElementById("searchGeneral");
 
@@ -24,6 +26,9 @@ function searchItems() {
       .then(data => {
         console.log(data.data);
         displayResults(data.data, query);
+        displayArtistResults(data.data, query);
+        displayAlbumResults(data.data, query);
+        
       })
       .catch(error => {
         console.error('Fetch error:', error.message);
@@ -68,6 +73,67 @@ function displayResults(results, query) {
   });
 }
 
+
+// adattamento comportamento cristian
+function displayArtistResults(results, query) {
+  console.log("risultati per ${query}:", results)
+  const containerArtist = document.getElementById('containerArtist')
+  if (results.length === 0) {
+    containerArtist.innerHTML = `<p>Non ci sono risultati della ricerca</p>`;
+    return;
+  }
+  let output = `<h3 class="mt-4">Artisti:</h3>`
+  output += `<div class="overflow-scroll overflow-x-hidden d-flex flex-wrap justify-content-evenly" style="height: 165px">`
+  results.forEach((element) => {
+    output += `<div class="my-2 py-1 px-2 rounded cardContainer">
+                <img style="border-radius: 50%;" src="${element.artist.picture}" height="100">
+                <p class="fw-bold m-0 mb-2" style="font-size: 15px;">${element.artist.name}</p>
+                <p class="m-0" style="font-size: 12px;">Artista</p>
+              </div>`
+  })
+  output += `</div>`;
+  containerArtist.innerHTML = output;
+
+  document.querySelectorAll('.search-result-item').forEach(item => {
+    item.addEventListener('click', function() {
+      playSelectedTrack(this.dataset.audioSrc, this.dataset.title, this.dataset.artist, this.dataset.albumCover);
+    });
+  });
+}
+
+
+function displayAlbumResults(results, query) {
+    console.log("risultati per ${query}:", results)
+    const containerAlbum = document.getElementById('containerAlbum')
+    if (results.length === 0) {
+      containerAlbum.innerHTML = `<p>Non ci sono risultati della ricerca</p>`;
+      return;
+    }
+    let output = `<h3 class="mt-4">Album:</h3>`
+  output += `<div class="overflow-scroll overflow-x-hidden d-flex flex-wrap justify-content-evenly" style="height: 120px">`
+  results.forEach((element) => {
+    output += `<a href="assets/html/albumpage.html?albumId=${element.album.id}">
+                <div class="py-2 px-2 rounded cardContainer">
+                  <img style="border-radius: 4px;" src="${element.album.cover}" height="50px">
+                  <p class="fw-bold m-0 mb-2" style="font-size: 15px;">${element.artist.name}</p>
+                  <p class="m-0" style="font-size: 12px;">Album</p>
+                </div>
+              </a>`
+  })
+    output += `</div>`;
+    containerAlbum.innerHTML = output;
+  
+    document.querySelectorAll('.search-result-item').forEach(item => {
+      item.addEventListener('click', function() {
+        playSelectedTrack(this.dataset.audioSrc, this.dataset.title, this.dataset.artist, this.dataset.albumCover);
+      });
+    });
+  }
+
+
+// adattamento comportamento cristian
+
+
 function playSelectedTrack(src, title, artist, albumCover) {
   const audioPlayer = document.getElementById('audioPlayer');
   audioPlayer.src = src;
@@ -106,3 +172,99 @@ btnCerca.addEventListener('click', function() {
 clearIcon.addEventListener('click', function() {
   document.getElementById('searchGeneral').value = '';
 })
+
+
+// end abba
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// start yahia 
+//FUNZIONE PER AGGIUNGERE UNA PLAYLIST CON EFFETTO DI FADE-IN
+function addPlaylistWithFadeIn(playlistHTML) {
+  const playlistContainer = document.getElementById('playlistContainer')
+  const newPlaylist = document.createElement('div')
+  newPlaylist.innerHTML = playlistHTML
+  newPlaylist.classList.add(
+    'playlist',
+    'row',
+    'align-items-center',
+    'gx-3',
+    'my-4'
+  )
+  newPlaylist.style.opacity = 0
+  playlistContainer.appendChild(newPlaylist)
+  setTimeout(() => {
+    newPlaylist.style.opacity = 1
+  }, 100)
+}
+
+// //FUNZIONE PER RIMUOVERE UNA PLAYLIST CON EFFETTO DI FADE-OUT
+function removePlaylistWithFadeOut(playlist) {
+  playlist.style.transition = 'opacity 0.3s ease'
+  playlist.style.opacity = 0
+  setTimeout(() => {
+    playlist.remove()
+  }, 300)
+}
+
+// //BOTTONI PER ELIMNARE LE PLAYLISTE//
+
+document.querySelectorAll('.playlist').forEach((item) => {
+  item.addEventListener('mouseenter', () => {
+    item.querySelector('.delete-playlist').classList.remove('d-none')
+  })
+  
+  item.addEventListener('mouseleave', () => {
+    item.querySelector('.delete-playlist').classList.add('d-none')
+  })
+})
+
+document.querySelectorAll('.playlist').forEach((item) => {
+  const deleteBtn = item.querySelector('.delete-playlist')
+  deleteBtn.addEventListener('click', () => {
+    item.remove() // Rimuove la playlist quando si fa clic sulla "x"
+  })
+  
+  item.addEventListener('mouseenter', () => {
+    deleteBtn.classList.remove('d-none')
+  })
+  
+  item.addEventListener('mouseleave', () => {
+    deleteBtn.classList.add('d-none')
+  })
+})
+// end yahia 

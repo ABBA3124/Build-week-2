@@ -2,8 +2,38 @@
 const KEY = "bc10829072mshb658932a6a8dddep1366a1jsn27a0e20c2896";
 const HOST = "deezerdevs-deezer.p.rapidapi.com";
 const URL_API = "https://deezerdevs-deezer.p.rapidapi.com/album/75621062";
-const divHeroImg = document.getElementById("hero-img");
-const divInfoCantante = document.getElementById("info-cantante");
+const divSongs = document.getElementById("songs");
+// funzione per la creazione delle card Canzoni
+const generateCard = (titolo, artista, riproduzioni, tempo) => {
+  // div generale della card
+  const divCard = document.createElement("div");
+  divCard.classList.add("row");
+
+  // title della card
+  const divTitle = document.createElement("div");
+  divTitle.classList.add("col-md-6", "my-md-1", "fw-bold");
+  divTitle.innerText = titolo;
+  const pArtista = document.createElement("p");
+  pArtista.classList.add("fw-normal");
+  pArtista.innerText = artista;
+  divTitle.appendChild(pArtista);
+  divCard.appendChild(divTitle);
+  // riproduzioni
+  const divRiproduzioni = document.createElement("div");
+  divRiproduzioni.classList.add("col-md-4");
+  divRiproduzioni.innerText = riproduzioni;
+  divCard.appendChild(divRiproduzioni);
+
+  // durata canzone
+  tempo = Math.ceil(tempo / 60);
+  const divDurataCanzone = document.createElement("div");
+  divDurataCanzone.classList.add("col-md-2");
+  divDurataCanzone.innerText = `${tempo} min`;
+  divCard.appendChild(divDurataCanzone);
+
+  divSongs.appendChild(divCard);
+};
+// fine funzione
 
 document.addEventListener("DOMContentLoaded", () => {
   fetch(URL_API, {
@@ -20,31 +50,20 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log(data_response);
 
       //   Immagine cover
-      const img = document.createElement("img");
-      const IMG_LINK = data_response.cover_medium;
-      img.setAttribute("src", IMG_LINK);
-      img.classList.add("mx-4");
-      divHeroImg.appendChild(img);
+      const imageLinkCover = data_response.cover_medium;
+      const imgCover = document.getElementById("img-cover");
+      imgCover.setAttribute("src", imageLinkCover);
+
       // titolo Album
-      const p = document.getElementById("album-title");
-      p.innerText = data_response.title;
+      const h1 = document.getElementById("album-title");
+      h1.innerText = data_response.title;
 
-      //   Informazioni album
-      const imgArtist = document.createElement("img");
+      //  INFO ALBUM
+      // IMMAGINE ARTISTA
       const IMG_LINK_ARTIST = data_response.artist.picture_small;
+      const imgArtist = document.getElementById("img-artist");
       imgArtist.setAttribute("src", IMG_LINK_ARTIST);
-      imgArtist.classList.add("imgLinkArtist", "me-2");
-      divInfoCantante.appendChild(imgArtist);
-      const titoloCantante = data_response.artist.name;
-      const spanTitoloCantante = document.createElement("span");
-      spanTitoloCantante.innerText = `${titoloCantante} ◦ `;
-      divInfoCantante.appendChild(spanTitoloCantante);
-
-      const releaseDate = new Date(data_response.release_date).getFullYear();
-      const spanAnno = document.createElement("span");
-      spanAnno.innerText = `${releaseDate} ◦ `;
-      divInfoCantante.appendChild(spanAnno);
-
+      // RESTO DELLE INFO DELL'ARTISTA
       const durationTracks = (data_response.duration / 60)
         .toString()
         .split(".");
@@ -54,14 +73,21 @@ document.addEventListener("DOMContentLoaded", () => {
       let sec = durationTracks[1];
       sec = sec.substring(0, 2);
       sec = parseInt(sec);
-
-      const spanTracks = document.createElement("span");
-      spanTracks.innerText = `Brani: ${data_response.nb_tracks}, ${min} min ${sec} sec.`;
-      divInfoCantante.appendChild(spanTracks);
+      const tracks = data_response.nb_tracks;
+      const titoloCantante = data_response.artist.name;
+      const releaseDate = new Date(data_response.release_date).getFullYear();
+      const spanInfoAlbum = document.getElementById("info-album");
+      spanInfoAlbum.innerText = `${titoloCantante} ◦ ${releaseDate} ◦ ${tracks} Brani, ◦ ${min}min ${sec}sec`;
       //   FINE PARTE INFO ALBUM
 
       // INIZIO PARTE TRACKS
-
+      // genera tutte le card in base a quante canzoni cu sono nell'album
+      data_response.tracks.data.forEach((song) => {
+        generateCard(song.title, song.artist.name, song.rank, song.duration);
+      });
       // FINE PARTE TRACKS
+
+      // click su una traccia
+      // Inserire la funzione qui
     });
 });
