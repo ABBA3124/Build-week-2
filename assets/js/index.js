@@ -85,5 +85,3 @@ function displayResults(results) {
 
    
     
-
-{/* <li><div><img src="${element.album.cover_small}" alt="immagine inerente al brano"><div><h3>${element.title}</h3><p>${element.artist.name}</p></div></div></li> */}

@@ -112,7 +112,7 @@ cambioIconaInBaseAlVolume.addEventListener('click', () => {
 });
 
 
-const url = 'https://deezerdevs-deezer.p.rapidapi.com/search?q=maneskin'
+const url = 'https://deezerdevs-deezer.p.rapidapi.com/search?q='
 const options = {
   method: 'GET',
   headers: {
