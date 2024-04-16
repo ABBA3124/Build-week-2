@@ -9,7 +9,7 @@ homeButton.addEventListener('click', function () {
   let searchArea = document.getElementById('searchArea')
   searchArea.style.display = 'none'
 })
- const limit = 24;
+ const limit = 16;
 
 function searchRandomTracks() {
   const randomQueries = ['rock', 'pop', 'jazz', 'classical', 'metal' ];  
@@ -44,15 +44,15 @@ function searchRandomTracks() {
 function displayResults2(results, query) {
   const containerTitoli = document.getElementById('containerTitoli');
   let output = `
-                <div class="d-flex flex-wrap justify-content-around  mt-3" >`;
+                <div class="mt-3 row " >`;
   results.forEach(element => {
-      output += `<div class="w-25">
+      output += `<div class="col-12 col-sm-6 col-md-4 col-lg-3">
                     <li class="search-result-item" data-audio-src="${element.preview}" data-title="${element.title}" data-artist="${element.artist.name}" data-album-cover="${element.album.cover}">
                       <div class="d-flex" style="cursor: pointer;">
-                        <img src="${element.album.cover}" alt="Copertina dell'album" height="50">
+                        <img src="${element.album.cover}" alt="Copertina dell'album" height="60">
                         <i class="bi bi-play-fill icon-play-overlay"></i>
                         <div class="ms-2">
-                          <p class="fw-bold m-0 mb-2" style="font-size: 15px;">${element.title}</p>
+                          <p class="fw-bold m-0 mb-2" style="font-size: 12px;">${element.title}</p>
                           <p class="m-0" style="font-size: 12px;">${element.artist.name}</p>
                         </div>
                       </div>
@@ -77,14 +77,11 @@ document.querySelectorAll('.search-result-item').forEach((item) => {
 function displayArtistResults2(results, query) {
   console.log('risultati per ${query}:', results)
   const containerArtist = document.getElementById('containerArtist')
-  if (results.length === 0) {
-    containerArtist.innerHTML = `<p>Non ci sono risultati della ricerca</p>`
-    return
-  }
-  let output = `<h3 class="mt-4">Artisti:</h3>`
-  output += `<div class="overflow-scroll overflow-x-hidden d-flex flex-wrap justify-content-evenly" style="height: 165px">`
+  
+  let output = `<h3 class="mt-4">Artisti</h3>`
+  output += `<div class="row row-col">`
   results.forEach((element) => {
-    output += `<a href="assets/html/artistpage.html?artistId=${element.artist.id}">
+    output += `<a class="col" href="assets/html/artistpage.html?artistId=${element.artist.id}">
                 <div class="my-2 py-1 px-2 rounded cardContainer">
                 <img style="border-radius: 50%;" src="${element.artist.picture}" height="100">
                 <p class="fw-bold m-0 mb-2" style="font-size: 15px;">${element.artist.name}</p>
@@ -95,21 +92,21 @@ function displayArtistResults2(results, query) {
   containerArtist.innerHTML = output
 }
 
+
+
+
 function displayAlbumResults2(results, query) {
   console.log('risultati per ${query}:', results)
   const containerAlbum = document.getElementById('containerAlbum')
-  if (results.length === 0) {
-    containerAlbum.innerHTML = `<p>Non ci sono risultati della ricerca</p>`
-    return
-  }
-  let output = `<h3 class="mt-4">Album:</h3>`
-  output += `<div class="overflow-scroll overflow-x-hidden d-flex flex-wrap justify-content-evenly" style="height: 120px">`
+  
+  let output = `<h3 class="mt-4">Album</h3>`
+  output += `<div class="row" >`
   results.forEach((element) => {
-    output += `<a href="assets/html/albumpage.html?albumId=${element.album.id}">
-                <div class="py-2 px-2 rounded cardContainer">
-                  <img style="border-radius: 4px;" src="${element.album.cover}" height="50px">
-                  <p class="fw-bold m-0 mb-2" style="font-size: 15px;">${element.artist.name}</p>
-                  <p class="m-0" style="font-size: 12px;">Album</p>
+    output += `<a class="col-3" href="assets/html/albumpage.html?albumId=${element.album.id}">
+                <div class=" rounded cardContainer text-left">
+                  <img style="border-radius: 6px;" src="${element.album.cover}" height="150px">
+                  <p class="mb-1 fw-bold " style="font-size: 12px;">${element.album.title}</p>
+                  <p class="mt-0" style="font-size: 10px;">2018 • ${element.artist.name}</p>
                 </div>
               </a>`
   })
@@ -191,6 +188,7 @@ function displayResults(results, query) {
   output += `</div>`
   containerTitoli.innerHTML = output
 
+
   document.querySelectorAll('.search-result-item').forEach((item) => {
     item.addEventListener('click', function () {
       playSelectedTrack(
@@ -211,10 +209,10 @@ function displayArtistResults(results, query) {
     containerArtist.innerHTML = `<p>Non ci sono risultati della ricerca</p>`
     return
   }
-  let output = `<h3 class="mt-4">Artisti:</h3>`
-  output += `<div class="overflow-scroll overflow-x-hidden d-flex flex-wrap justify-content-evenly" style="height: 165px">`
+  let output = `<h3 class="mt-4">Artisti</h3>`
+  output += `<div class="row row-col">`
   results.forEach((element) => {
-    output += `<a href="assets/html/artistpage.html?artistId=${element.artist.id}">
+    output += `<a class="col" href="assets/html/artistpage.html?artistId=${element.artist.id}">
                 <div class="my-2 py-1 px-2 rounded cardContainer">
                 <img style="border-radius: 50%;" src="${element.artist.picture}" height="100">
                 <p class="fw-bold m-0 mb-2" style="font-size: 15px;">${element.artist.name}</p>
@@ -243,14 +241,14 @@ function displayAlbumResults(results, query) {
     containerAlbum.innerHTML = `<p>Non ci sono risultati della ricerca</p>`
     return
   }
-  let output = `<h3 class="mt-4">Album:</h3>`
-  output += `<div class="overflow-scroll overflow-x-hidden d-flex flex-wrap justify-content-evenly" style="height: 120px">`
+  let output = `<h3 class="mt-4">Album</h3>`
+  output += `<div class="row" >`
   results.forEach((element) => {
-    output += `<a href="assets/html/albumpage.html?albumId=${element.album.id}">
-                <div class="py-2 px-2 rounded cardContainer">
-                  <img style="border-radius: 4px;" src="${element.album.cover}" height="50px">
-                  <p class="fw-bold m-0 mb-2" style="font-size: 15px;">${element.artist.name}</p>
-                  <p class="m-0" style="font-size: 12px;">Album</p>
+    output += `<a class="col-3" href="assets/html/albumpage.html?albumId=${element.album.id}">
+                <div class=" rounded cardContainer text-left">
+                  <img style="border-radius: 6px;" src="${element.album.cover}" height="150px">
+                  <p class="mb-1 fw-bold " style="font-size: 12px;">${element.album.title}</p>
+                  <p class="mt-0" style="font-size: 10px;">2018 • ${element.artist.name}</p>
                 </div>
               </a>`
   })

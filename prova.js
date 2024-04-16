@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function searchRandomTracks() {
-    const randomQueries = ['rock', 'pop', 'jazz', 'classical'];  // Sostituire con generi/artisti a tua scelta
+    const randomQueries = ['rock', 'pop', 'jazz', 'classical'];  
     const query = randomQueries[Math.floor(Math.random() * randomQueries.length)];
     const url = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${encodeURIComponent(query)}`;
     const options = {
