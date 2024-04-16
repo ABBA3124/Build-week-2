@@ -80,3 +80,58 @@ function displayResults(results) {
 {
   /* <li><div><img src="${element.album.cover_small}" alt="immagine inerente al brano"><div><h3>${element.title}</h3><p>${element.artist.name}</p></div></div></li> */
 }
+
+//FUNZIONE PER AGGIUNGERE UNA PLAYLIST CON EFFETTO DI FADE-IN
+function addPlaylistWithFadeIn(playlistHTML) {
+  const playlistContainer = document.getElementById('playlistContainer')
+  const newPlaylist = document.createElement('div')
+  newPlaylist.innerHTML = playlistHTML
+  newPlaylist.classList.add(
+    'playlist',
+    'row',
+    'align-items-center',
+    'gx-3',
+    'my-4'
+  )
+  newPlaylist.style.opacity = 0
+  playlistContainer.appendChild(newPlaylist)
+  setTimeout(() => {
+    newPlaylist.style.opacity = 1
+  }, 100)
+}
+
+//FUNZIONE PER RIMUOVERE UNA PLAYLIST CON EFFETTO DI FADE-OUT
+function removePlaylistWithFadeOut(playlist) {
+  playlist.style.transition = 'opacity 0.3s ease'
+  playlist.style.opacity = 0
+  setTimeout(() => {
+    playlist.remove()
+  }, 300)
+}
+
+//BOTTONI PER ELIMNARE LE PLAYLISTE//
+
+document.querySelectorAll('.playlist').forEach(item => {
+  item.addEventListener('mouseenter', () => {
+    item.querySelector('.delete-playlist').classList.remove('d-none')
+  })
+
+  item.addEventListener('mouseleave', () => {
+    item.querySelector('.delete-playlist').classList.add('d-none')
+  })
+})
+
+document.querySelectorAll('.playlist').forEach(item => {
+  const deleteBtn = item.querySelector('.delete-playlist')
+  deleteBtn.addEventListener('click', () => {
+    item.remove() // Rimuove la playlist quando si fa clic sulla "x"
+  })
+
+  item.addEventListener('mouseenter', () => {
+    deleteBtn.classList.remove('d-none')
+  })
+
+  item.addEventListener('mouseleave', () => {
+    deleteBtn.classList.add('d-none')
+  })
+})
