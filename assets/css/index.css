@@ -146,3 +146,36 @@
 #centro {
   height: calc(100vh - 75px);
 }
+
+/* inizio scroll  centro */
+
+#centro::-webkit-scrollbar {
+  width: 10px;
+}
+
+#centro::-webkit-scrollbar-track {
+  background: black;
+}
+
+#centro::-webkit-scrollbar-thumb {
+  background: #2e2e2e;
+}
+
+#centro::-webkit-scrollbar-thumb:hover {
+  background: #161616;
+}
+
+/* Stile per la barra di scorrimento orizzontale */
+#centro::-webkit-scrollbar-horizontal {
+  height: 10px;
+}
+
+#centro::-webkit-scrollbar-thumb:horizontal {
+  background: #888;
+}
+
+#centro::-webkit-scrollbar-thumb:horizontal:hover {
+  background: #555;
+}
+
+/* FINE centro scroll*/
