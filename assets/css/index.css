@@ -247,7 +247,7 @@
 }
 
 #destra::-webkit-scrollbar {
-  width: 100px;
+  width: 10px;
 }
 
 #destra::-webkit-scrollbar-track {
