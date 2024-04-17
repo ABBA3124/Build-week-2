@@ -406,16 +406,15 @@ const generateSong = (posizione, titolo, artista, riproduzioni, durata, previewU
   divTitle.classList.add('col-5', 'col-md-6', 'my-md-1', 'fw-bold')
 
   divTitle.innerHTML = `
-                      <div class="col-5 col-md-6 my-md-1 fw-bold">
-                        <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center justify-content-start">
                           <div class="align-middle opacity-50 text-end" style="width: 25px">${posizione}</div>
                           <div class="ms-3">
                             <div class="fw-bold">${titolo}</div>
-                            <p class="fw-normal m-0">${artista}</p>
+                            <p class="fw-normal m-0 opacity-50 mb-2">${artista}</p>
                           </div>
                         </div>
-                      </div>
                        `
+
   // Riproduzioni
   const divRiproduzioni = document.createElement('div')
   divRiproduzioni.classList.add('col-4', 'col-md-4')
