@@ -168,7 +168,11 @@ function displayResults(results, query) {
   console.log('risultati per ${query}:', results)
   const containerTitoli = document.getElementById('containerTitoli')
   if (results.length === 0) {
-    containerTitoli.innerHTML = `<p>Non ci sono risultati della ricerca</p>`
+    containerTitoli.innerHTML = `
+    <div class="alert alert-info mt-5" role="alert">
+    <p class="text-center mt-3 " style="font-weight:700;">Non ci sono risultati inerenti a: ${query}</p>
+</div>
+    `
     return
   }
   let output = `<h2>Risultato più rilevante: <span class="fw-bold">${inputCerca.value.trim()}</span></h2>
@@ -200,7 +204,7 @@ function displayArtistResults(results, query) {
   console.log('risultati per ${query}:', results)
   const containerArtist = document.getElementById('containerArtist')
   if (results.length === 0) {
-    containerArtist.innerHTML = `<p>Non ci sono risultati della ricerca</p>`
+    containerArtist.innerHTML = ``
     return
   }
   let output = `<h3 class="mt-4">Artisti</h3>`
@@ -227,7 +231,7 @@ function displayAlbumResults(results, query) {
   console.log('risultati per ${query}:', results)
   const containerAlbum = document.getElementById('containerAlbum')
   if (results.length === 0) {
-    containerAlbum.innerHTML = `<p>Non ci sono risultati della ricerca</p>`
+    containerAlbum.innerHTML = ``
     return
   }
   let output = `<h3 class="mt-4">Album</h3>`
@@ -560,7 +564,7 @@ const createArtist = () => {
   pos.innerHTML = `
   <div id="hero" class="d-flex mt-3 mt-md-5 ms-md-4">
   <div class="img ms-3 me-3 me-md-4" id="hero-img">
-    <img src="" alt="" id="img-cover" class="rounded"/>
+    <img src="" alt="" id="" class="rounded"/>
   </div>
   <div class="info d-flex flex-column justify-content-between ">
     <p class="display-6 mt-3" style="font-size: 12px;">Album</p>
