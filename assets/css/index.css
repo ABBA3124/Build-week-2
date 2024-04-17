@@ -241,3 +241,24 @@
   background-color: #0ec20e;
   box-shadow: 0 2px #666;
 }
+
+/* start fix svg */
+/* Stile di base dell'SVG */
+.Svg-sc-ytk21e-0.dYnaPI {
+  cursor: pointer;
+}
+
+/* Classe per lo stato di default (bianco) */
+.svg-default {
+  fill: #ffffff;
+}
+
+/* Classe per lo stato hover (grigio) */
+.Svg-sc-ytk21e-0.dYnaPI:hover {
+  fill: #aaaaaa;
+}
+
+/* Classe per lo stato attivo (verde) */
+.svg-active {
+  fill: #00ff00;
+}

@@ -705,3 +705,12 @@ const generateSongAlbum = (posizione, titolo, artista, riproduzioni, durata, pre
     updateNowPlayingInfo(titolo, artista, coverUrl)
   })
 }
+
+
+
+// comportamento footer svg
+
+function toggleColor(element) {
+  const isGreen = element.getAttribute('fill') === '#00FF00'; // Verde
+  element.setAttribute('fill', isGreen ? '#FFFFFF' : '#00FF00'); // Cambia tra bianco e verde
+}
