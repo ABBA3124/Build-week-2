@@ -24,7 +24,6 @@ homeButton.addEventListener('click', function () {
   searchRandomTracks()
   let searchArea = document.getElementById('searchArea')
   searchArea.style.display = 'none'
-  
 })
 const limit = 16
 
@@ -127,7 +126,7 @@ function displayAlbumResults2(results, query) {
 
 // start abba
 // START CERCA
-const btnCerca = document.getElementById('searchTrigger') 
+const btnCerca = document.getElementById('searchTrigger')
 const inputCerca = document.getElementById('searchGeneral')
 
 // Funzione per gestire la ricerca
@@ -298,7 +297,6 @@ btnCerca.addEventListener('click', function () {
   }
 })
 
-
 clearIcon.addEventListener('click', function () {
   document.getElementById('searchGeneral').value = ''
   searchRandomTracks()
@@ -360,7 +358,6 @@ document.querySelectorAll('.playlist').forEach((item) => {
 // nikita parte album quando viene cliccato
 
 const createAlbum = () => {
-
   if (albumhomepage.style.display === 'none' || albumhomepage.style.display === '') {
     searchArea.style.display = 'flex'
     albumhomepage.style.display = 'none'
@@ -568,14 +565,14 @@ const searchItemsAlbum = () => {
       return response.json()
     })
     .then((result) => {
-      console.log(result.data);
-      const artistImage = result.data[0].artist.picture_medium; 
-      createArtist(artistImage);
-      let index = 1;
+      console.log(result.data)
+      const artistImage = result.data[0].artist.picture_medium
+      createArtist(artistImage)
+      let index = 1
       result.data.forEach((query) => {
-        generateSongAlbum(index, query.title, query.artist.name, query.rank, query.duration, query.preview, query.album.cover);
-        index++;
-      });
+        generateSongAlbum(index, query.title, query.artist.name, query.rank, query.duration, query.preview, query.album.cover)
+        index++
+      })
     })
     .catch((error) => {
       console.error('Fetch error:', error.message)
@@ -592,7 +589,7 @@ const createArtist = (artistImage) => {
   } else {
     searchArea.style.display = 'none'
   }
-  const pos = document.getElementById('containerLaunchHomePage');
+  const pos = document.getElementById('containerLaunchHomePage')
   pos.innerHTML = `
 
   <div id="hero" class="d-flex mt-3 mt-md-5 ms-md-4">
@@ -641,8 +638,8 @@ const createArtist = (artistImage) => {
     <div class="col-4 col-md-4">Riproduzioni</div>
     <div class="col-3 col-md-2">tempo</div>
   </div>
-  <div id="songs"></div>`;
-};
+  <div id="songs"></div>`
+}
 
 const generateSongAlbum = (posizione, titolo, artista, riproduzioni, durata, previewUrl, coverUrl) => {
   const divSongs = document.getElementById('songs')
@@ -650,7 +647,7 @@ const generateSongAlbum = (posizione, titolo, artista, riproduzioni, durata, pre
   divCard.classList.add('row', 'card-song')
   divCard.style.cursor = 'pointer'
 
-  // Titolo e artista con posizione e altri dati 
+  // Titolo e artista con posizione e altri dati
   const divTitle = document.createElement('div')
   divTitle.classList.add('col-5', 'col-md-6', 'my-md-1', 'fw-bold')
 
@@ -683,7 +680,6 @@ const generateSongAlbum = (posizione, titolo, artista, riproduzioni, durata, pre
 
   divSongs.appendChild(divCard)
 
-  
   divCard.addEventListener('click', () => {
     const audioPlayer = document.getElementById('audioPlayer')
     const playIcon = document.querySelector('#bottoneplay i')
@@ -694,3 +690,7 @@ const generateSongAlbum = (posizione, titolo, artista, riproduzioni, durata, pre
     updateNowPlayingInfo(titolo, artista, coverUrl)
   })
 }
+
+avanti.addEventListener('click', () => {
+  console.log('prova')
+})
