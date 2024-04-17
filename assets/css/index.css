@@ -262,3 +262,36 @@
 .svg-active {
   fill: #00ff00;
 }
+
+/* Scroll DESTRO */
+#destra {
+  height: calc(100vh - 75px);
+}
+
+#destra::-webkit-scrollbar {
+  width: 10px;
+}
+
+#destra::-webkit-scrollbar-track {
+  background: black;
+}
+
+#destra::-webkit-scrollbar-thumb {
+  background: #2e2e2e;
+}
+
+#destra::-webkit-scrollbar-thumb:hover {
+  background: #161616;
+}
+
+#destra::-webkit-scrollbar-horizontal {
+  height: 10px;
+}
+
+#destra::-webkit-scrollbar-thumb:horizontal {
+  background: #888;
+}
+
+#destra::-webkit-scrollbar-thumb:horizontal:hover {
+  background: #555;
+}
