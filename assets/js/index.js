@@ -563,6 +563,7 @@ const searchItemsAlbum = () => {
 const createArtist = (artistImage) => {
   const pos = document.getElementById('containerLaunchHomePage');
   pos.innerHTML = `
+
   <div id="hero" class="d-flex mt-3 mt-md-5 ms-md-4">
     <div class="img ms-3 me-3 me-md-4" id="">
       <img src="${artistImage}" alt="Immagine dell'artista" id="img-cover" class="rounded" />
@@ -571,7 +572,6 @@ const createArtist = (artistImage) => {
       <p class="display-6 mt-5" style="font-size: 50px; font-weith:900;">Artista</p>
       <h1 id="album-title" style="font-weight: 700;"></h1>
       <div id="info-cantante" class="d-flex align-items-center">
-        
         <span id="info-album"></span>
       </div>
     </div>
