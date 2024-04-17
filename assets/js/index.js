@@ -690,7 +690,7 @@ const generateSongAlbum = (posizione, titolo, artista, riproduzioni, durata, pre
     updateNowPlayingInfo(titolo, artista, coverUrl)
   })
 }
-
+// Gestione cambio pagine
 avanti.addEventListener('click', () => {
   console.log('prova')
 })
