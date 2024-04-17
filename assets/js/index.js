@@ -129,12 +129,9 @@ function displayAlbumResults2(results, query) {
   output += `</div>`
   containerAlbum.innerHTML = output
 
-  // const cards = document.querySelectorAll('.albumCard')
-  // cards.forEach((album) => {
-  //   album.addEventListener('click', createAlbum)
-
-  // })
 }
+
+
 // fine home page automatica random
 
 // start abba
@@ -378,24 +375,20 @@ document.querySelectorAll('.playlist').forEach((item) => {
 })
 // end yahia
 
-// lavoro Cri
+// nikita parte album quando viene cliccato 
 
 const createAlbum = () => {
-  // document.getElementById('containerTitoli').innerHTML = ''
-  // document.getElementById('containerArtist').innerHTML = ''
-  // document.getElementById('containerAlbum').innerHTML = ''
-
   const pos = document.getElementById('containerLaunchHomePage')
   pos.innerHTML = `
   <div id="hero" class="d-flex mt-3 mt-md-5 ms-md-4">
   <div class="img ms-3 me-3 me-md-4" id="hero-img">
-    <img src="" alt="" id="img-cover" />
+    <img src="" alt="" id="img-cover" class="rounded"/>
   </div>
-  <div class="info d-flex flex-column justify-content-between">
-    <p class="display-6">ALBUM</p>
-    <h1 id="album-title"></h1>
-    <div id="info-cantante ">
-      <img src="" alt="" id="img-artist" />
+  <div class="info d-flex flex-column justify-content-between ">
+    <p class="display-6 mt-3" style="font-size: 12px;">Album</p>
+    <h1 id="album-title" style="font-weight: 700;"></h1>
+    <div id="info-cantante" class="d-flex align-items-center">
+      <img src="" alt="immagine cantante" id="img-artist" class="me-2" />
       <span id="info-album"></span>
     </div>
   </div>
@@ -440,41 +433,55 @@ const createAlbum = () => {
   fetchAlbum()
 }
 
-const generateSong = (titolo, artista, riproduzioni, tempo, n) => {
-  const divSongs = document.getElementById('songs')
-  // div generale della card
-  const divCard = document.createElement('div')
-  divCard.classList.add('row', 'card-song')
 
-  // title della card
-  const divTitle = document.createElement('div')
-  divTitle.classList.add('col-5', 'col-md-6', 'my-md-1', 'fw-bold')
-  divTitle.innerHTML = ` <div class="col-5 col-md-6 my-md-1 fw-bold">
-                          <div class="d-flex align-items-center">
-                            <div class=" opacity-50 fw-medium">${n}</div>
-                            <div class="ms-2">
-                              <div class="fw-bold">${titolo}</div>
-                              <p class="fw-normal m-0">${artista}</p>
-                            </div>
-                          </div>
-                        </div>
-                      `
-  divCard.appendChild(divTitle)
-  // riproduzioni
-  const divRiproduzioni = document.createElement('div')
-  divRiproduzioni.classList.add('col-4', 'col-md-4')
-  divRiproduzioni.innerText = riproduzioni
-  divCard.appendChild(divRiproduzioni)
+// js inerente elementi 
+const generateSong = (posizione, titolo, artista, riproduzioni, durata, previewUrl, coverUrl) => {
+  const divSongs = document.getElementById('songs');
+  const divCard = document.createElement('div');
+  divCard.classList.add('row', 'card-song');
+  divCard.style.cursor = 'pointer';
 
-  // durata canzone
-  tempo = Math.ceil(tempo / 60)
-  const divDurataCanzone = document.createElement('div')
-  divDurataCanzone.classList.add('col-3', 'col-md-2')
-  divDurataCanzone.innerText = `${tempo} min`
-  divCard.appendChild(divDurataCanzone)
+  // Titolo e artista con posizione
+  const divTitle = document.createElement('div');
+  divTitle.classList.add('col-5', 'col-md-6', 'my-md-1', 'fw-bold');
+  divTitle.innerHTML = `${posizione}. ${titolo}`;
+  const pArtista = document.createElement('p');
+  pArtista.classList.add('fw-normal');
+  pArtista.innerText = artista;
+  divTitle.appendChild(pArtista);
 
-  divSongs.appendChild(divCard)
+  // Riproduzioni
+  const divRiproduzioni = document.createElement('div');
+  divRiproduzioni.classList.add('col-4', 'col-md-4');
+  divRiproduzioni.innerText = riproduzioni.toLocaleString();  
+  divCard.appendChild(divTitle);
+  divCard.appendChild(divRiproduzioni);
+
+  // Durata
+  const minuti = Math.floor(durata / 60);
+  const secondi = durata % 60;
+  const tempoFormattato = `${minuti}:${secondi < 10 ? '0' + secondi : secondi}`;
+  const divDurataCanzone = document.createElement('div');
+  divDurataCanzone.classList.add('col-3', 'col-md-2');
+  divDurataCanzone.innerText = tempoFormattato;
+  divCard.appendChild(divDurataCanzone);
+
+  divSongs.appendChild(divCard);
+
+  // Aggiunge gestore del click per riproduzione e aggiornamento delle info
+  divCard.addEventListener('click', () => {
+    const audioPlayer = document.getElementById('audioPlayer');
+    const playIcon = document.querySelector('#bottoneplay i');
+    audioPlayer.src = previewUrl;
+    audioPlayer.play();
+    playIcon.classList.remove('bi-play-circle-fill');
+    playIcon.classList.add('bi-pause-circle-fill');
+    updateNowPlayingInfo(titolo, artista, coverUrl);
+  });
 }
+
+
+
 
 const fetchAlbum = () => {
   fetch(URL_API, {
@@ -499,47 +506,53 @@ const fetchAlbum = () => {
       const h1 = document.getElementById('album-title')
       h1.innerText = data_response.title
 
-      //  INFO ALBUM
+      // INFO ALBUM
       // IMMAGINE ARTISTA
       const IMG_LINK_ARTIST = data_response.artist.picture_small
       const imgArtist = document.getElementById('img-artist')
       imgArtist.setAttribute('src', IMG_LINK_ARTIST)
       // RESTO DELLE INFO DELL'ARTISTA
-      const durationTracks = (data_response.duration / 60).toString().split('.')
-      let min = durationTracks[0]
-      min = parseInt(min)
+    const durationTracks = Math.floor(data_response.duration / 60)
+    const remaningSeconds = data_response.duration % 60
+    const formattedMinutes = (durationTracks)
+    const formattedSeconds = (remaningSeconds)
 
-      let sec = durationTracks[1]
-      sec = sec.substring(0, 2)
-      sec = parseInt(sec)
 
-      const tracks = data_response.nb_tracks
-      const titoloCantante = data_response.artist.name
-      const releaseDate = new Date(data_response.release_date).getFullYear()
-      const spanInfoAlbum = document.getElementById('info-album')
-      const spanTracks = document.createElement('span')
-      const spanReleaseDate = document.createElement('span')
-      const spanTitoloCantante = document.createElement('span')
-      const spanTime = document.createElement('span')
+    const tracks = data_response.nb_tracks
+    const titoloCantante = data_response.artist.name
+    const releaseDate = new Date(data_response.release_date).getFullYear()
+    const spanInfoAlbum = document.getElementById('info-album')
+    const spanTracks = document.createElement('span')
+    const spanReleaseDate = document.createElement('span')
+    const spanTitoloCantante = document.createElement('span')
+    const spanTime = document.createElement('span')
 
-      spanTracks.innerText = `${tracks} Brani ◦ `
-      spanTitoloCantante.innerText = `${titoloCantante} ◦ `
-      spanReleaseDate.innerText = `${releaseDate} ◦ `
-      spanTime.innerText = `${min}min ${sec}sec`
-      spanInfoAlbum.appendChild(spanTitoloCantante)
-      spanInfoAlbum.appendChild(spanTracks)
-      spanInfoAlbum.appendChild(spanReleaseDate)
-      spanInfoAlbum.appendChild(spanTime)
+    spanTracks.innerHTML = `<span style="font-weight: 400;">${tracks} Brani,</span> `
+    spanTitoloCantante.innerHTML = `<span style="font-weight: 700;">${titoloCantante} •</span> `
+    spanReleaseDate.innerHTML = `<span style="font-weight: 400;">${releaseDate} • </span>`
+    spanTime.innerHTML = `<span style="font-weight: 400;"> ${formattedMinutes}min ${formattedSeconds}sec.</span>`
+    spanInfoAlbum.appendChild(spanTitoloCantante)
+    spanInfoAlbum.appendChild(spanReleaseDate)
+    spanInfoAlbum.appendChild(spanTracks)
+    spanInfoAlbum.appendChild(spanTime)
 
-      //   FINE PARTE INFO ALBUM
+      // FINE PARTE INFO ALBUM
 
       // INIZIO PARTE TRACKS
       // genera tutte le card in base a quante canzoni cu sono nell'album
-      let i = 1
-      data_response.tracks.data.forEach((song) => {
-        generateSong(song.title, song.artist.name, song.rank, song.duration, i)
-        i++
-      })
+
+      data_response.tracks.data.forEach((song, index) => {
+        generateSong(index + 1, song.title, song.artist.name, song.rank, song.duration, song.preview, song.album.cover);
+      });
+      
+      
+
+      // data_response.tracks.data.forEach((song) => {
+      //   generateSong(song.title, song.artist.name, song.rank, song.duration)
+      // })
+
+
+
       // FINE PARTE TRACKS
 
       // click su una traccia
