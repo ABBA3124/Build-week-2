@@ -119,13 +119,16 @@ function displayAlbumResults(results, query) {
   let output = `<h3 class="mt-4">Album:</h3>`
   output += `<div class="overflow-scroll overflow-x-hidden d-flex flex-wrap justify-content-evenly" style="height: 120px">`
   results.forEach((element) => {
-    output += `<a href="assets/html/albumpage.html?albumId=${element.album.id}">
-                <div class="py-2 px-2 rounded cardContainer">
+    output +=
+      // `<a href="assets/html/albumpage.html?albumId=${element.album.id}">
+      `          <div class="py-2 px-2 rounded cardContainer">
                   <img style="border-radius: 4px;" src="${element.album.cover}" height="50px">
                   <p class="fw-bold m-0 mb-2" style="font-size: 15px;">${element.artist.name}</p>
                   <p class="m-0" style="font-size: 12px;">Album</p>
-                </div>
-              </a>`
+                </div>`
+    // </a>`
+    const add = output.closest('.cardContainer')
+    console.log(add)
   })
   output += `</div>`
   containerAlbum.innerHTML = output
@@ -237,3 +240,5 @@ document.querySelectorAll('.playlist').forEach((item) => {
   })
 })
 // end yahia
+
+// lavoro Cri
