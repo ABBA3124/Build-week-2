@@ -183,6 +183,61 @@
 }
 
 /* FINE centro scroll*/
-.ciao {
-  font-weight: 100;
+.play-button {
+  padding: 5px 30px;
+  background-color: #0ec20e;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  font-weight: 700;
+  font-size: 1em;
+  text-shadow: 1px 1px 1px #000;
+  cursor: pointer;
+}
+.play-button:hover {
+  background-color: #0db00d85;
+}
+.play-button:active {
+  background-color: #0ec20e;
+  box-shadow: 0 2px #666;
+}
+.save-button {
+  margin-left: 15px;
+  padding: 5px 40px;
+  background-color: #303030;
+  border: none;
+  border: 1px solid white;
+  border-radius: 20px;
+  color: white;
+  font-weight: 700;
+  font-size: 1em;
+  text-shadow: 1px 1px 1px #000;
+  cursor: pointer;
+}
+.save-button:hover {
+  background-color: #222222c7;
+}
+.save-button:active {
+  background-color: #0ec20e;
+  box-shadow: 0 2px #666;
+}
+.---button {
+  margin-left: 15px;
+  padding: -1px 3px;
+  background-color: #303030;
+  border: none;
+  border: 1px solid white;
+  border-radius: 20px;
+  color: white;
+  font-weight: 700;
+  font-size: 1em;
+  text-shadow: 1px 1px 1px #000;
+  cursor: pointer;
+}
+.---button:hover {
+  background-color: #222222c7;
+}
+.---button:active {
+  background-color: #0ec20e;
+  box-shadow: 0 2px #666;
 }

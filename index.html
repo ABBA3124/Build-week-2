@@ -29,7 +29,7 @@
               <a href="index.html" class="spotify-link d-inline-flex align-items-center">
                 <div class="link-content">
                   <i class="bi bi-house-door-fill fs-3"></i>
-                  <span id="homeButton" class="ms-2">Home</span>
+                  <span id="homeButton" class="ms-2 homeclick">Home</span>
                 </div>
               </a>
             </div>
@@ -305,32 +305,6 @@
         <!-- ------------------------------------------------------------------- -->
 
         <div class="col-sm-7 bg-dark overflow-scroll overflow-x-hidden" id="centro">
-          <div class="text-center mt-5 d-flex justify-content-center">
-            <div class="me-3" style="">
-              <img
-                style="border-radius: 5%"
-                height="150"
-                aria-hidden="false"
-                draggable="false"
-                loading="lazy"
-                src="https://i.scdn.co/image/ab67616d00001e02072e9faef2ef7b6db63834a3"
-                data-testid="card-image"
-                alt=""
-                class=""
-              />
-            </div>
-            <div class="d-flex flex-column align-items-start">
-              <p class="m-0" style="font-weight: 800; font-size: 30px">ASTROWORLD</p>
-              <p class="m-0 mb-4 mt-2">
-                <span class="text-secondary">Album</span> <span class="" style="font-weight: 700">Travis Scott</span>
-              </p>
-              <div>
-                <button class="p-2" style="background-color: rgb(14, 194, 14)">PLAY</button>
-                <button class="p-2" style="background-color: rgb(49, 48, 48)">SAVE</button>
-                <button class="p-2" style="background-color: rgb(49, 48, 48)">...</button>
-              </div>
-            </div>
-          </div>
           <div class="d-flex align-items-center mt-5">
             <i id="indietro" class="bi bi-chevron-left icon-nav"></i>
             <i id="avanti" class="bi bi-chevron-right icon-nav"></i>
@@ -343,6 +317,33 @@
                 placeholder="Cosa vuoi ascoltare?"
               />
               <i id="clearIcon" class="bi bi-x"></i>
+            </div>
+          </div>
+          <div class="text-center mt-5 mb-5 d-flex justify-content-center">
+            <div class="me-3" style="">
+              <img
+                style="border-radius: 5%"
+                height="250"
+                aria-hidden="false"
+                draggable="false"
+                loading="lazy"
+                src="https://i.scdn.co/image/ab67616d00001e02072e9faef2ef7b6db63834a3"
+                data-testid="card-image"
+                alt=""
+                class=""
+                id="albumhomepage4"
+              />
+            </div>
+            <div class="d-flex flex-column align-items-start">
+              <p class="m-0 mb-4 mt-2" id="albumhomepage3">
+                <span class="text-secondary">Album</span> <span class="" style="font-weight: 700">Travis Scott</span>
+              </p>
+              <p class="m-0" style="font-weight: 800; font-size: 30px" id="albumhomepage2">ASTROWORLD</p>
+              <div class="" style="margin-top: 100px" id="albumhomepage1">
+                <button class="play-button">PLAY</button>
+                <button class="save-button">SAVE</button>
+                <button class="---button">...</button>
+              </div>
             </div>
           </div>
           <div id="containerTitoli"></div>

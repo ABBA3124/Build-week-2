@@ -24,6 +24,7 @@ homeButton.addEventListener('click', function () {
   searchRandomTracks()
   let searchArea = document.getElementById('searchArea')
   searchArea.style.display = 'none'
+  
 })
 const limit = 16
 
@@ -126,7 +127,7 @@ function displayAlbumResults2(results, query) {
 
 // start abba
 // START CERCA
-const btnCerca = document.getElementById('searchTrigger') // Assumi che questo sia il bottone per mostrare/nascondere la barra di ricerca
+const btnCerca = document.getElementById('searchTrigger') 
 const inputCerca = document.getElementById('searchGeneral')
 
 // Funzione per gestire la ricerca
@@ -279,14 +280,24 @@ function updatePlayButton() {
   playIcon.classList.add('bi-pause-circle-fill')
 }
 
+const albumhomepage = document.getElementById('albumhomepage1')
+const albumhomepage2 = document.getElementById('albumhomepage2')
+const albumhomepage3 = document.getElementById('albumhomepage3')
+const albumhomepage4 = document.getElementById('albumhomepage4')
+
 btnCerca.addEventListener('click', function () {
   let searchArea = document.getElementById('searchArea')
   if (searchArea.style.display === 'none' || searchArea.style.display === '') {
     searchArea.style.display = 'flex'
+    albumhomepage.style.display = 'none'
+    albumhomepage2.style.display = 'none'
+    albumhomepage3.style.display = 'none'
+    albumhomepage4.style.display = 'none'
   } else {
     searchArea.style.display = 'none'
   }
 })
+
 
 clearIcon.addEventListener('click', function () {
   document.getElementById('searchGeneral').value = ''
@@ -349,6 +360,17 @@ document.querySelectorAll('.playlist').forEach((item) => {
 // nikita parte album quando viene cliccato
 
 const createAlbum = () => {
+
+  if (albumhomepage.style.display === 'none' || albumhomepage.style.display === '') {
+    searchArea.style.display = 'flex'
+    albumhomepage.style.display = 'none'
+    albumhomepage2.style.display = 'none'
+    albumhomepage3.style.display = 'none'
+    albumhomepage4.style.display = 'none'
+  } else {
+    searchArea.style.display = 'none'
+  }
+
   const pos = document.getElementById('containerLaunchHomePage')
   pos.innerHTML = `
   <div id="hero" class="d-flex mt-3 mt-md-5 ms-md-4">
@@ -561,6 +583,15 @@ const searchItemsAlbum = () => {
 }
 
 const createArtist = (artistImage) => {
+  if (albumhomepage.style.display === 'none' || albumhomepage.style.display === '') {
+    searchArea.style.display = 'flex'
+    albumhomepage.style.display = 'none'
+    albumhomepage2.style.display = 'none'
+    albumhomepage3.style.display = 'none'
+    albumhomepage4.style.display = 'none'
+  } else {
+    searchArea.style.display = 'none'
+  }
   const pos = document.getElementById('containerLaunchHomePage');
   pos.innerHTML = `
 
