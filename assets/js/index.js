@@ -435,40 +435,52 @@ const createAlbum = () => {
 
 
 // js inerente elementi 
-const generateSong = (posizione, titolo, artista, riproduzioni, durata) => {
+const generateSong = (posizione, titolo, artista, riproduzioni, durata, previewUrl, coverUrl) => {
   const divSongs = document.getElementById('songs');
   const divCard = document.createElement('div');
   divCard.classList.add('row', 'card-song');
+  divCard.style.cursor = 'pointer';
 
-  // Creazione del titolo e artista con posizione
+  // Titolo e artista con posizione
   const divTitle = document.createElement('div');
   divTitle.classList.add('col-5', 'col-md-6', 'my-md-1', 'fw-bold');
-  divTitle.innerHTML = `${posizione}. ${titolo}`;  // Aggiunta del numero di posizione al titolo
+  divTitle.innerHTML = `${posizione}. ${titolo}`;
   const pArtista = document.createElement('p');
   pArtista.classList.add('fw-normal');
   pArtista.innerText = artista;
   divTitle.appendChild(pArtista);
 
-  // Aggiunta delle riproduzioni
+  // Riproduzioni
   const divRiproduzioni = document.createElement('div');
   divRiproduzioni.classList.add('col-4', 'col-md-4');
   divRiproduzioni.innerText = riproduzioni.toLocaleString();  
   divCard.appendChild(divTitle);
   divCard.appendChild(divRiproduzioni);
 
-  // Calcolo e formattazione della durata
+  // Durata
   const minuti = Math.floor(durata / 60);
   const secondi = durata % 60;
   const tempoFormattato = `${minuti}:${secondi < 10 ? '0' + secondi : secondi}`;
-
   const divDurataCanzone = document.createElement('div');
   divDurataCanzone.classList.add('col-3', 'col-md-2');
   divDurataCanzone.innerText = tempoFormattato;
   divCard.appendChild(divDurataCanzone);
 
-  // Append della card al div generale delle canzoni
   divSongs.appendChild(divCard);
+
+  // Aggiunge gestore del click per riproduzione e aggiornamento delle info
+  divCard.addEventListener('click', () => {
+    const audioPlayer = document.getElementById('audioPlayer');
+    const playIcon = document.querySelector('#bottoneplay i');
+    audioPlayer.src = previewUrl;
+    audioPlayer.play();
+    playIcon.classList.remove('bi-play-circle-fill');
+    playIcon.classList.add('bi-pause-circle-fill');
+    updateNowPlayingInfo(titolo, artista, coverUrl);
+  });
 }
+
+
 
 
 const fetchAlbum = () => {
@@ -530,8 +542,10 @@ const fetchAlbum = () => {
       // genera tutte le card in base a quante canzoni cu sono nell'album
 
       data_response.tracks.data.forEach((song, index) => {
-        generateSong(index + 1, song.title, song.artist.name, song.rank, song.duration)
+        generateSong(index + 1, song.title, song.artist.name, song.rank, song.duration, song.preview, song.album.cover);
       });
+      
+      
 
       // data_response.tracks.data.forEach((song) => {
       //   generateSong(song.title, song.artist.name, song.rank, song.duration)
