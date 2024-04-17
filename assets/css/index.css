@@ -241,36 +241,24 @@
   background-color: #0ec20e;
   box-shadow: 0 2px #666;
 }
-/* Scroll DESTRO */
-#destra {
-  height: calc(100vh - 75px);
+
+/* start fix svg */
+/* Stile di base dell'SVG */
+.Svg-sc-ytk21e-0.dYnaPI {
+  cursor: pointer;
 }
 
-#destra::-webkit-scrollbar {
-  width: 10px;
+/* Classe per lo stato di default (bianco) */
+.svg-default {
+  fill: #ffffff;
 }
 
-#destra::-webkit-scrollbar-track {
-  background: black;
+/* Classe per lo stato hover (grigio) */
+.Svg-sc-ytk21e-0.dYnaPI:hover {
+  fill: #aaaaaa;
 }
 
-#destra::-webkit-scrollbar-thumb {
-  background: #2e2e2e;
-}
-
-#destra::-webkit-scrollbar-thumb:hover {
-  background: #161616;
-}
-
-/* Stile per la barra di scorrimento orizzontale */
-#destra::-webkit-scrollbar-horizontal {
-  height: 10px;
-}
-
-#destra::-webkit-scrollbar-thumb:horizontal {
-  background: #888;
-}
-
-#destra::-webkit-scrollbar-thumb:horizontal:hover {
-  background: #555;
+/* Classe per lo stato attivo (verde) */
+.svg-active {
+  fill: #00ff00;
 }
