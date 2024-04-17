@@ -440,7 +440,7 @@ const createAlbum = () => {
   fetchAlbum()
 }
 
-const generateSong = (titolo, artista, riproduzioni, tempo) => {
+const generateSong = (titolo, artista, riproduzioni, tempo, n) => {
   const divSongs = document.getElementById('songs')
   // div generale della card
   const divCard = document.createElement('div')
@@ -449,11 +449,16 @@ const generateSong = (titolo, artista, riproduzioni, tempo) => {
   // title della card
   const divTitle = document.createElement('div')
   divTitle.classList.add('col-5', 'col-md-6', 'my-md-1', 'fw-bold')
-  divTitle.innerText = titolo
-  const pArtista = document.createElement('p')
-  pArtista.classList.add('fw-normal')
-  pArtista.innerText = artista
-  divTitle.appendChild(pArtista)
+  divTitle.innerHTML = ` <div class="col-5 col-md-6 my-md-1 fw-bold">
+                          <div class="d-flex align-items-center">
+                            <div class=" opacity-50 fw-medium">${n}</div>
+                            <div class="ms-2">
+                              <div class="fw-bold">${titolo}</div>
+                              <p class="fw-normal m-0">${artista}</p>
+                            </div>
+                          </div>
+                        </div>
+                      `
   divCard.appendChild(divTitle)
   // riproduzioni
   const divRiproduzioni = document.createElement('div')
@@ -530,8 +535,10 @@ const fetchAlbum = () => {
 
       // INIZIO PARTE TRACKS
       // genera tutte le card in base a quante canzoni cu sono nell'album
+      let i = 1
       data_response.tracks.data.forEach((song) => {
-        generateSong(song.title, song.artist.name, song.rank, song.duration)
+        generateSong(song.title, song.artist.name, song.rank, song.duration, i)
+        i++
       })
       // FINE PARTE TRACKS
 
