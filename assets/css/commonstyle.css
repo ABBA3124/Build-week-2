@@ -8,7 +8,7 @@ main {
 }
 
 #scroll {
-  height: 65vh;
+  height: calc(65vh - 75px);
 }
 #navmenu {
   height: 30vh;
