@@ -241,3 +241,36 @@
   background-color: #0ec20e;
   box-shadow: 0 2px #666;
 }
+/* Scroll DESTRO */
+#destra {
+  height: calc(100vh - 75px);
+}
+
+#destra::-webkit-scrollbar {
+  width: 100px;
+}
+
+#destra::-webkit-scrollbar-track {
+  background: black;
+}
+
+#destra::-webkit-scrollbar-thumb {
+  background: #2e2e2e;
+}
+
+#destra::-webkit-scrollbar-thumb:hover {
+  background: #161616;
+}
+
+/* Stile per la barra di scorrimento orizzontale */
+#destra::-webkit-scrollbar-horizontal {
+  height: 10px;
+}
+
+#destra::-webkit-scrollbar-thumb:horizontal {
+  background: #888;
+}
+
+#destra::-webkit-scrollbar-thumb:horizontal:hover {
+  background: #555;
+}
