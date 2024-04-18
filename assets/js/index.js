@@ -283,7 +283,7 @@ function displayResults(results, query) {
     return
   }
   let output = `<h2 class="mb-4">Risultato più rilevante: <span class="fw-bold">${inputCerca.value.trim()}</span></h2>
-  <h3 class="mt-2 mb-1">Brani:</h3><div id="martucci" class="row overflow-scroll overflow-x-hidden" style="height: 280px" >`
+  <h3 class="mt-2 mb-1">Brani:</h3><div id="martucci" class="row overflow-scroll overflow-x-hi*dden" style="height: 280px" >`
   results.forEach((element) => {
     output += `<div class="col-12 col-sm-6 col-md-4 col-lg-3" style="height="150px">
                     <li class="search-result-item" data-audio-src="${element.preview}" data-title="${element.title}" data-artist="${element.artist.name}" data-album-cover="${element.album.cover}">
