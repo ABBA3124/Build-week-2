@@ -643,21 +643,18 @@ const fetchAlbum = () => {
 
       // FINE PARTE INFO ALBUM
 
-      // INIZIO PARTE TRACKS
-      // genera tutte le card in base a quante canzoni cu sono nell'album
+     
+     
 
       data_response.tracks.data.forEach((song, index) => {
         generateSong(index + 1, song.title, song.artist.name, song.rank, song.duration, song.preview, song.album.cover)
       })
 
-      // data_response.tracks.data.forEach((song) => {
-      //   generateSong(song.title, song.artist.name, song.rank, song.duration)
-      // })
+     
+      
 
-      // FINE PARTE TRACKS
-
-      // click su una traccia
-      // Inserire la funzione qui
+      
+      
     })
 }
 
@@ -686,7 +683,7 @@ const searchItemsAlbum = () => {
           firstItem.artist.picture_medium,
           firstItem.album.title,
           firstItem.artist.name,
-          firstItem.rank,  // Assumendo che 'rank' sia le 'riproduzioni'
+          firstItem.rank, 
           firstItem.duration,
           firstItem.preview,
           firstItem.album.cover
