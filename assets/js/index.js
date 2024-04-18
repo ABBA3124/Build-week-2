@@ -10,13 +10,16 @@ const HOST = "deezerdevs-deezer.p.rapidapi.com"
 
 
 // controllo sulla homepage 
-const limit = 1 // con questa constante posso cambiare il numero di Track da visualizzare nella homepage
+// aggiunto questo nuovo metodo di manipolazione dell'url tramite il limit cosi da poterlo adattare come vogliamo noi
+const limitTrack = 12 // con questa constante posso cambiare il numero di Track da visualizzare nella homepage
+const limitArtist = 8  // con questa constante posso cambiare il numero di artisti da visualizzare nella homepage
+const limitAlbum = 12 // con questa constante posso cambiare il numero di Album da visualizzare nella homepage
 
 
 
 
 
-// start home page automatica random
+// da qui al caricamento del dom iniziamo ad avviare funzioni che si occupano di far spawnare home page
 document.addEventListener("DOMContentLoaded", () => {
   if (id) {
     console.log(URL_API)
@@ -30,16 +33,20 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 })
 
+//quando si preme sul home ricarica la pagina come al caricamento del dom tramite la searchRandomTracks()
+// non toccare Pena distruzione di molte funzioni
 homeButton.addEventListener("click", function () {
   searchRandomTracks()
   let searchArea = document.getElementById("searchArea")
   searchArea.style.display = "none"
 })
 
+
+//creo un piccolo array dove che usamo come queri iniziali per far spawnare la homepage "casuale"
 function searchRandomTracks() {
-  const randomQueries = ["italian", "sfera", "travisscott", "jazz", "classical", "metal"]
+  const randomQueries = ["sfera", "classical", "metal"]
   const query = randomQueries[Math.floor(Math.random() * randomQueries.length)]
-  const url = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${encodeURIComponent(query)}&limit=${limit}`
+  const urlTrack = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${encodeURIComponent(query)}&limit=${limitTrack}` //URL MANIPOLATO TRAMITE LIMIT questo manipola track homepage
   const options = {
     method: "GET",
     headers: {
@@ -47,60 +54,60 @@ function searchRandomTracks() {
       "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
     },
   }
-//fetch custom per track artista
-  fetch(url, options)
+
+
+
+//fetch manipolata per track con url limit
+  fetch(urlTrack, options)
     .then((response) => {
       if (!response.ok) {
-        throw new Error("nessuna risposta")
+        throw new Error("nessuna risposta riguardo TRACK HOMEPAGE")
       }
       return response.json()
     })
     .then((result) => {
       console.log(result.data)
-      console.log("custom random 8 ha funzionato per le track")
-      displayResults2(result.data, query)
+      console.log("TRACK HOMEPAGE ha funzionato! sono stati caricati con successo")
+      displayResults2(result.data, query) //avvia la funzione che fa vedere le track sulla homepage
     })
     .catch((error) => {
       console.error("Fetch error:", error.message)
     })
     
     
-    //fetch per artist custom comandata dal limit
-const limitArtist = 8  // con questa constante posso cambiare il numero di artisti da visualizzare nella homepage
-
-const urlArtist = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${encodeURIComponent(query)}&limit=${limitArtist}`
+    //fetch manipolata per artist con url limit
+const urlArtist = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${encodeURIComponent(query)}&limit=${limitArtist}` //URL MANIPOLATO TRAMITE LIMIT questo manipola artist homepage
 
 fetch(urlArtist, options)
     .then((response) => {
       if (!response.ok) {
-        throw new Error("nessuna risposta da parte artisti custom homepage")
+        throw new Error("nessuna risposta riguardo ARTIST HOMEPAGE")
       }
       return response.json()
     })
     .then((result) => {
       console.log(result.data)
-      console.log("custom artist 6 ha funzionato")
-      displayArtistResults2(result.data, query)
+      console.log("ARTIST HOMEPAGE ha funzionato! sono stati caricati con successo")
+      displayArtistResults2(result.data, query) //avvia la funzione che fa vedere le artist sulla homepage
     })
     .catch((error) => {
       console.error("Fetch error:", error.message)
     })
     
-    const limitAlbum = 12 // con questa constante posso cambiare il numero di Album da visualizzare nella homepage
-    
-    const urlAlbum = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${encodeURIComponent(query)}&limit=${limitAlbum}`
+    //fetch manipolata per album con url limit
+    const urlAlbum = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${encodeURIComponent(query)}&limit=${limitAlbum}` //URL MANIPOLATO TRAMITE LIMIT questo manipola album homepage
     
     fetch(urlAlbum, options)
     .then((response) => {
       if (!response.ok) {
-        throw new Error("nessuna risposta da parte artisti custom homepage")
+        throw new Error("nessuna risposta riguardo ALBUM HOMEPAGE")
       }
       return response.json()
     })
     .then((result) => {
       console.log(result.data)
-      console.log("custom ALBUM HOMEPAGE ha funzionato!")
-      displayAlbumResults2(result.data, query)
+      console.log("ALBUM HOMEPAGE ha funzionato! sono stati caricati con successo")
+      displayAlbumResults2(result.data, query) //avvia la funzione che fa vedere le album sulla homepage
     })
     .catch((error) => {
       console.error("Fetch error:", error.message)
@@ -108,7 +115,7 @@ fetch(urlArtist, options)
     
   }
 
-  
+  //funzione che fa vedere le track sulla homepage tramite innerhtml
   function displayResults2(results, query) {
   const containerTitoli = document.getElementById("containerTitoli")
   let output = `
@@ -137,6 +144,10 @@ fetch(urlArtist, options)
   })
 }
 
+
+
+
+//funzione che fa vedere le artist sulla homepage tramite innerhtml
 function displayArtistResults2(results, query) {
   console.log("risultati per ${query}:", results)
   const containerArtist = document.getElementById("containerArtist")
@@ -155,6 +166,8 @@ function displayArtistResults2(results, query) {
   containerArtist.innerHTML = output
 }
 
+
+//funzione che fa vedere le album sulla homepage tramite innerhtml
 function displayAlbumResults2(results, query) {
   console.log("risultati per ${query}:", results)
   const containerAlbum = document.getElementById("containerAlbum")
@@ -173,11 +186,11 @@ function displayAlbumResults2(results, query) {
   output += `</div>`
   containerAlbum.innerHTML = output
 }
+// fine logica homepage
 
-// fine home page automatica random
 
-// start abba
-// START CERCA
+
+// inizio logica cerca tramite bottone al click
 const btnCerca = document.getElementById("searchTrigger")
 const inputCerca = document.getElementById("searchGeneral")
 
