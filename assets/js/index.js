@@ -1,6 +1,9 @@
 const params = new URLSearchParams(window.location.search)
 const id = params.get('albumId')
 const id2 = params.get('artistId')
+const id3 = params.get('search')
+const value = params.get('value')
+console.log(value)
 const URL_ARTIST = `https://deezerdevs-deezer.p.rapidapi.com/search?q=` + id2
 const URL_API = 'https://deezerdevs-deezer.p.rapidapi.com/album/' + id
 const KEY = 'bc10829072mshb658932a6a8dddep1366a1jsn27a0e20c2896'
@@ -14,9 +17,19 @@ document.addEventListener('DOMContentLoaded', () => {
   } else if (id2) {
     console.log(URL_ARTIST)
     searchItemsAlbum()
-    // createAlbum2()
+
+    // Gestione cambio pagine
+    indietro.addEventListener('click', () => {
+      window.location.href = 'index.html'
+    })
+  } else if (id3) {
+    inputCerca.value = id3
+    searchItems()
   } else {
     searchRandomTracks()
+    avanti.addEventListener('click', () => {
+      window.location.href = `index.html?search=${value}`
+    })
   }
 })
 
@@ -48,6 +61,7 @@ function searchRandomTracks() {
     })
     .then((result) => {
       console.log(result.data)
+      // console.log(url)
       displayResults2(result.data, query)
       displayArtistResults2(result.data, query)
       displayAlbumResults2(result.data, query)
@@ -92,7 +106,7 @@ function displayArtistResults2(results, query) {
   let output = `<h3 class="mt-4">Artisti</h3>`
   output += `<div class="row row-col">`
   results.forEach((element) => {
-    output += `<a class="col" href="../../../index.html?artistId=${element.artist.name}">
+    output += `<a class="col" href="index.html?artistId=${element.artist.name}">
                 <div class="my-2 py-1 px-2 rounded cardContainer">
                 <img style="border-radius: 50%;" src="${element.artist.picture}" height="100">
                 <p class="fw-bold m-0 mb-2" style="font-size: 15px;">${element.artist.name}</p>
@@ -110,7 +124,7 @@ function displayAlbumResults2(results, query) {
   let output = `<h3 class="mt-4">Album</h3>`
   output += `<div class="row" >`
   results.forEach((element) => {
-    output += `<a class="col-3 albumCard" href="../../../index.html?albumId=${element.album.id}">
+    output += `<a class="col-3 albumCard" href="index.html?albumId=${element.album.id}">
     <div class=" rounded cardContainer text-left">
       <img style="border-radius: 6px;" src="${element.album.cover}" height="150px">
       <p class="mb-1 fw-bold " style="font-size: 12px;">${element.album.title}</p>
@@ -151,6 +165,20 @@ function searchItems() {
       })
       .then((result) => {
         console.log(result.data)
+        // Gestione pagina
+        avanti.addEventListener('click', () => {
+          console.log(url)
+          if (value === 'album') {
+            window.location.href = `index.html?albumId=${result.data[0].album.id}`
+          } else if (value === 'artist') {
+            window.location.href = `index.html?artistId=${result.data[0].artist.name}`
+          }
+        })
+        indietro.addEventListener('click', () => {
+          window.location.href = `index.html?value=${id3}`
+        })
+
+        //
         displayResults(result.data, query)
         displayArtistResults(result.data, query)
         displayAlbumResults(result.data, query)
@@ -210,7 +238,7 @@ function displayArtistResults(results, query) {
   let output = `<h3 class="mt-4">Artisti</h3>`
   output += `<div class="row row-col">`
   results.forEach((element) => {
-    output += `<a class="col" href="../../../index.html?artistId=${element.artist.name}">
+    output += `<a class="col" href="index.html?artistId=${element.artist.name}">
                 <div class="my-2 py-1 px-2 rounded cardContainer">
                 <img style="border-radius: 50%;" src="${element.artist.picture}" height="100">
                 <p class="fw-bold m-0 mb-2" style="font-size: 15px;">${element.artist.name}</p>
@@ -237,7 +265,7 @@ function displayAlbumResults(results, query) {
   let output = `<h3 class="mt-4">Album</h3>`
   output += `<div class="row" >`
   results.forEach((element) => {
-    output += `<a class="col-3" href="../../../index.html?albumId=${element.album.id}">
+    output += `<a class="col-3" href="index.html?albumId=${element.album.id}">
                 <div class=" rounded cardContainer text-left">
                   <img style="border-radius: 6px;" src="${element.album.cover}" height="150px">
                   <p class="mb-1 fw-bold " style="font-size: 12px;">${element.album.title}</p>
@@ -489,6 +517,12 @@ const fetchAlbum = () => {
     .then((data_response) => {
       console.log(data_response)
 
+      // Gestione cambio pagine
+      console.log()
+      indietro.addEventListener('click', () => {
+        window.location.href = `index.html?value=album&search=${data_response.title}`
+      })
+
       //   Immagine cover
       const imageLinkCover = data_response.cover_medium
       const imgCover = document.getElementById('img-cover')
@@ -566,6 +600,12 @@ const searchItemsAlbum = () => {
     })
     .then((result) => {
       console.log(result.data)
+
+      // Gestione cambio pagine
+      indietro.addEventListener('click', () => {
+        window.location.href = `index.html?value=artist&search=${result.data[0].artist.name}`
+      })
+
       const artistImage = result.data[0].artist.picture_medium
       createArtist(artistImage)
       let index = 1
@@ -690,7 +730,3 @@ const generateSongAlbum = (posizione, titolo, artista, riproduzioni, durata, pre
     updateNowPlayingInfo(titolo, artista, coverUrl)
   })
 }
-// Gestione cambio pagine
-avanti.addEventListener('click', () => {
-  console.log('prova')
-})
