@@ -305,18 +305,18 @@
 }
 
 /* barra invisibile */
-#containerTitoli::-webkit-scrollbar {
-  width: 0px;
+#martucci::-webkit-scrollbar {
+  width: 5px;
 }
 
-#containerTitoli::-webkit-scrollbar-track {
-  background: black;
+#martucci::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0);
 }
 
-#containerTitoli::-webkit-scrollbar-thumb {
+#martucci::-webkit-scrollbar-thumb {
   background: #2e2e2e;
 }
 
-#containerTitoli::-webkit-scrollbar-thumb:hover {
+#martucci::-webkit-scrollbar-thumb:hover {
   background: #161616;
 }
