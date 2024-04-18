@@ -299,3 +299,24 @@
 .vfd {
   background-size: cover;
 }
+
+.j {
+  font-weight: 900;
+}
+
+/* barra invisibile */
+#containerTitoli::-webkit-scrollbar {
+  width: 0px;
+}
+
+#containerTitoli::-webkit-scrollbar-track {
+  background: black;
+}
+
+#containerTitoli::-webkit-scrollbar-thumb {
+  background: #2e2e2e;
+}
+
+#containerTitoli::-webkit-scrollbar-thumb:hover {
+  background: #161616;
+}

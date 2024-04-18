@@ -10,22 +10,26 @@ const HOST = "deezerdevs-deezer.p.rapidapi.com"
 
 
 // controllo sulla homepage 
-// aggiunto questo nuovo metodo di manipolazione dell'url tramite il limit cosi da poterlo adattare come vogliamo noi
-const limitTrack = 12 // con questa constante posso cambiare il numero di Track da visualizzare nella homepage
-const limitArtist = 8  // con questa constante posso cambiare il numero di artisti da visualizzare nella homepage
-const limitAlbum = 12 // con questa constante posso cambiare il numero di Album da visualizzare nella homepage
+// aggiunto questo nuovo metodo di manipolazione dell'url tramite il limit cosi da poterlo adattare come vogliamo noi ⚠️
+const limitTrack = 64 // con questa constante posso cambiare il numero di Track da visualizzare nella homepage ⚠️
+const limitArtist = 7  // con questa constante posso cambiare il numero di Artist da visualizzare nella homepage ⚠️
+//quest'ultima siccome usa sempre lo stesso parametro di quantità manipolerà sia homepage che search 🚀🚀🚀🚀🚀
+const limitAlbumAndSearch = 12 // con questa constante posso cambiare il numero di Album da visualizzare nella homepage ⚠️
 
-
+//controllo sul cerca (SEARCH)
+const limitTrackSearch = 64 // con questa constante posso cambiare il numero di Track QUANDO SI CERCA da visualizzare nella SEARCH ⚠️
+const limitArtistSearch = 1 // con questa constante posso cambiare il numero di Artist QUANDO SI CERCA da visualizzare nella SEARCH ⚠️
+const limitAlbumSearch = 12 // con questa constante posso cambiare il numero di Album QUANDO SI CERCA da visualizzare nella SEARCH ⚠️
 
 
 
 // da qui al caricamento del dom iniziamo ad avviare funzioni che si occupano di far spawnare home page
 document.addEventListener("DOMContentLoaded", () => {
   if (id) {
-    console.log(URL_API)
+    // console.log(URL_API)
     createAlbum()
   } else if (id2) {
-    console.log(URL_ARTIST)
+    // console.log(URL_ARTIST)
     searchItemsAlbum()
     // createAlbum2()
   } else {
@@ -66,8 +70,8 @@ function searchRandomTracks() {
       return response.json()
     })
     .then((result) => {
-      console.log(result.data)
-      console.log("TRACK HOMEPAGE ha funzionato! sono stati caricati con successo")
+      // console.log(result.data)
+      console.log("TRACK HOMEPAGE ha funzionato! sono stati caricati con successo") 
       displayResults2(result.data, query) //avvia la funzione che fa vedere le track sulla homepage
     })
     .catch((error) => {
@@ -86,8 +90,8 @@ fetch(urlArtist, options)
       return response.json()
     })
     .then((result) => {
-      console.log(result.data)
-      console.log("ARTIST HOMEPAGE ha funzionato! sono stati caricati con successo")
+      // console.log(result.data)
+      console.log("ARTIST HOMEPAGE ha funzionato! sono stati caricati con successo") 
       displayArtistResults2(result.data, query) //avvia la funzione che fa vedere le artist sulla homepage
     })
     .catch((error) => {
@@ -95,7 +99,7 @@ fetch(urlArtist, options)
     })
     
     //fetch manipolata per album con url limit
-    const urlAlbum = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${encodeURIComponent(query)}&limit=${limitAlbum}` //URL MANIPOLATO TRAMITE LIMIT questo manipola album homepage
+    const urlAlbum = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${encodeURIComponent(query)}&limit=${limitAlbumAndSearch}` //URL MANIPOLATO TRAMITE LIMIT questo manipola album homepage
     
     fetch(urlAlbum, options)
     .then((response) => {
@@ -105,8 +109,8 @@ fetch(urlArtist, options)
       return response.json()
     })
     .then((result) => {
-      console.log(result.data)
-      console.log("ALBUM HOMEPAGE ha funzionato! sono stati caricati con successo")
+      // console.log(result.data)
+      console.log("ALBUM HOMEPAGE ha funzionato! sono stati caricati con successo") 
       displayAlbumResults2(result.data, query) //avvia la funzione che fa vedere le album sulla homepage
     })
     .catch((error) => {
@@ -143,8 +147,6 @@ fetch(urlArtist, options)
     })
   })
 }
-
-
 
 
 //funzione che fa vedere le artist sulla homepage tramite innerhtml
@@ -191,6 +193,7 @@ function displayAlbumResults2(results, query) {
 
 
 // inizio logica cerca tramite bottone al click
+//funziona  simile a quella di homepage tranna qualcosina
 const btnCerca = document.getElementById("searchTrigger")
 const inputCerca = document.getElementById("searchGeneral")
 
@@ -198,7 +201,7 @@ const inputCerca = document.getElementById("searchGeneral")
 function searchItems() {
   const queries = inputCerca.value.trim().split()
   queries.forEach((query) => {
-    const url = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${encodeURIComponent(query)}`
+    const urlTrackSearch = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${encodeURIComponent(query)}&limit=${limitTrackSearch}`
     const options = {
       method: "GET",
       headers: {
@@ -207,28 +210,67 @@ function searchItems() {
       },
     }
 
-    fetch(url, options)
+    fetch(urlTrackSearch, options)
       .then((response) => {
         if (!response.ok) {
-          throw new Error("nessuna risposta")
+          throw new Error("nessuna risposta riguardo Track HOMEPAGE")
         }
         return response.json()
       })
       .then((result) => {
-        console.log(result.data)
+        // console.log(result.data)
+        console.log("TRACK SEARCH ha funzionato! sono stati caricati con successo") 
         displayResults(result.data, query)
+      })
+      .catch((error) => {
+        console.error("Fetch error:", error.message)
+      })
+    
+    
+      const urlArtistSearch = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${encodeURIComponent(query)}&limit=${limitArtistSearch}`  
+      fetch(urlArtistSearch, options)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("nessuna risposta riguardo ARTIST HOMEPAGE")
+        }
+        return response.json()
+      })
+      .then((result) => {
+        // console.log(result.data)
+        console.log("ARTIST SEARCH ha funzionato! sono stati caricati con successo") 
         displayArtistResults(result.data, query)
+      })
+      .catch((error) => {
+        console.error("Fetch error:", error.message)
+      })
+    
+    
+      const urlAlbumSearch = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${encodeURIComponent(query)}&limit=${limitAlbumAndSearch}`
+      fetch(urlAlbumSearch, options)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("nessuna risposta riguardo ALBUM HOMEPAGE")
+        }
+        return response.json()
+      })
+      .then((result) => {
+        // console.log(result.data)
+        console.log("ALBUM SEARCH ha funzionato! sono stati caricati con successo") 
         displayAlbumResults(result.data, query)
       })
       .catch((error) => {
         console.error("Fetch error:", error.message)
       })
   })
+  
 }
 
 // Ascolta l'evento di input sul campo di ricerca
 inputCerca.addEventListener("input", searchItems)
 
+
+
+// da qui inizia a 
 function displayResults(results, query) {
   console.log("risultati per ${query}:", results)
   const containerTitoli = document.getElementById("containerTitoli")
@@ -241,9 +283,9 @@ function displayResults(results, query) {
     return
   }
   let output = `<h2 class="mb-4">Risultato più rilevante: <span class="fw-bold">${inputCerca.value.trim()}</span></h2>
-  <h3 class="mt-2 mb-1">Brani:</h3><div class="row" ">`
+  <h3 class="mt-2 mb-1">Brani:</h3><div class="row" >`
   results.forEach((element) => {
-    output += `<div class="col-12 col-sm-6 col-md-4 col-lg-3 ">
+    output += `<div class="col-12 col-sm-6 col-md-4 col-lg-3" style="height="150px">
                     <li class="search-result-item" data-audio-src="${element.preview}" data-title="${element.title}" data-artist="${element.artist.name}" data-album-cover="${element.album.cover}">
                       <div class="d-flex" style="cursor: pointer;">
                         <img src="${element.album.cover}" alt="Copertina dell'album" height="60">
@@ -423,6 +465,7 @@ document.querySelectorAll(".playlist").forEach((item) => {
 // end yahia
 
 // nikita parte album quando viene cliccato
+// tutto quello che succete quando si preme sull'album
 
 const createAlbum = () => {
   if (albumhomepage.style.display === "none" || albumhomepage.style.display === "") {
@@ -637,8 +680,18 @@ const searchItemsAlbum = () => {
     })
     .then((result) => {
       console.log(result.data)
-      const artistImage = result.data[0].artist.picture_medium
-      createArtist(artistImage)
+      if (result.data.length > 0) {
+        const firstItem = result.data[0]
+        createArtist(
+          firstItem.artist.picture_medium,
+          firstItem.album.title,
+          firstItem.artist.name,
+          firstItem.rank,  // Assumendo che 'rank' sia le 'riproduzioni'
+          firstItem.duration,
+          firstItem.preview,
+          firstItem.album.cover
+        )
+      }
       let index = 1
       result.data.forEach((query) => {
         generateSongAlbum(
@@ -658,7 +711,7 @@ const searchItemsAlbum = () => {
     })
 }
 
-const createArtist = (artistImage) => {
+const createArtist = (artistImage, posizione, titolo, artista, riproduzioni, durata, previewUrl, coverUrl) => {
   if (albumhomepage.style.display === "none" || albumhomepage.style.display === "") {
     searchArea.style.display = "flex"
     albumhomepage.style.display = "none"
@@ -676,7 +729,7 @@ const createArtist = (artistImage) => {
       <img src="${artistImage}" alt="Immagine dell'artista" id="img-cover" class="rounded" />
     </div>
     <div class="info d-flex flex-column justify-content-between">
-      <p class="display-6 mt-5" style="font-size: 50px; font-weith:900;">Artista</p>
+      <p class="display-6 mt-5" style="font-size: 80px; font-weight :900;">${titolo} </p>
       <h1 id="album-title" style="font-weight: 700;"></h1>
       <div id="info-cantante" class="d-flex align-items-center">
         <span id="info-album"></span>
