@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
   } else if (id2) {
     console.log(URL_ARTIST)
     searchItemsAlbum()
-
     // Gestione cambio pagine
     indietro.addEventListener('click', () => {
       window.location.href = 'index.html'
@@ -61,7 +60,6 @@ function searchRandomTracks() {
     })
     .then((result) => {
       console.log(result.data)
-      // console.log(url)
       displayResults2(result.data, query)
       displayArtistResults2(result.data, query)
       displayAlbumResults2(result.data, query)
@@ -177,8 +175,7 @@ function searchItems() {
         indietro.addEventListener('click', () => {
           window.location.href = `index.html?value=${id3}`
         })
-
-        //
+        // Fine gestione pagina
         displayResults(result.data, query)
         displayArtistResults(result.data, query)
         displayAlbumResults(result.data, query)
