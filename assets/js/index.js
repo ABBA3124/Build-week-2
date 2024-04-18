@@ -175,19 +175,21 @@ function displayResults(results, query) {
     `
     return
   }
-  let output = `<h2>Risultato più rilevante: <span class="fw-bold">${inputCerca.value.trim()}</span></h2>
-  <h3>Brani:</h3><div class="overflow-scroll overflow-x-hidden" style="height: 260px">`
+  let output = `<h2 class="mb-4">Risultato più rilevante: <span class="fw-bold">${inputCerca.value.trim()}</span></h2>
+  <h3 class="mt-2 mb-1">Brani:</h3><div class="row" ">`
   results.forEach((element) => {
-    output += `<ul><li class="search-result-item" data-audio-src="${element.preview}" data-title="${element.title}" data-artist="${element.artist.name}" data-album-cover="${element.album.cover}">
-      <div class="d-flex" style="cursor: pointer;">
-        <img src="${element.album.cover}" alt="immagine inerente al brano" height="50">
-        <i class="bi bi-play-fill icon-play-overlay"></i>
-        <div class="ms-2">
-          <p class="fw-bold m-0 mb-2" style="font-size: 15px;">${element.title}</p>
-          <p class="m-0" style="font-size: 12px;">${element.artist.name}</p>
-        </div>
-      </div>
-    </li></ul>`
+    output += `<div class="col-12 col-sm-6 col-md-4 col-lg-3 ">
+                    <li class="search-result-item" data-audio-src="${element.preview}" data-title="${element.title}" data-artist="${element.artist.name}" data-album-cover="${element.album.cover}">
+                      <div class="d-flex" style="cursor: pointer;">
+                        <img src="${element.album.cover}" alt="Copertina dell'album" height="60">
+                        <i class="bi bi-play-fill icon-play-overlay"></i>
+                        <div class="ms-2">
+                          <p class="fw-bold m-0 mb-2" style="font-size: 12px;">${element.title}</p>
+                          <p class="m-0" style="font-size: 12px;">${element.artist.name}</p>
+                        </div>
+                      </div>
+                    </li>
+                 </div>`
   })
   output += `</div>`
   containerTitoli.innerHTML = output
