@@ -6,6 +6,16 @@ const URL_API = "https://deezerdevs-deezer.p.rapidapi.com/album/" + id
 const KEY = "bc10829072mshb658932a6a8dddep1366a1jsn27a0e20c2896"
 const HOST = "deezerdevs-deezer.p.rapidapi.com"
 
+
+
+
+// controllo sulla homepage 
+const limit = 1 // con questa constante posso cambiare il numero di Track da visualizzare nella homepage
+
+
+
+
+
 // start home page automatica random
 document.addEventListener("DOMContentLoaded", () => {
   if (id) {
@@ -25,7 +35,6 @@ homeButton.addEventListener("click", function () {
   let searchArea = document.getElementById("searchArea")
   searchArea.style.display = "none"
 })
-const limit = 8
 
 function searchRandomTracks() {
   const randomQueries = ["italian", "sfera", "travisscott", "jazz", "classical", "metal"]
@@ -38,7 +47,7 @@ function searchRandomTracks() {
       "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
     },
   }
-
+//fetch custom per track artista
   fetch(url, options)
     .then((response) => {
       if (!response.ok) {
@@ -48,16 +57,59 @@ function searchRandomTracks() {
     })
     .then((result) => {
       console.log(result.data)
+      console.log("custom random 8 ha funzionato per le track")
       displayResults2(result.data, query)
+    })
+    .catch((error) => {
+      console.error("Fetch error:", error.message)
+    })
+    
+    
+    //fetch per artist custom comandata dal limit
+const limitArtist = 8  // con questa constante posso cambiare il numero di artisti da visualizzare nella homepage
+
+const urlArtist = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${encodeURIComponent(query)}&limit=${limitArtist}`
+
+fetch(urlArtist, options)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("nessuna risposta da parte artisti custom homepage")
+      }
+      return response.json()
+    })
+    .then((result) => {
+      console.log(result.data)
+      console.log("custom artist 6 ha funzionato")
       displayArtistResults2(result.data, query)
+    })
+    .catch((error) => {
+      console.error("Fetch error:", error.message)
+    })
+    
+    const limitAlbum = 12 // con questa constante posso cambiare il numero di Album da visualizzare nella homepage
+    
+    const urlAlbum = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${encodeURIComponent(query)}&limit=${limitAlbum}`
+    
+    fetch(urlAlbum, options)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("nessuna risposta da parte artisti custom homepage")
+      }
+      return response.json()
+    })
+    .then((result) => {
+      console.log(result.data)
+      console.log("custom ALBUM HOMEPAGE ha funzionato!")
       displayAlbumResults2(result.data, query)
     })
     .catch((error) => {
       console.error("Fetch error:", error.message)
     })
-}
+    
+  }
 
-function displayResults2(results, query) {
+  
+  function displayResults2(results, query) {
   const containerTitoli = document.getElementById("containerTitoli")
   let output = `
                 <div class="mt-3 row " >`
@@ -129,7 +181,7 @@ function displayAlbumResults2(results, query) {
 const btnCerca = document.getElementById("searchTrigger")
 const inputCerca = document.getElementById("searchGeneral")
 
-// Funzione per gestire la ricerca
+// Funzione per gestire la ricerca quando si clicca sul bottone cerca posto nella homepage
 function searchItems() {
   const queries = inputCerca.value.trim().split()
   queries.forEach((query) => {
