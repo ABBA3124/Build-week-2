@@ -25,7 +25,7 @@ homeButton.addEventListener("click", function () {
   let searchArea = document.getElementById("searchArea")
   searchArea.style.display = "none"
 })
-const limit = 16
+const limit = 8
 
 function searchRandomTracks() {
   const randomQueries = ["italian", "sfera", "travisscott", "jazz", "classical", "metal"]
@@ -62,7 +62,7 @@ function displayResults2(results, query) {
   let output = `
                 <div class="mt-3 row " >`
   results.forEach((element) => {
-    output += `<div class="col-12 col-sm-6 col-md-4 col-lg-3">
+    output += `<div class="col-12 col-sm-6 col-md-4 col-lg-3 ">
                     <li class="search-result-item" data-audio-src="${element.preview}" data-title="${element.title}" data-artist="${element.artist.name}" data-album-cover="${element.album.cover}">
                       <div class="d-flex" style="cursor: pointer;">
                         <img src="${element.album.cover}" alt="Copertina dell'album" height="60">
@@ -110,7 +110,7 @@ function displayAlbumResults2(results, query) {
   let output = `<h3 class="mt-4">Album</h3>`
   output += `<div class="row" >`
   results.forEach((element) => {
-    output += `<a class="col-3 albumCard" href="../../../index.html?albumId=${element.album.id}">
+    output += `<a class="col albumCard" href="../../../index.html?albumId=${element.album.id}">
     <div class=" rounded cardContainer text-left">
       <img style="border-radius: 6px;" src="${element.album.cover}" height="150px">
       <p class="mb-1 fw-bold " style="font-size: 12px;">${element.album.title}</p>
