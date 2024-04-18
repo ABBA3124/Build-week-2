@@ -201,20 +201,38 @@ function displayResults(results, query) {
     return
   }
   let output = `<h2>Risultato più rilevante: <span class="fw-bold">${inputCerca.value.trim()}</span></h2>
-  <h3>Brani:</h3><div class="overflow-scroll overflow-x-hidden" style="height: 260px">`
-  results.forEach((element) => {
+  <h3>Brani:</h3><div class="d-flex" style="height: 260px">
+  <div style="width: 50%">
+    <img src="${results[0].album.cover}" alt="immagine inerente al brano" height="100px">
+    <p class="fw-bold m-0 mb-2 fs-3" style="font-size: 15px;">${results[0].title}</p>
+    <p class="m-0 fs-5" style="font-size: 12px;">${results[0].artist.name}</p>
+  </div>
+  <div>`
+  // console.log(results.slice(0, 5))
+  const songs = results.slice(1, 5)
+  songs.forEach((element) => {
     output += `<ul><li class="search-result-item" data-audio-src="${element.preview}" data-title="${element.title}" data-artist="${element.artist.name}" data-album-cover="${element.album.cover}">
-      <div class="d-flex" style="cursor: pointer;">
-        <img src="${element.album.cover}" alt="immagine inerente al brano" height="50">
-        <i class="bi bi-play-fill icon-play-overlay"></i>
-        <div class="ms-2">
-          <p class="fw-bold m-0 mb-2" style="font-size: 15px;">${element.title}</p>
-          <p class="m-0" style="font-size: 12px;">${element.artist.name}</p>
-        </div>
-      </div>
-    </li></ul>`
+                <div class="d-flex" style="cursor: pointer;">
+                  <img src="${element.album.cover}" alt="immagine inerente al brano" height="50">
+                  <i class="bi bi-play-fill icon-play-overlay"></i>
+                  <div class="ms-2">
+                    <p class="fw-bold m-0 mb-2" style="font-size: 15px;">${element.title}</p>
+                    <p class="m-0" style="font-size: 12px;">${element.artist.name}</p>
+                  </div>
+                </div>
+              </li></ul>`
+    // output += `<ul><li class="search-result-item" data-audio-src="${element.preview}" data-title="${element.title}" data-artist="${element.artist.name}" data-album-cover="${element.album.cover}">
+    //   <div class="d-flex" style="cursor: pointer;">
+    //     <img src="${element.album.cover}" alt="immagine inerente al brano" height="50">
+    //     <i class="bi bi-play-fill icon-play-overlay"></i>
+    //     <div class="ms-2">
+    //       <p class="fw-bold m-0 mb-2" style="font-size: 15px;">${element.title}</p>
+    //       <p class="m-0" style="font-size: 12px;">${element.artist.name}</p>
+    //     </div>
+    //   </div>
+    // </li></ul>`
   })
-  output += `</div>`
+  output += `</div></div>`
   containerTitoli.innerHTML = output
 
   document.querySelectorAll('.search-result-item').forEach((item) => {
