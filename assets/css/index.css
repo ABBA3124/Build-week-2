@@ -72,6 +72,22 @@
   border-radius: 4px;
 }
 
+/* questo si adotta in caso di search */
+.icon-play-overlay2 {
+  position: absolute;
+  top: 50%;
+  left: 1%;
+  transform: translate(50%, -50%);
+  font-size: 24px;
+  color: white;
+  display: none;
+  z-index: 10;
+}
+.search-result-item:hover .icon-play-overlay2 {
+  display: block; /* Mostra l'icona quando il mouse è sopra  */
+}
+
+/* questo si adotta in caso di homepage */
 .icon-play-overlay {
   position: absolute;
   top: 50%;
@@ -269,7 +285,7 @@
 }
 
 #destra::-webkit-scrollbar {
-  width: 10px;
+  width: 20px;
 }
 
 #destra::-webkit-scrollbar-track {
@@ -306,7 +322,7 @@
 
 /* barra invisibile */
 #martucci::-webkit-scrollbar {
-  width: 5px;
+  width: 7px;
 }
 
 #martucci::-webkit-scrollbar-track {
@@ -314,7 +330,7 @@
 }
 
 #martucci::-webkit-scrollbar-thumb {
-  background: #2e2e2e;
+  background: #3b3b3b;
 }
 
 #martucci::-webkit-scrollbar-thumb:hover {

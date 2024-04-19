@@ -14,13 +14,13 @@ const value = params.get('value')
 // controllo sulla homepage 
 // aggiunto questo nuovo metodo di manipolazione dell'url tramite il limit cosi da poterlo adattare come vogliamo noi ⚠️
 const limitTrack = 64 // con questa constante posso cambiare il numero di Track da visualizzare nella homepage ⚠️
-const limitArtist = 7  // con questa constante posso cambiare il numero di Artist da visualizzare nella homepage ⚠️
+const limitArtist = 8  // con questa constante posso cambiare il numero di Artist da visualizzare nella homepage ⚠️
 //quest'ultima siccome usa sempre lo stesso parametro di quantità manipolerà sia homepage che search 🚀🚀🚀🚀🚀
 const limitAlbumAndSearch = 12 // con questa constante posso cambiare il numero di Album da visualizzare nella homepage ⚠️
 
 //controllo sul cerca (SEARCH)
 const limitTrackSearch = 64 // con questa constante posso cambiare il numero di Track QUANDO SI CERCA da visualizzare nella SEARCH ⚠️
-const limitArtistSearch = 1 // con questa constante posso cambiare il numero di Artist QUANDO SI CERCA da visualizzare nella SEARCH ⚠️
+const limitArtistSearch = 8 // con questa constante posso cambiare il numero di Artist QUANDO SI CERCA da visualizzare nella SEARCH ⚠️
 const limitAlbumSearch = 12 // con questa constante posso cambiare il numero di Album QUANDO SI CERCA da visualizzare nella SEARCH ⚠️
 
 
@@ -185,11 +185,11 @@ function displayArtistResults2(results, query) {
   const containerArtist = document.getElementById("containerArtist")
 
   let output = `<h3 class="mt-4">Artisti</h3>`
-  output += `<div class="row row-col">`
+  output += `<div class="row row-cols-8">`
   results.forEach((element) => {
     output += `<a class="col" href="../../../index.html?artistId=${element.artist.name}">
                 <div class="my-2 py-1 px-2 rounded cardContainer">
-                <img style="border-radius: 50%;" src="${element.artist.picture}" height="100">
+                <img style="border-radius: 50%; aspect-ratio:1/1; display:block;" class="w-100"  src="${element.artist.picture}" >
                 <p class="fw-bold m-0 mb-2" style="font-size: 15px;">${element.artist.name}</p>
                 <p class="m-0" style="font-size: 12px;">Artista</p>
               </div></a>`
@@ -324,23 +324,29 @@ function displayResults(results, query) {
     `
     return
   }
-  let output = `<h2 class="mb-4">Risultato più rilevante: <span class="fw-bold">${inputCerca.value.trim()}</span></h2>
-  <h3 class="mt-2 mb-1">Brani:</h3><div id="martucci" class="row overflow-scroll overflow-x-hi*dden" style="height: 280px" >`
-  results.forEach((element) => {
-    output += `<div class="col-12 col-sm-6 col-md-4 col-lg-3" style="height="150px">
-                    <li class="search-result-item" data-audio-src="${element.preview}" data-title="${element.title}" data-artist="${element.artist.name}" data-album-cover="${element.album.cover}">
-                      <div class="d-flex" style="cursor: pointer;">
-                        <img src="${element.album.cover}" alt="Copertina dell'album" height="60">
-                        <i class="bi bi-play-fill icon-play-overlay"></i>
-                        <div class="ms-2">
-                          <p class="fw-bold m-0 mb-2" style="font-size: 12px;">${element.title}</p>
-                          <p class="m-0" style="font-size: 12px;">${element.artist.name}</p>
-                        </div>
-                      </div>
-                    </li>
-                 </div>`
+
+  let output = `<h2>Risultato più rilevante: <span class="fw-bold">${inputCerca.value.trim()}</span></h2>
+  <h3 style="font-weight: 800;">Brani</h3><div class="d-flex" style="height: 260px">
+  <div class="py-4 px-5" style="width:41%;">
+    <span class="search-result-item" data-audio-src="${results[0].preview}" data-title="${results[0].title}" data-artist="${results[0].artist.name}" data-album-cover="${results[0].album.cover}"><img class="rounded-circle" src="${results[0].album.cover}" alt="immagine inerente al brano" height="100px"></span>
+    <p class="fw-bold m-0 mb-2 fs-3" style="font-size: 15px;">${results[0].title}</p>
+    <p class="m-0 fs-5" style="font-size: 12px;">${results[0].artist.name}</p>
+  </div>
+  <div id="martucci" class="overflow-scroll overflow-x-hidden d-flex flex-column align-items-baseline" style="height: 259px">`
+  const songs = results.slice(1)
+  songs.forEach((element) => {
+    output += `<ul><li class="search-result-item" data-audio-src="${element.preview}" data-title="${element.title}" data-artist="${element.artist.name}" data-album-cover="${element.album.cover}">
+                <div class="d-flex" style="cursor: pointer;">
+                  <img src="${element.album.cover}" alt="immagine inerente al brano" height="50">
+                  <i class="bi bi-play-fill icon-play-overlay2"></i>
+                  <div class="ms-2">
+                    <p class="fw-bold m-0 mb-2" style="font-size: 15px;">${element.title}</p>
+                    <p class="m-0" style="font-size: 12px;">${element.artist.name}</p>
+                  </div>
+                </div>
+              </li></ul>`
   })
-  output += `</div>`
+  output += `</div></div>`
   containerTitoli.innerHTML = output
 
   document.querySelectorAll(".search-result-item").forEach((item) => {
@@ -358,12 +364,12 @@ function displayArtistResults(results, query) {
     containerArtist.innerHTML = ``
     return
   }
-  let output = `<h3 class="mt-4">Artisti</h3>`
-  output += `<div class="row row-col">`
+  let output = `<h3 class="mt-4" style="font-weight: 800;">Artisti</h3>`
+  output += `<div class="row row-cols-8">`
   results.forEach((element) => {
     output += `<a class="col" href="../../../index.html?artistId=${element.artist.name}">
                 <div class="my-2 py-1 px-2 rounded cardContainer">
-                <img style="border-radius: 50%;" src="${element.artist.picture}" height="100">
+                <img style="border-radius: 50%; display:block; aspect-ratio:1/1;" class="w-100"  src="${element.artist.picture}" >
                 <p class="fw-bold m-0 mb-2" style="font-size: 15px;">${element.artist.name}</p>
                 <p class="m-0" style="font-size: 12px;">Artista</p>
               </div></a>`
@@ -385,7 +391,7 @@ function displayAlbumResults(results, query) {
     containerAlbum.innerHTML = ``
     return
   }
-  let output = `<h3 class="mt-4">Album</h3>`
+  let output = `<h3 class="mt-4" style="font-weight: 800;">Album</h3>`
   output += `<div class="row" >`
   results.forEach((element) => {
     output += `<a class="col-3" href="../../../index.html?albumId=${element.album.id}">
