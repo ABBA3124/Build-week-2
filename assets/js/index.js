@@ -6,7 +6,9 @@ const URL_API = "https://deezerdevs-deezer.p.rapidapi.com/album/" + id
 const KEY = "bc10829072mshb658932a6a8dddep1366a1jsn27a0e20c2896"
 const HOST = "deezerdevs-deezer.p.rapidapi.com"
 
-
+//const riguardanti "avanti indietro"
+const id3 = params.get('search')
+const value = params.get('value')
 
 
 // controllo sulla homepage 
@@ -24,18 +26,46 @@ const limitAlbumSearch = 12 // con questa constante posso cambiare il numero di 
 
 
 // da qui al caricamento del dom iniziamo ad avviare funzioni che si occupano di far spawnare home page
-document.addEventListener("DOMContentLoaded", () => {
+// document.addEventListener("DOMContentLoaded", () => {
+//   if (id) {
+//     // console.log(URL_API)
+//     createAlbum()
+//   } else if (id2) {
+//     // console.log(URL_ARTIST)
+//     searchItemsAlbum()
+//     // createAlbum2()
+//   } else {
+//     searchRandomTracks()
+//   }
+// })
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
   if (id) {
-    // console.log(URL_API)
     createAlbum()
   } else if (id2) {
-    // console.log(URL_ARTIST)
     searchItemsAlbum()
-    // createAlbum2()
+    // Gestione cambio pagine
+    indietro.addEventListener('click', () => {
+      window.location.href = 'index.html'
+    })
+  } else if (id3) {
+    inputCerca.value = id3
+    searchItems()
   } else {
     searchRandomTracks()
+    avanti.addEventListener('click', () => {
+      window.location.href = `index.html?search=${value}`
+    })
   }
 })
+
+
+
+
+
+
 
 //quando si preme sul home ricarica la pagina come al caricamento del dom tramite la searchRandomTracks()
 // non toccare Pena distruzione di molte funzioni
@@ -219,6 +249,18 @@ function searchItems() {
       })
       .then((result) => {
         // console.log(result.data)
+        //Gestione dei pulsanti avanti indietro 
+        avanti.addEventListener('click', () => {
+          
+          if (value === 'album') {
+            window.location.href = `index.html?albumId=${result.data[0].album.id}`
+          } else if (value === 'artist') {
+            window.location.href = `index.html?artistId=${result.data[0].artist.name}`
+          }
+        })
+        indietro.addEventListener('click', () => {
+          window.location.href = `index.html?value=${id3}`
+        })
         console.log("TRACK SEARCH ha funzionato! sono stati caricati con successo") 
         displayResults(result.data, query)
       })
@@ -601,7 +643,12 @@ const fetchAlbum = () => {
       return response.json()
     })
     .then((data_response) => {
-      console.log(data_response)
+      // console.log(data_response)
+      // Gestione cambio pagine avanti indietro 
+      console.log()
+      indietro.addEventListener('click', () => {
+        window.location.href = `index.html?value=album&search=${data_response.title}`
+      })
 
       //   Immagine cover
       const imageLinkCover = data_response.cover_medium
@@ -677,6 +724,11 @@ const searchItemsAlbum = () => {
     })
     .then((result) => {
       console.log(result.data)
+      // Gestione cambio pagine avanti indietro 
+      indietro.addEventListener('click', () => {
+        window.location.href = `index.html?value=artist&search=${result.data[0].artist.name}`
+      })
+
       if (result.data.length > 0) {
         const firstItem = result.data[0]
         createArtist(
