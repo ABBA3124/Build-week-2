@@ -13,9 +13,9 @@ const value = params.get('value')
 // controllo sulla homepage
 // aggiunto questo nuovo metodo di manipolazione dell'url tramite il limit cosi da poterlo adattare come vogliamo noi ⚠️
 const limitTrack = 64 // con questa constante posso cambiare il numero di Track da visualizzare nella homepage ⚠️
-const limitArtist = 8 // con questa constante posso cambiare il numero di Artist da visualizzare nella homepage ⚠️
+const limitArtist = 12 // con questa constante posso cambiare il numero di Artist da visualizzare nella homepage ⚠️
 //quest'ultima siccome usa sempre lo stesso parametro di quantità manipolerà sia homepage che search 🚀🚀🚀🚀🚀
-const limitAlbumAndSearch = 24 // con questa constante posso cambiare il numero di Album da visualizzare nella homepage ⚠️
+const limitAlbum =  30// con questa constante posso cambiare il numero di Album da visualizzare nella homepage ⚠️
 
 //controllo sul cerca (SEARCH)
 const limitTrackSearch = 64 // con questa constante posso cambiare il numero di Track QUANDO SI CERCA da visualizzare nella SEARCH ⚠️
@@ -66,7 +66,7 @@ homeButton.addEventListener('click', function () {
 
 //creo un piccolo array dove che usamo come queri iniziali per far spawnare la homepage "casuale"
 function searchRandomTracks() {
-  const randomQueries = ['sfera', 'classical', 'metal']
+  const randomQueries = ['sfera ebbasta', 'guè']
   const query = randomQueries[Math.floor(Math.random() * randomQueries.length)]
   const urlTrack = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${encodeURIComponent(query)}&limit=${limitTrack}` //URL MANIPOLATO TRAMITE LIMIT questo manipola track homepage
   const options = {
@@ -114,7 +114,7 @@ function searchRandomTracks() {
     })
 
   //fetch manipolata per album con url limit
-  const urlAlbum = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${encodeURIComponent(query)}&limit=${limitAlbumAndSearch}` //URL MANIPOLATO TRAMITE LIMIT questo manipola album homepage
+  const urlAlbum = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${encodeURIComponent(query)}&limit=${limitAlbum}` //URL MANIPOLATO TRAMITE LIMIT questo manipola album homepage
 
   fetch(urlAlbum, options)
     .then((response) => {
@@ -266,7 +266,7 @@ function searchItems() {
         console.error('Fetch error:', error.message)
       })
 
-    const urlAlbumSearch = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${encodeURIComponent(query)}&limit=${limitAlbumAndSearch}`
+    const urlAlbumSearch = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${encodeURIComponent(query)}&limit=${limitAlbumSearch}`
     fetch(urlAlbumSearch, options)
       .then((response) => {
         if (!response.ok) {
