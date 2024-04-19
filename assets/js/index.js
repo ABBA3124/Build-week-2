@@ -22,19 +22,7 @@ const limitTrackSearch = 64 // con questa constante posso cambiare il numero di 
 const limitArtistSearch = 24 // con questa constante posso cambiare il numero di Artist QUANDO SI CERCA da visualizzare nella SEARCH ⚠️
 const limitAlbumSearch = 24 // con questa constante posso cambiare il numero di Album QUANDO SI CERCA da visualizzare nella SEARCH ⚠️
 
-// da qui al caricamento del dom iniziamo ad avviare funzioni che si occupano di far spawnare home page
-// document.addEventListener("DOMContentLoaded", () => {
-//   if (id) {
-//     // console.log(URL_API)
-//     createAlbum()
-//   } else if (id2) {
-//     // console.log(URL_ARTIST)
-//     searchItemsAlbum()
-//     // createAlbum2()
-//   } else {
-//     searchRandomTracks()
-//   }
-// })
+
 
 document.addEventListener('DOMContentLoaded', () => {
   if (id) {
