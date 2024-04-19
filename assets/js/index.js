@@ -1,29 +1,26 @@
 const params = new URLSearchParams(window.location.search)
-const id = params.get("albumId")
-const id2 = params.get("artistId")
+const id = params.get('albumId')
+const id2 = params.get('artistId')
 const URL_ARTIST = `https://deezerdevs-deezer.p.rapidapi.com/search?q=` + id2
-const URL_API = "https://deezerdevs-deezer.p.rapidapi.com/album/" + id
-const KEY = "bc10829072mshb658932a6a8dddep1366a1jsn27a0e20c2896"
-const HOST = "deezerdevs-deezer.p.rapidapi.com"
+const URL_API = 'https://deezerdevs-deezer.p.rapidapi.com/album/' + id
+const KEY = 'bc10829072mshb658932a6a8dddep1366a1jsn27a0e20c2896'
+const HOST = 'deezerdevs-deezer.p.rapidapi.com'
 
 //const riguardanti "avanti indietro"
 const id3 = params.get('search')
 const value = params.get('value')
 
-
-// controllo sulla homepage 
+// controllo sulla homepage
 // aggiunto questo nuovo metodo di manipolazione dell'url tramite il limit cosi da poterlo adattare come vogliamo noi ⚠️
 const limitTrack = 64 // con questa constante posso cambiare il numero di Track da visualizzare nella homepage ⚠️
-const limitArtist = 8  // con questa constante posso cambiare il numero di Artist da visualizzare nella homepage ⚠️
+const limitArtist = 8 // con questa constante posso cambiare il numero di Artist da visualizzare nella homepage ⚠️
 //quest'ultima siccome usa sempre lo stesso parametro di quantità manipolerà sia homepage che search 🚀🚀🚀🚀🚀
-const limitAlbumAndSearch = 18 // con questa constante posso cambiare il numero di Album da visualizzare nella homepage ⚠️
+const limitAlbumAndSearch = 24 // con questa constante posso cambiare il numero di Album da visualizzare nella homepage ⚠️
 
 //controllo sul cerca (SEARCH)
 const limitTrackSearch = 64 // con questa constante posso cambiare il numero di Track QUANDO SI CERCA da visualizzare nella SEARCH ⚠️
-const limitArtistSearch = 8 // con questa constante posso cambiare il numero di Artist QUANDO SI CERCA da visualizzare nella SEARCH ⚠️
-const limitAlbumSearch = 12 // con questa constante posso cambiare il numero di Album QUANDO SI CERCA da visualizzare nella SEARCH ⚠️
-
-
+const limitArtistSearch = 24 // con questa constante posso cambiare il numero di Artist QUANDO SI CERCA da visualizzare nella SEARCH ⚠️
+const limitAlbumSearch = 24 // con questa constante posso cambiare il numero di Album QUANDO SI CERCA da visualizzare nella SEARCH ⚠️
 
 // da qui al caricamento del dom iniziamo ad avviare funzioni che si occupano di far spawnare home page
 // document.addEventListener("DOMContentLoaded", () => {
@@ -38,8 +35,6 @@ const limitAlbumSearch = 12 // con questa constante posso cambiare il numero di 
 //     searchRandomTracks()
 //   }
 // })
-
-
 
 document.addEventListener('DOMContentLoaded', () => {
   if (id) {
@@ -61,97 +56,86 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 })
 
-
-
-
-
-
-
 //quando si preme sul home ricarica la pagina come al caricamento del dom tramite la searchRandomTracks()
 // non toccare Pena distruzione di molte funzioni
-homeButton.addEventListener("click", function () {
+homeButton.addEventListener('click', function () {
   searchRandomTracks()
-  let searchArea = document.getElementById("searchArea")
-  searchArea.style.display = "none"
+  let searchArea = document.getElementById('searchArea')
+  searchArea.style.display = 'none'
 })
-
 
 //creo un piccolo array dove che usamo come queri iniziali per far spawnare la homepage "casuale"
 function searchRandomTracks() {
-  const randomQueries = ["sfera", "classical", "metal"]
+  const randomQueries = ['sfera', 'classical', 'metal']
   const query = randomQueries[Math.floor(Math.random() * randomQueries.length)]
   const urlTrack = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${encodeURIComponent(query)}&limit=${limitTrack}` //URL MANIPOLATO TRAMITE LIMIT questo manipola track homepage
   const options = {
-    method: "GET",
+    method: 'GET',
     headers: {
-      "X-RapidAPI-Key": "50cb9d0834msh6916f2733fc1e75p1d758cjsnb17cfee22a1d",
-      "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
+      'X-RapidAPI-Key': '50cb9d0834msh6916f2733fc1e75p1d758cjsnb17cfee22a1d',
+      'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com',
     },
   }
 
-
-
-//fetch manipolata per track con url limit
+  //fetch manipolata per track con url limit
   fetch(urlTrack, options)
     .then((response) => {
       if (!response.ok) {
-        throw new Error("nessuna risposta riguardo TRACK HOMEPAGE")
+        throw new Error('nessuna risposta riguardo TRACK HOMEPAGE')
       }
       return response.json()
     })
     .then((result) => {
       // console.log(result.data)
-      console.log("TRACK HOMEPAGE ha funzionato! sono stati caricati con successo") 
+      console.log('TRACK HOMEPAGE ha funzionato! sono stati caricati con successo')
       displayResults2(result.data, query) //avvia la funzione che fa vedere le track sulla homepage
     })
     .catch((error) => {
-      console.error("Fetch error:", error.message)
+      console.error('Fetch error:', error.message)
     })
-    
-    
-    //fetch manipolata per artist con url limit
-const urlArtist = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${encodeURIComponent(query)}&limit=${limitArtist}` //URL MANIPOLATO TRAMITE LIMIT questo manipola artist homepage
 
-fetch(urlArtist, options)
+  //fetch manipolata per artist con url limit
+  const urlArtist = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${encodeURIComponent(query)}&limit=${limitArtist}` //URL MANIPOLATO TRAMITE LIMIT questo manipola artist homepage
+
+  fetch(urlArtist, options)
     .then((response) => {
       if (!response.ok) {
-        throw new Error("nessuna risposta riguardo ARTIST HOMEPAGE")
+        throw new Error('nessuna risposta riguardo ARTIST HOMEPAGE')
       }
       return response.json()
     })
     .then((result) => {
       // console.log(result.data)
-      console.log("ARTIST HOMEPAGE ha funzionato! sono stati caricati con successo") 
+      console.log('ARTIST HOMEPAGE ha funzionato! sono stati caricati con successo')
       displayArtistResults2(result.data, query) //avvia la funzione che fa vedere le artist sulla homepage
     })
     .catch((error) => {
-      console.error("Fetch error:", error.message)
+      console.error('Fetch error:', error.message)
     })
-    
-    //fetch manipolata per album con url limit
-    const urlAlbum = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${encodeURIComponent(query)}&limit=${limitAlbumAndSearch}` //URL MANIPOLATO TRAMITE LIMIT questo manipola album homepage
-    
-    fetch(urlAlbum, options)
+
+  //fetch manipolata per album con url limit
+  const urlAlbum = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${encodeURIComponent(query)}&limit=${limitAlbumAndSearch}` //URL MANIPOLATO TRAMITE LIMIT questo manipola album homepage
+
+  fetch(urlAlbum, options)
     .then((response) => {
       if (!response.ok) {
-        throw new Error("nessuna risposta riguardo ALBUM HOMEPAGE")
+        throw new Error('nessuna risposta riguardo ALBUM HOMEPAGE')
       }
       return response.json()
     })
     .then((result) => {
       // console.log(result.data)
-      console.log("ALBUM HOMEPAGE ha funzionato! sono stati caricati con successo") 
+      console.log('ALBUM HOMEPAGE ha funzionato! sono stati caricati con successo')
       displayAlbumResults2(result.data, query) //avvia la funzione che fa vedere le album sulla homepage
     })
     .catch((error) => {
-      console.error("Fetch error:", error.message)
+      console.error('Fetch error:', error.message)
     })
-    
-  }
+}
 
-  //funzione che fa vedere le track sulla homepage tramite innerhtml
-  function displayResults2(results, query) {
-  const containerTitoli = document.getElementById("containerTitoli")
+//funzione che fa vedere le track sulla homepage tramite innerhtml
+function displayResults2(results, query) {
+  const containerTitoli = document.getElementById('containerTitoli')
   let output = `
                 <div id="martucci" class="mt-3 row overflow-scroll overflow-x-hidden" style="height: 280px" >`
   results.forEach((element) => {
@@ -171,22 +155,22 @@ fetch(urlArtist, options)
   output += `</div>`
   containerTitoli.innerHTML = output
 
-  document.querySelectorAll(".search-result-item").forEach((item) => {
-    item.addEventListener("click", function () {
+  document.querySelectorAll('.search-result-item').forEach((item) => {
+    item.addEventListener('click', function () {
       playSelectedTrack(this.dataset.audioSrc, this.dataset.title, this.dataset.artist, this.dataset.albumCover)
     })
   })
 }
 
-
 //funzione che fa vedere le artist sulla homepage tramite innerhtml
 function displayArtistResults2(results, query) {
-  console.log("risultati per ${query}:", results)
-  const containerArtist = document.getElementById("containerArtist")
+  console.log('risultati per ${query}:', results)
+  const containerArtist = document.getElementById('containerArtist')
 
   let output = `<h3 class="mt-4">Artisti</h3>`
   output += `<div class="row row-cols-8">`
-  results.forEach((element) => {
+  const artistList = artistFilter(results)
+  artistList.forEach((element) => {
     output += `<a class="col" href="../../../index.html?artistId=${element.artist.name}">
                 <div class="my-2 py-1 px-2 rounded cardContainer">
                 <img style="border-radius: 50%; aspect-ratio:1/1; display:block;" class="w-100"  src="${element.artist.picture}" >
@@ -198,15 +182,15 @@ function displayArtistResults2(results, query) {
   containerArtist.innerHTML = output
 }
 
-
 //funzione che fa vedere le album sulla homepage tramite innerhtml
 function displayAlbumResults2(results, query) {
-  console.log("risultati per ${query}:", results)
-  const containerAlbum = document.getElementById("containerAlbum")
+  console.log('risultati per ${query}:', results)
+  const containerAlbum = document.getElementById('containerAlbum')
 
   let output = `<h3 class="mt-4">Album</h3>`
   output += `<div class="row row-cols-6" >`
-  results.forEach((element) => {
+  const albumList = artistFilter(results)
+  albumList.forEach((element) => {
     output += `<a class="col albumCard" href="../../../index.html?albumId=${element.album.id}">
     <div class=" rounded cardContainer text-left">
       <img style="border-radius: 6px; display:block; aspect-ratio:1/1; " class="w-100" src="${element.album.cover}" >
@@ -220,12 +204,10 @@ function displayAlbumResults2(results, query) {
 }
 // fine logica homepage
 
-
-
 // inizio logica cerca tramite bottone al click
 //funziona  simile a quella di homepage tranna qualcosina
-const btnCerca = document.getElementById("searchTrigger")
-const inputCerca = document.getElementById("searchGeneral")
+const btnCerca = document.getElementById('searchTrigger')
+const inputCerca = document.getElementById('searchGeneral')
 
 // Funzione per gestire la ricerca quando si clicca sul bottone cerca posto nella homepage
 function searchItems() {
@@ -233,25 +215,24 @@ function searchItems() {
   queries.forEach((query) => {
     const urlTrackSearch = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${encodeURIComponent(query)}&limit=${limitTrackSearch}`
     const options = {
-      method: "GET",
+      method: 'GET',
       headers: {
-        "X-RapidAPI-Key": "50cb9d0834msh6916f2733fc1e75p1d758cjsnb17cfee22a1d",
-        "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
+        'X-RapidAPI-Key': '50cb9d0834msh6916f2733fc1e75p1d758cjsnb17cfee22a1d',
+        'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com',
       },
     }
 
     fetch(urlTrackSearch, options)
       .then((response) => {
         if (!response.ok) {
-          throw new Error("nessuna risposta riguardo Track HOMEPAGE")
+          throw new Error('nessuna risposta riguardo Track HOMEPAGE')
         }
         return response.json()
       })
       .then((result) => {
         // console.log(result.data)
-        //Gestione dei pulsanti avanti indietro 
+        //Gestione dei pulsanti avanti indietro
         avanti.addEventListener('click', () => {
-          
           if (value === 'album') {
             window.location.href = `index.html?albumId=${result.data[0].album.id}`
           } else if (value === 'artist') {
@@ -261,61 +242,56 @@ function searchItems() {
         indietro.addEventListener('click', () => {
           window.location.href = `index.html?value=${id3}`
         })
-        console.log("TRACK SEARCH ha funzionato! sono stati caricati con successo") 
+        console.log('TRACK SEARCH ha funzionato! sono stati caricati con successo')
         displayResults(result.data, query)
       })
       .catch((error) => {
-        console.error("Fetch error:", error.message)
+        console.error('Fetch error:', error.message)
       })
-    
-    
-      const urlArtistSearch = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${encodeURIComponent(query)}&limit=${limitArtistSearch}`  
-      fetch(urlArtistSearch, options)
+
+    const urlArtistSearch = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${encodeURIComponent(query)}&limit=${limitArtistSearch}`
+    fetch(urlArtistSearch, options)
       .then((response) => {
         if (!response.ok) {
-          throw new Error("nessuna risposta riguardo ARTIST HOMEPAGE")
+          throw new Error('nessuna risposta riguardo ARTIST HOMEPAGE')
         }
         return response.json()
       })
       .then((result) => {
         // console.log(result.data)
-        console.log("ARTIST SEARCH ha funzionato! sono stati caricati con successo") 
+        console.log('ARTIST SEARCH ha funzionato! sono stati caricati con successo')
         displayArtistResults(result.data, query)
       })
       .catch((error) => {
-        console.error("Fetch error:", error.message)
+        console.error('Fetch error:', error.message)
       })
-    
-    
-      const urlAlbumSearch = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${encodeURIComponent(query)}&limit=${limitAlbumAndSearch}`
-      fetch(urlAlbumSearch, options)
+
+    const urlAlbumSearch = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${encodeURIComponent(query)}&limit=${limitAlbumAndSearch}`
+    fetch(urlAlbumSearch, options)
       .then((response) => {
         if (!response.ok) {
-          throw new Error("nessuna risposta riguardo ALBUM HOMEPAGE")
+          throw new Error('nessuna risposta riguardo ALBUM HOMEPAGE')
         }
         return response.json()
       })
       .then((result) => {
         // console.log(result.data)
-        console.log("ALBUM SEARCH ha funzionato! sono stati caricati con successo") 
+        console.log('ALBUM SEARCH ha funzionato! sono stati caricati con successo')
         displayAlbumResults(result.data, query)
       })
       .catch((error) => {
-        console.error("Fetch error:", error.message)
+        console.error('Fetch error:', error.message)
       })
   })
-  
 }
 
 // Ascolta l'evento di input sul campo di ricerca
-inputCerca.addEventListener("input", searchItems)
+inputCerca.addEventListener('input', searchItems)
 
-
-
-// da qui inizia a 
+// da qui inizia a
 function displayResults(results, query) {
-  console.log("risultati per ${query}:", results)
-  const containerTitoli = document.getElementById("containerTitoli")
+  console.log('risultati per ${query}:', results)
+  const containerTitoli = document.getElementById('containerTitoli')
   if (results.length === 0) {
     containerTitoli.innerHTML = `
     <div class="alert alert-info mt-5" role="alert">
@@ -330,11 +306,17 @@ function displayResults(results, query) {
   <h2 class="fs-6">Risultato più rilevante: <span class="fw-bold">${inputCerca.value.trim()}</span></h2>
   <div class="d-flex" style="height: 260px">
   <div id="martucciTrackSearch" class="ms-3 mt-2 p-4 me-3 position-relative rounded icon-play-overlay3" style="width:41%;">
-  <button class="icon-da-sistemare rounded-circle p-2 bg-success border-0 search-result-item" data-audio-src="${results[0].preview}" data-title="${results[0].title}" data-artist="${results[0].artist.name}" data-album-cover="${results[0].album.cover}"> <svg data-encore-id="icon" role="img" fill="black" aria-hidden="true" viewBox="0 0 24 24" " height="50" class="">
+  <button class="icon-da-sistemare rounded-circle p-2 bg-success border-0 search-result-item" data-audio-src="${results[0].preview}" data-title="${
+    results[0].title
+  }" data-artist="${results[0].artist.name}" data-album-cover="${
+    results[0].album.cover
+  }"> <svg data-encore-id="icon" role="img" fill="black" aria-hidden="true" viewBox="0 0 24 24" " height="50" class="">
     <path d="m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z"></path>
   </svg>
   </button>
-    <span class="search-result-item" data-audio-src="${results[0].preview}" data-title="${results[0].title}" data-artist="${results[0].artist.name}" data-album-cover="${results[0].album.cover}"><img class="rounded-circle" src="${results[0].album.cover}" alt="immagine inerente al brano" height="100px"></span>
+    <span class="search-result-item" data-audio-src="${results[0].preview}" data-title="${results[0].title}" data-artist="${results[0].artist.name}" data-album-cover="${
+    results[0].album.cover
+  }"><img class="rounded-circle" src="${results[0].album.cover}" alt="immagine inerente al brano" height="100px"></span>
     <p class="m-0 fs-5" style="font-size: 12px; font-weight:bold; ">${results[0].artist.name}</p>
     <p class="fw-bold m-0 mb-2 fs-3" style="font-size: 15px;">${results[0].title}</p>
     <h6 class="text-secondary">Artista</h6>
@@ -344,24 +326,24 @@ function displayResults(results, query) {
   <div id="martucci" class="overflow-scroll overflow-x-hidden d-flex flex-column align-items-baseline" style="height: 259px">`
   const songs = results.slice(1)
   songs.forEach((element) => {
-    output += `<ul><li class="search-result-item" data-audio-src="${element.preview}" data-title="${element.title}" data-artist="${element.artist.name}" data-album-cover="${element.album.cover}">
+    output += `<ul class="w-100"><li class="search-result-item" data-audio-src="${element.preview}" data-title="${element.title}" data-artist="${element.artist.name}" data-album-cover="${element.album.cover}">
 
                 <div class="d-flex" style="cursor: pointer;">
                   <img src="${element.album.cover}" alt="immagine inerente al brano" height="50">
                   <i class="bi bi-play-fill icon-play-overlay2"></i>
-                  <div class="ms-2 ">
+                  <div class="ms-2 m-auto">
                     <p class="fw-bold m-0 mb-2" style="font-size: 15px;">${element.title}</p>
                     <p class="m-0" style="font-size: 12px;">${element.artist.name}</p>
                   </div>
-                  <div class="ms-5">${element.duration}</div>
+                  <div class="me-2">${element.duration}</div>
                 </div>
               </li></ul>`
   })
   output += `</div></div></div>`
   containerTitoli.innerHTML = output
 
-  document.querySelectorAll(".search-result-item").forEach((item) => {
-    item.addEventListener("click", function () {
+  document.querySelectorAll('.search-result-item').forEach((item) => {
+    item.addEventListener('click', function () {
       playSelectedTrack(this.dataset.audioSrc, this.dataset.title, this.dataset.artist, this.dataset.albumCover)
     })
   })
@@ -369,8 +351,8 @@ function displayResults(results, query) {
 
 // adattamento comportamento cristian
 function displayArtistResults(results, query) {
-  console.log("risultati per ${query}:", results)
-  const containerArtist = document.getElementById("containerArtist")
+  console.log('risultati per ${query}:', results)
+  const containerArtist = document.getElementById('containerArtist')
   if (results.length === 0) {
     containerArtist.innerHTML = ``
     return
@@ -390,8 +372,8 @@ function displayArtistResults(results, query) {
   output += `</div>`
   containerArtist.innerHTML = output
 
-  document.querySelectorAll(".search-result-item").forEach((item) => {
-    item.addEventListener("click", function () {
+  document.querySelectorAll('.search-result-item').forEach((item) => {
+    item.addEventListener('click', function () {
       playSelectedTrack(this.dataset.audioSrc, this.dataset.title, this.dataset.artist, this.dataset.albumCover)
     })
   })
@@ -404,21 +386,12 @@ const artistFilter = (results) => {
     list.push(song.artist.id)
   })
   const artistList = results.filter((song, index, self) => self.findIndex((e) => e.artist.id === song.artist.id) === index)
-  console.log(artistList)
   return artistList
 }
 
-
-
-
-
-
-
-
-
 function displayAlbumResults(results, query) {
-  console.log("risultati per ${query}:", results)
-  const containerAlbum = document.getElementById("containerAlbum")
+  console.log('risultati per ${query}:', results)
+  const containerAlbum = document.getElementById('containerAlbum')
   if (results.length === 0) {
     containerAlbum.innerHTML = ``
     return
@@ -439,13 +412,12 @@ function displayAlbumResults(results, query) {
   output += `</div>`
   containerAlbum.innerHTML = output
 
-  document.querySelectorAll(".search-result-item").forEach((item) => {
-    item.addEventListener("click", function () {
+  document.querySelectorAll('.search-result-item').forEach((item) => {
+    item.addEventListener('click', function () {
       playSelectedTrack(this.dataset.audioSrc, this.dataset.title, this.dataset.artist, this.dataset.albumCover)
     })
   })
 }
-
 
 //logica per filtrare gli album
 const albumFilter = (results) => {
@@ -454,27 +426,11 @@ const albumFilter = (results) => {
     list.push(song.album.id)
   })
   const albumList = results.filter((song, index, self) => self.findIndex((e) => e.album.id === song.album.id) === index)
-  console.log(albumList)
   return albumList
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function playSelectedTrack(src, title, artist, albumCover) {
-  const audioPlayer = document.getElementById("audioPlayer")
+  const audioPlayer = document.getElementById('audioPlayer')
   audioPlayer.src = src
   audioPlayer.play()
   updatePlayButton()
@@ -482,39 +438,39 @@ function playSelectedTrack(src, title, artist, albumCover) {
 }
 
 function updateNowPlayingInfo(title, artist, albumCover) {
-  document.querySelector(".sizeTitoloSong").textContent = title
-  document.querySelector(".sizeDescrizioneSong").textContent = artist
-  const imgElement = document.querySelector("#immagineBranoInRiproduzione img")
+  document.querySelector('.sizeTitoloSong').textContent = title
+  document.querySelector('.sizeDescrizioneSong').textContent = artist
+  const imgElement = document.querySelector('#immagineBranoInRiproduzione img')
   imgElement.src = albumCover
   imgElement.alt = `Immagine di: ${title}`
 }
 
 function updatePlayButton() {
-  const playIcon = document.querySelector("#bottoneplay i")
-  playIcon.classList.remove("bi-play-circle-fill")
-  playIcon.classList.add("bi-pause-circle-fill")
+  const playIcon = document.querySelector('#bottoneplay i')
+  playIcon.classList.remove('bi-play-circle-fill')
+  playIcon.classList.add('bi-pause-circle-fill')
 }
 
-const albumhomepage = document.getElementById("albumhomepage1")
-const albumhomepage2 = document.getElementById("albumhomepage2")
-const albumhomepage3 = document.getElementById("albumhomepage3")
-const albumhomepage4 = document.getElementById("albumhomepage4")
+const albumhomepage = document.getElementById('albumhomepage1')
+const albumhomepage2 = document.getElementById('albumhomepage2')
+const albumhomepage3 = document.getElementById('albumhomepage3')
+const albumhomepage4 = document.getElementById('albumhomepage4')
 
-btnCerca.addEventListener("click", function () {
-  let searchArea = document.getElementById("searchArea")
-  if (searchArea.style.display === "none" || searchArea.style.display === "") {
-    searchArea.style.display = "flex"
-    albumhomepage.style.display = "none"
-    albumhomepage2.style.display = "none"
-    albumhomepage3.style.display = "none"
-    albumhomepage4.style.display = "none"
+btnCerca.addEventListener('click', function () {
+  let searchArea = document.getElementById('searchArea')
+  if (searchArea.style.display === 'none' || searchArea.style.display === '') {
+    searchArea.style.display = 'flex'
+    albumhomepage.style.display = 'none'
+    albumhomepage2.style.display = 'none'
+    albumhomepage3.style.display = 'none'
+    albumhomepage4.style.display = 'none'
   } else {
-    searchArea.style.display = "none"
+    searchArea.style.display = 'none'
   }
 })
 
-clearIcon.addEventListener("click", function () {
-  document.getElementById("searchGeneral").value = ""
+clearIcon.addEventListener('click', function () {
+  document.getElementById('searchGeneral').value = ''
   searchRandomTracks()
 })
 
@@ -523,10 +479,10 @@ clearIcon.addEventListener("click", function () {
 // start yahia
 //FUNZIONE PER AGGIUNGERE UNA PLAYLIST CON EFFETTO DI FADE-IN
 function addPlaylistWithFadeIn(playlistHTML) {
-  const playlistContainer = document.getElementById("playlistContainer")
-  const newPlaylist = document.createElement("div")
+  const playlistContainer = document.getElementById('playlistContainer')
+  const newPlaylist = document.createElement('div')
   newPlaylist.innerHTML = playlistHTML
-  newPlaylist.classList.add("playlist", "row", "align-items-center", "gx-3", "my-4")
+  newPlaylist.classList.add('playlist', 'row', 'align-items-center', 'gx-3', 'my-4')
   newPlaylist.style.opacity = 0
   playlistContainer.appendChild(newPlaylist)
   setTimeout(() => {
@@ -536,7 +492,7 @@ function addPlaylistWithFadeIn(playlistHTML) {
 
 // //FUNZIONE PER RIMUOVERE UNA PLAYLIST CON EFFETTO DI FADE-OUT
 function removePlaylistWithFadeOut(playlist) {
-  playlist.style.transition = "opacity 0.3s ease"
+  playlist.style.transition = 'opacity 0.3s ease'
   playlist.style.opacity = 0
   setTimeout(() => {
     playlist.remove()
@@ -545,28 +501,28 @@ function removePlaylistWithFadeOut(playlist) {
 
 // //BOTTONI PER ELIMNARE LE PLAYLISTE//
 
-document.querySelectorAll(".playlist").forEach((item) => {
-  item.addEventListener("mouseenter", () => {
-    item.querySelector(".delete-playlist").classList.remove("d-none")
+document.querySelectorAll('.playlist').forEach((item) => {
+  item.addEventListener('mouseenter', () => {
+    item.querySelector('.delete-playlist').classList.remove('d-none')
   })
 
-  item.addEventListener("mouseleave", () => {
-    item.querySelector(".delete-playlist").classList.add("d-none")
+  item.addEventListener('mouseleave', () => {
+    item.querySelector('.delete-playlist').classList.add('d-none')
   })
 })
 
-document.querySelectorAll(".playlist").forEach((item) => {
-  const deleteBtn = item.querySelector(".delete-playlist")
-  deleteBtn.addEventListener("click", () => {
+document.querySelectorAll('.playlist').forEach((item) => {
+  const deleteBtn = item.querySelector('.delete-playlist')
+  deleteBtn.addEventListener('click', () => {
     item.remove() // Rimuove la playlist quando si fa clic sulla "x"
   })
 
-  item.addEventListener("mouseenter", () => {
-    deleteBtn.classList.remove("d-none")
+  item.addEventListener('mouseenter', () => {
+    deleteBtn.classList.remove('d-none')
   })
 
-  item.addEventListener("mouseleave", () => {
-    deleteBtn.classList.add("d-none")
+  item.addEventListener('mouseleave', () => {
+    deleteBtn.classList.add('d-none')
   })
 })
 // end yahia
@@ -575,17 +531,17 @@ document.querySelectorAll(".playlist").forEach((item) => {
 // tutto quello che succete quando si preme sull'album
 
 const createAlbum = () => {
-  if (albumhomepage.style.display === "none" || albumhomepage.style.display === "") {
-    searchArea.style.display = "flex"
-    albumhomepage.style.display = "none"
-    albumhomepage2.style.display = "none"
-    albumhomepage3.style.display = "none"
-    albumhomepage4.style.display = "none"
+  if (albumhomepage.style.display === 'none' || albumhomepage.style.display === '') {
+    searchArea.style.display = 'flex'
+    albumhomepage.style.display = 'none'
+    albumhomepage2.style.display = 'none'
+    albumhomepage3.style.display = 'none'
+    albumhomepage4.style.display = 'none'
   } else {
-    searchArea.style.display = "none"
+    searchArea.style.display = 'none'
   }
 
-  const pos = document.getElementById("containerLaunchHomePage")
+  const pos = document.getElementById('containerLaunchHomePage')
   pos.innerHTML = `
   <div id="hero" class="d-flex mt-3 mt-md-5 ms-md-4">
   <div class="img ms-3 me-3 me-md-4" id="hero-img">
@@ -646,14 +602,14 @@ const createAlbum = () => {
 
 // js inerente elementi
 const generateSong = (posizione, titolo, artista, riproduzioni, durata, previewUrl, coverUrl) => {
-  const divSongs = document.getElementById("songs")
-  const divCard = document.createElement("div")
-  divCard.classList.add("row", "card-song")
-  divCard.style.cursor = "pointer"
+  const divSongs = document.getElementById('songs')
+  const divCard = document.createElement('div')
+  divCard.classList.add('row', 'card-song')
+  divCard.style.cursor = 'pointer'
 
   // Titolo e artista con posizione
-  const divTitle = document.createElement("div")
-  divTitle.classList.add("col-5", "col-md-6", "my-md-1", "fw-bold")
+  const divTitle = document.createElement('div')
+  divTitle.classList.add('col-5', 'col-md-6', 'my-md-1', 'fw-bold')
 
   divTitle.innerHTML = `
                         <div class="d-flex align-items-center justify-content-start">
@@ -667,8 +623,8 @@ const generateSong = (posizione, titolo, artista, riproduzioni, durata, previewU
                        `
 
   // Riproduzioni
-  const divRiproduzioni = document.createElement("div")
-  divRiproduzioni.classList.add("col-4", "col-md-4")
+  const divRiproduzioni = document.createElement('div')
+  divRiproduzioni.classList.add('col-4', 'col-md-4')
   divRiproduzioni.innerText = riproduzioni.toLocaleString()
   divCard.appendChild(divTitle)
   divCard.appendChild(divRiproduzioni)
@@ -676,32 +632,32 @@ const generateSong = (posizione, titolo, artista, riproduzioni, durata, previewU
   // Durata
   const minuti = Math.floor(durata / 60)
   const secondi = durata % 60
-  const tempoFormattato = `${minuti}:${secondi < 10 ? "0" + secondi : secondi}`
-  const divDurataCanzone = document.createElement("div")
-  divDurataCanzone.classList.add("col-3", "col-md-2")
+  const tempoFormattato = `${minuti}:${secondi < 10 ? '0' + secondi : secondi}`
+  const divDurataCanzone = document.createElement('div')
+  divDurataCanzone.classList.add('col-3', 'col-md-2')
   divDurataCanzone.innerText = tempoFormattato
   divCard.appendChild(divDurataCanzone)
 
   divSongs.appendChild(divCard)
 
   // Aggiunge gestore del click per riproduzione e aggiornamento delle info
-  divCard.addEventListener("click", () => {
-    const audioPlayer = document.getElementById("audioPlayer")
-    const playIcon = document.querySelector("#bottoneplay i")
+  divCard.addEventListener('click', () => {
+    const audioPlayer = document.getElementById('audioPlayer')
+    const playIcon = document.querySelector('#bottoneplay i')
     audioPlayer.src = previewUrl
     audioPlayer.play()
-    playIcon.classList.remove("bi-play-circle-fill")
-    playIcon.classList.add("bi-pause-circle-fill")
+    playIcon.classList.remove('bi-play-circle-fill')
+    playIcon.classList.add('bi-pause-circle-fill')
     updateNowPlayingInfo(titolo, artista, coverUrl)
   })
 }
 
 const fetchAlbum = () => {
   fetch(URL_API, {
-    method: "GET",
+    method: 'GET',
     headers: {
-      "X-RapidAPI-Key": KEY,
-      "X-RapidAPI-Host": HOST,
+      'X-RapidAPI-Key': KEY,
+      'X-RapidAPI-Host': HOST,
     },
   })
     .then((response) => {
@@ -709,7 +665,7 @@ const fetchAlbum = () => {
     })
     .then((data_response) => {
       // console.log(data_response)
-      // Gestione cambio pagine avanti indietro 
+      // Gestione cambio pagine avanti indietro
       console.log()
       indietro.addEventListener('click', () => {
         window.location.href = `index.html?value=album&search=${data_response.title}`
@@ -717,18 +673,18 @@ const fetchAlbum = () => {
 
       //   Immagine cover
       const imageLinkCover = data_response.cover_medium
-      const imgCover = document.getElementById("img-cover")
-      imgCover.setAttribute("src", imageLinkCover)
+      const imgCover = document.getElementById('img-cover')
+      imgCover.setAttribute('src', imageLinkCover)
 
       // titolo Album
-      const h1 = document.getElementById("album-title")
+      const h1 = document.getElementById('album-title')
       h1.innerText = data_response.title
 
       // INFO ALBUM
       // IMMAGINE ARTISTA
       const IMG_LINK_ARTIST = data_response.artist.picture_small
-      const imgArtist = document.getElementById("img-artist")
-      imgArtist.setAttribute("src", IMG_LINK_ARTIST)
+      const imgArtist = document.getElementById('img-artist')
+      imgArtist.setAttribute('src', IMG_LINK_ARTIST)
       // RESTO DELLE INFO DELL'ARTISTA
       const durationTracks = Math.floor(data_response.duration / 60)
       const remaningSeconds = data_response.duration % 60
@@ -738,11 +694,11 @@ const fetchAlbum = () => {
       const tracks = data_response.nb_tracks
       const titoloCantante = data_response.artist.name
       const releaseDate = new Date(data_response.release_date).getFullYear()
-      const spanInfoAlbum = document.getElementById("info-album")
-      const spanTracks = document.createElement("span")
-      const spanReleaseDate = document.createElement("span")
-      const spanTitoloCantante = document.createElement("span")
-      const spanTime = document.createElement("span")
+      const spanInfoAlbum = document.getElementById('info-album')
+      const spanTracks = document.createElement('span')
+      const spanReleaseDate = document.createElement('span')
+      const spanTitoloCantante = document.createElement('span')
+      const spanTime = document.createElement('span')
 
       spanTracks.innerHTML = `<span style="font-weight: 400;">${tracks} Brani,</span> `
       spanTitoloCantante.innerHTML = `<span style="font-weight: 700;">${titoloCantante} •</span> `
@@ -755,18 +711,9 @@ const fetchAlbum = () => {
 
       // FINE PARTE INFO ALBUM
 
-     
-     
-
       data_response.tracks.data.forEach((song, index) => {
         generateSong(index + 1, song.title, song.artist.name, song.rank, song.duration, song.preview, song.album.cover)
       })
-
-     
-      
-
-      
-      
     })
 }
 
@@ -774,68 +721,52 @@ const fetchAlbum = () => {
 
 const searchItemsAlbum = () => {
   const options = {
-    method: "GET",
+    method: 'GET',
     headers: {
-      "X-RapidAPI-Key": "50cb9d0834msh6916f2733fc1e75p1d758cjsnb17cfee22a1d",
-      "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
+      'X-RapidAPI-Key': '50cb9d0834msh6916f2733fc1e75p1d758cjsnb17cfee22a1d',
+      'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com',
     },
   }
   fetch(URL_ARTIST, options)
     .then((response) => {
       if (!response.ok) {
-        throw new Error("nessuna risposta")
+        throw new Error('nessuna risposta')
       }
       return response.json()
     })
     .then((result) => {
       console.log(result.data)
-      // Gestione cambio pagine avanti indietro 
+      // Gestione cambio pagine avanti indietro
       indietro.addEventListener('click', () => {
         window.location.href = `index.html?value=artist&search=${result.data[0].artist.name}`
       })
 
       if (result.data.length > 0) {
         const firstItem = result.data[0]
-        createArtist(
-          firstItem.artist.picture_medium,
-          firstItem.album.title,
-          firstItem.artist.name,
-          firstItem.rank, 
-          firstItem.duration,
-          firstItem.preview,
-          firstItem.album.cover
-        )
+        createArtist(firstItem.artist.picture_medium, firstItem.album.title, firstItem.artist.name, firstItem.rank, firstItem.duration, firstItem.preview, firstItem.album.cover)
       }
       let index = 1
       result.data.forEach((query) => {
-        generateSongAlbum(
-          index,
-          query.title,
-          query.artist.name,
-          query.rank,
-          query.duration,
-          query.preview,
-          query.album.cover
-        )
+        generateSongAlbum(index, query.title, query.artist.name, query.rank, query.duration, query.preview, query.album.cover)
         index++
       })
     })
     .catch((error) => {
-      console.error("Fetch error:", error.message)
+      console.error('Fetch error:', error.message)
     })
 }
 
 const createArtist = (artistImage, posizione, titolo, artista, riproduzioni, durata, previewUrl, coverUrl) => {
-  if (albumhomepage.style.display === "none" || albumhomepage.style.display === "") {
-    searchArea.style.display = "flex"
-    albumhomepage.style.display = "none"
-    albumhomepage2.style.display = "none"
-    albumhomepage3.style.display = "none"
-    albumhomepage4.style.display = "none"
+  if (albumhomepage.style.display === 'none' || albumhomepage.style.display === '') {
+    searchArea.style.display = 'flex'
+    albumhomepage.style.display = 'none'
+    albumhomepage2.style.display = 'none'
+    albumhomepage3.style.display = 'none'
+    albumhomepage4.style.display = 'none'
   } else {
-    searchArea.style.display = "none"
+    searchArea.style.display = 'none'
   }
-  const pos = document.getElementById("containerLaunchHomePage")
+  const pos = document.getElementById('containerLaunchHomePage')
   pos.innerHTML = `
 
   <div id="hero" class="d-flex mt-3 mt-md-5 ms-md-4">
@@ -891,14 +822,14 @@ const createArtist = (artistImage, posizione, titolo, artista, riproduzioni, dur
 }
 
 const generateSongAlbum = (posizione, titolo, artista, riproduzioni, durata, previewUrl, coverUrl) => {
-  const divSongs = document.getElementById("songs")
-  const divCard = document.createElement("div")
-  divCard.classList.add("row", "card-song")
-  divCard.style.cursor = "pointer"
+  const divSongs = document.getElementById('songs')
+  const divCard = document.createElement('div')
+  divCard.classList.add('row', 'card-song')
+  divCard.style.cursor = 'pointer'
 
   // Titolo e artista con posizione e altri dati
-  const divTitle = document.createElement("div")
-  divTitle.classList.add("col-5", "col-md-6", "my-md-1", "fw-bold")
+  const divTitle = document.createElement('div')
+  divTitle.classList.add('col-5', 'col-md-6', 'my-md-1', 'fw-bold')
 
   divTitle.innerHTML = `
                         <div class="d-flex align-items-center justify-content-start">
@@ -912,8 +843,8 @@ const generateSongAlbum = (posizione, titolo, artista, riproduzioni, durata, pre
                        `
 
   // Riproduzioni
-  const divRiproduzioni = document.createElement("div")
-  divRiproduzioni.classList.add("col-4", "col-md-4")
+  const divRiproduzioni = document.createElement('div')
+  divRiproduzioni.classList.add('col-4', 'col-md-4')
   divRiproduzioni.innerText = riproduzioni.toLocaleString()
   divCard.appendChild(divTitle)
   divCard.appendChild(divRiproduzioni)
@@ -921,30 +852,28 @@ const generateSongAlbum = (posizione, titolo, artista, riproduzioni, durata, pre
   // Durata
   const minuti = Math.floor(durata / 60)
   const secondi = durata % 60
-  const tempoFormattato = `${minuti}:${secondi < 10 ? "0" + secondi : secondi}`
-  const divDurataCanzone = document.createElement("div")
-  divDurataCanzone.classList.add("col-3", "col-md-2")
+  const tempoFormattato = `${minuti}:${secondi < 10 ? '0' + secondi : secondi}`
+  const divDurataCanzone = document.createElement('div')
+  divDurataCanzone.classList.add('col-3', 'col-md-2')
   divDurataCanzone.innerText = tempoFormattato
   divCard.appendChild(divDurataCanzone)
 
   divSongs.appendChild(divCard)
 
-  divCard.addEventListener("click", () => {
-    const audioPlayer = document.getElementById("audioPlayer")
-    const playIcon = document.querySelector("#bottoneplay i")
+  divCard.addEventListener('click', () => {
+    const audioPlayer = document.getElementById('audioPlayer')
+    const playIcon = document.querySelector('#bottoneplay i')
     audioPlayer.src = previewUrl
     audioPlayer.play()
-    playIcon.classList.remove("bi-play-circle-fill")
-    playIcon.classList.add("bi-pause-circle-fill")
+    playIcon.classList.remove('bi-play-circle-fill')
+    playIcon.classList.add('bi-pause-circle-fill')
     updateNowPlayingInfo(titolo, artista, coverUrl)
   })
 }
 
-
-
 // comportamento footer svg
 
 function toggleColor(element) {
-  const isGreen = element.getAttribute('fill') === '#00FF00'; // Verde
-  element.setAttribute('fill', isGreen ? '#FFFFFF' : '#00FF00'); // Cambia tra bianco e verde
+  const isGreen = element.getAttribute('fill') === '#00FF00' // Verde
+  element.setAttribute('fill', isGreen ? '#FFFFFF' : '#00FF00') // Cambia tra bianco e verde
 }
