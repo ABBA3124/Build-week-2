@@ -288,7 +288,7 @@
 }
 
 #destra::-webkit-scrollbar {
-  width: 20px;
+  width: 0px;
 }
 
 #destra::-webkit-scrollbar-track {
@@ -313,13 +313,6 @@
 
 #destra::-webkit-scrollbar-thumb:horizontal:hover {
   background: #555;
-}
-
-/* footer */
-footer {
-  position: fixed;
-  bottom: 75px;
-  opacity: 0.4;
 }
 
 .vfd {
@@ -358,9 +351,6 @@ footer {
 
 .icon-play-overlay3:hover .icon-da-sistemare {
   position: absolute;
-  /* top: 50%;
-  left: 60%;
-  transform: translate(100%, 65%); */
   bottom: 15px;
   right: 15px;
   font-size: 24px;
@@ -412,6 +402,9 @@ footer {
 
   #testoTitolo {
     font-size: 50px;
+  }
+  .search-box {
+    width: 100%;
   }
 }
 

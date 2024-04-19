@@ -168,7 +168,7 @@ function displayArtistResults2(results, query) {
   const containerArtist = document.getElementById('containerArtist')
 
   let output = `<h3 class="mt-4">Artisti</h3>`
-  output += `<div class="row row-cols-3 row-cols-md-6">`
+  output += `<div class="row row-cols-6 row-cols-md-6">`
   const artistList = artistFilter(results)
   artistList.forEach((element) => {
     output += `<a class="col" href="../../../index.html?artistId=${element.artist.name}">
