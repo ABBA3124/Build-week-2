@@ -339,8 +339,8 @@ function displayResults(results, query) {
     <p class="fw-bold m-0 mb-2 fs-3" style="font-size: 15px;">${results[0].title}</p>
     <h6 class="text-secondary">Artista</h6>
   </div>
-  
-  <h3 style="font-weight: 800;">Brani</h3>
+  <div class="d-flex flex-column flex-grow-1">
+  <h3 class="ms-3" style="font-weight: 800;">Brani</h3>
   <div id="martucci" class="overflow-scroll overflow-x-hidden d-flex flex-column align-items-baseline" style="height: 259px">`
   const songs = results.slice(1)
   songs.forEach((element) => {
@@ -349,14 +349,15 @@ function displayResults(results, query) {
                 <div class="d-flex" style="cursor: pointer;">
                   <img src="${element.album.cover}" alt="immagine inerente al brano" height="50">
                   <i class="bi bi-play-fill icon-play-overlay2"></i>
-                  <div class="ms-2">
+                  <div class="ms-2 ">
                     <p class="fw-bold m-0 mb-2" style="font-size: 15px;">${element.title}</p>
                     <p class="m-0" style="font-size: 12px;">${element.artist.name}</p>
                   </div>
+                  <div class="ms-5">${element.duration}</div>
                 </div>
               </li></ul>`
   })
-  output += `</div></div>`
+  output += `</div></div></div>`
   containerTitoli.innerHTML = output
 
   document.querySelectorAll(".search-result-item").forEach((item) => {
