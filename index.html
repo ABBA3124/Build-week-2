@@ -20,11 +20,11 @@
   </head>
   <body class="bg-black text-white">
     <main>
-      <div class="row" style="height: 100%">
+      <div class="d-flex flex-column-reverse flex-md-row" style="height: 100%">
         <!-- ------------------------------------------------------------------- -->
 
-        <div class="col-sm-3">
-          <div id="" class="ms-2 mt-3">
+        <div class="col-md-3">
+          <div id="" class="ms-2 mt-3 d-flex d-md-block">
             <div class="mb-1">
               <a href="index.html" class="spotify-link d-inline-flex align-items-center">
                 <div class="link-content">
@@ -57,7 +57,7 @@
                 </div>
               </a>
             </div>
-            <div class="mb-1 mt-4">
+            <div class="mb-1 mt-4 d-none d-md-block">
               <a href="#" class="d-inline-flex align-items-center">
                 <div class="link-content">
                   <i class="bi bi-plus-square-fill fs-3 rounded" style="margin-left: 1px"></i>
@@ -65,7 +65,7 @@
                 </div>
               </a>
             </div>
-            <div class="mb-1">
+            <div class="mb-1 d-none d-md-block">
               <a href="#" class="spotify-link d-inline-flex align-items-center">
                 <div class="link-content">
                   <img src="./assets/imgs/main/artworks-y6qitUuZoS6y8LQo-5s2pPA-t500x500.jpg" alt="" height="30" class="bi rounded" />
@@ -73,7 +73,7 @@
                 </div>
               </a>
             </div>
-            <div class="mb-1">
+            <div class="mb-1 d-none d-md-block">
               <a href="#" class="spotify-link d-inline-flex align-items-center">
                 <div class="link-content">
                   <img src="./assets/imgs/main/artwork-episodi.png" alt="" height="30" class="rounded" />
@@ -83,7 +83,7 @@
             </div>
           </div>
           <hr />
-          <div class="scroll-wrapper">
+          <div class="scroll-wrapper d-none d-md-block">
             <div class="overflow-scroll overflow-x-hidden" id="scroll">
               <div class="libraryIcon">
                 <div class="row align-items-center">
@@ -284,7 +284,7 @@
 
         <!-- ------------------------------------------------------------------- -->
 
-        <div class="col-sm-7 bg-dark overflow-scroll overflow-x-hidden" id="centro">
+        <div class="col-md-7 bg-dark overflow-scroll overflow-x-hidden" id="centro">
           <div class="d-flex align-items-center mt-5">
             <i id="indietro" class="bi bi-chevron-left icon-nav"></i>
             <i id="avanti" class="bi bi-chevron-right icon-nav"></i>
@@ -327,7 +327,7 @@
 
         <!-- ------------------------------------------------------------------- -->
 
-        <div class="col-sm-2 d-inline-flex p-2 justify-content-around d-md-block overflow-scroll overflow-x-hidden" id="destra">
+        <div class="d-none d-md-block col-md-2 d-inline-flex p-2 justify-content-around d-md-block overflow-scroll overflow-x-hidden" id="destra">
           <div>
             <h2 class="fw-bold fs-3 text-nowrap mx-4 my-4">Attività amici</h2>
             <div id="amiciAscoltando" class="container p-3">
@@ -449,7 +449,7 @@
         </div>
       </div>
     </main>
-    <footer class="bg-dark ps-3 pe-3 pb-2 position-fixed bottom-0 w-100">
+    <footer class="bg-dark ps-3 pe-3 pb-2 w-100">
       <div class="d-flex justify-content-between align-items-center">
         <div class="d-flex align-items-center">
           <div id="immagineBranoInRiproduzione">

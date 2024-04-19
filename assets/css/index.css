@@ -274,3 +274,15 @@
 #destra::-webkit-scrollbar-thumb:horizontal:hover {
   background: #555;
 }
+
+/* footer */
+footer {
+  position: fixed;
+  bottom: 75px;
+}
+
+@media screen and (min-width: 768px) {
+  footer {
+    bottom: 0px;
+  }
+}
