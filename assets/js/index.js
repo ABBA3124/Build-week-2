@@ -202,14 +202,13 @@ function displayResults(results, query) {
   }
   let output = `<h2>Risultato più rilevante: <span class="fw-bold">${inputCerca.value.trim()}</span></h2>
   <h3>Brani:</h3><div class="d-flex" style="height: 260px">
-  <div style="width: 50%">
-    <img src="${results[0].album.cover}" alt="immagine inerente al brano" height="100px">
+  <div class="w-50 py-4 px-5">
+    <img class="rounded-circle" src="${results[0].album.cover}" alt="immagine inerente al brano" height="100px">
     <p class="fw-bold m-0 mb-2 fs-3" style="font-size: 15px;">${results[0].title}</p>
     <p class="m-0 fs-5" style="font-size: 12px;">${results[0].artist.name}</p>
   </div>
-  <div>`
-  // console.log(results.slice(0, 5))
-  const songs = results.slice(1, 5)
+  <div class="overflow-scroll overflow-x-hidden" style="height: 300px">`
+  const songs = results.slice(1)
   songs.forEach((element) => {
     output += `<ul><li class="search-result-item" data-audio-src="${element.preview}" data-title="${element.title}" data-artist="${element.artist.name}" data-album-cover="${element.album.cover}">
                 <div class="d-flex" style="cursor: pointer;">
@@ -221,16 +220,6 @@ function displayResults(results, query) {
                   </div>
                 </div>
               </li></ul>`
-    // output += `<ul><li class="search-result-item" data-audio-src="${element.preview}" data-title="${element.title}" data-artist="${element.artist.name}" data-album-cover="${element.album.cover}">
-    //   <div class="d-flex" style="cursor: pointer;">
-    //     <img src="${element.album.cover}" alt="immagine inerente al brano" height="50">
-    //     <i class="bi bi-play-fill icon-play-overlay"></i>
-    //     <div class="ms-2">
-    //       <p class="fw-bold m-0 mb-2" style="font-size: 15px;">${element.title}</p>
-    //       <p class="m-0" style="font-size: 12px;">${element.artist.name}</p>
-    //     </div>
-    //   </div>
-    // </li></ul>`
   })
   output += `</div></div>`
   containerTitoli.innerHTML = output
@@ -252,7 +241,8 @@ function displayArtistResults(results, query) {
   }
   let output = `<h3 class="mt-4">Artisti</h3>`
   output += `<div class="row row-col">`
-  results.forEach((element) => {
+  const artistList = artistFilter(results)
+  artistList.forEach((element) => {
     output += `<a class="col" href="index.html?artistId=${element.artist.name}">
                 <div class="my-2 py-1 px-2 rounded cardContainer">
                 <img style="border-radius: 50%;" src="${element.artist.picture}" height="100">
@@ -268,6 +258,16 @@ function displayArtistResults(results, query) {
       playSelectedTrack(this.dataset.audioSrc, this.dataset.title, this.dataset.artist, this.dataset.albumCover)
     })
   })
+}
+
+const artistFilter = (results) => {
+  const list = []
+  results.forEach((song) => {
+    list.push(song.artist.id)
+  })
+  const artistList = results.filter((song, index, self) => self.findIndex((e) => e.artist.id === song.artist.id) === index)
+  console.log(artistList)
+  return artistList
 }
 
 function displayAlbumResults(results, query) {
