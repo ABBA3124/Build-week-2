@@ -377,6 +377,7 @@ function displayArtistResults(results, query) {
   }
   let output = `<h3 class="mt-4" style="font-weight: 800;">Artisti</h3>`
   output += `<div class="row row-cols-6">`
+  //logica per filtrare gli artisti
   const artistList = artistFilter(results)
   artistList.forEach((element) => {
     output += `<a class="col" href="../../../index.html?artistId=${element.artist.name}">
@@ -396,10 +397,7 @@ function displayArtistResults(results, query) {
   })
 }
 
-
-
-
-
+//logica per filtrare gli artisti
 const artistFilter = (results) => {
   const list = []
   results.forEach((song) => {
@@ -427,7 +425,9 @@ function displayAlbumResults(results, query) {
   }
   let output = `<h3 class="mt-4" style="font-weight: 800;">Album</h3>`
   output += `<div class="row row-cols-6" >`
-  results.forEach((element) => {
+  //logica per filtrare gli album
+  const albumList = artistFilter(results)
+  albumList.forEach((element) => {
     output += `<a class="col" href="../../../index.html?albumId=${element.album.id}">
                 <div class=" rounded cardContainer text-left">
                   <img style="border-radius: 6px; aspect-ratio:1/1;" class="w-100 d-block" src="${element.album.cover}" >
@@ -446,7 +446,32 @@ function displayAlbumResults(results, query) {
   })
 }
 
-// adattamento comportamento cristian
+
+//logica per filtrare gli album
+const albumFilter = (results) => {
+  const list = []
+  results.forEach((song) => {
+    list.push(song.album.id)
+  })
+  const albumList = results.filter((song, index, self) => self.findIndex((e) => e.album.id === song.album.id) === index)
+  console.log(albumList)
+  return albumList
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function playSelectedTrack(src, title, artist, albumCover) {
   const audioPlayer = document.getElementById("audioPlayer")
