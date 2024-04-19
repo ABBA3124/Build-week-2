@@ -279,10 +279,12 @@
 footer {
   position: fixed;
   bottom: 75px;
+  opacity: 0.4;
 }
 
 @media screen and (min-width: 768px) {
   footer {
     bottom: 0px;
+    opacity: 1;
   }
 }
