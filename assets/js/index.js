@@ -305,7 +305,7 @@ function displayResults(results, query) {
   let output = `
   <h2 class="fs-6">Risultato più rilevante: <span class="fw-bold">${inputCerca.value.trim()}</span></h2>
   <div class="d-flex" style="height: 260px">
-  <div id="martucciTrackSearch" class="d-none ms-3 mt-2 p-4 me-3 position-relative rounded icon-play-overlay3" style="width:41%;">
+  <div id="martucciTrackSearch" class="ms-3 mt-2 p-4 me-3 position-relative rounded icon-play-overlay3" style="width:41%;">
   <button class="icon-da-sistemare rounded-circle p-2 bg-success border-0 search-result-item" data-audio-src="${results[0].preview}" data-title="${
     results[0].title
   }" data-artist="${results[0].artist.name}" data-album-cover="${
