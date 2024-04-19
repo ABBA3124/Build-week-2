@@ -401,6 +401,12 @@ footer {
     /* flex-grow: 1; */
     align-content: stretch;
   }
+  #containerTitoli {
+    margin-top: 10px;
+  }
+  #martucciTrackSearch {
+    display: none;
+  }
 }
 
 @media (min-width: 577px) and (max-width: 767px) {
