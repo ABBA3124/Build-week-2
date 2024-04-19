@@ -377,3 +377,43 @@ footer {
   font-size: 24px;
   display: none;
 }
+
+@media (max-width: 576px) {
+  #containerTitoli {
+    padding-inline: 1rem;
+  }
+  #containerArtist {
+    padding-inline: 1rem;
+  }
+  #containerAlbum {
+    padding-inline: 1rem;
+  }
+
+  #avanti {
+    display: none;
+  }
+  #indietro {
+    display: none;
+  }
+  #divSearch {
+    width: 100%;
+    justify-content: center;
+    /* flex-grow: 1; */
+    align-content: stretch;
+  }
+}
+
+@media (min-width: 577px) and (max-width: 767px) {
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+}
+
+@media (min-width: 1200px) and (max-width: 1399px) {
+}
+
+@media (min-width: 1400px) and (max-width: 1600px) {
+}

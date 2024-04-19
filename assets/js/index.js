@@ -15,7 +15,7 @@ const value = params.get('value')
 const limitTrack = 64 // con questa constante posso cambiare il numero di Track da visualizzare nella homepage ⚠️
 const limitArtist = 12 // con questa constante posso cambiare il numero di Artist da visualizzare nella homepage ⚠️
 //quest'ultima siccome usa sempre lo stesso parametro di quantità manipolerà sia homepage che search 🚀🚀🚀🚀🚀
-const limitAlbum =  30// con questa constante posso cambiare il numero di Album da visualizzare nella homepage ⚠️
+const limitAlbum = 30 // con questa constante posso cambiare il numero di Album da visualizzare nella homepage ⚠️
 
 //controllo sul cerca (SEARCH)
 const limitTrackSearch = 64 // con questa constante posso cambiare il numero di Track QUANDO SI CERCA da visualizzare nella SEARCH ⚠️
@@ -139,7 +139,7 @@ function displayResults2(results, query) {
   let output = `
                 <div id="martucci" class="mt-3 row overflow-scroll overflow-x-hidden" style="height: 280px" >`
   results.forEach((element) => {
-    output += `<div class="col-12 col-sm-6 col-md-4 col-lg-3 ">
+    output += `<div class="col-6 col-sm-6 col-md-4 col-lg-3 ">
                     <li class="search-result-item" data-audio-src="${element.preview}" data-title="${element.title}" data-artist="${element.artist.name}" data-album-cover="${element.album.cover}">
                       <div class="d-flex" style="cursor: pointer;">
                         <img src="${element.album.cover}" alt="Copertina dell'album" height="60">
@@ -168,7 +168,7 @@ function displayArtistResults2(results, query) {
   const containerArtist = document.getElementById('containerArtist')
 
   let output = `<h3 class="mt-4">Artisti</h3>`
-  output += `<div class="row row-cols-8">`
+  output += `<div class="row row-cols-3 row-cols-md-6">`
   const artistList = artistFilter(results)
   artistList.forEach((element) => {
     output += `<a class="col" href="../../../index.html?artistId=${element.artist.name}">
@@ -188,7 +188,7 @@ function displayAlbumResults2(results, query) {
   const containerAlbum = document.getElementById('containerAlbum')
 
   let output = `<h3 class="mt-4">Album</h3>`
-  output += `<div class="row row-cols-6" >`
+  output += `<div class="row row-cols-3 row-cols-md-6" >`
   const albumList = artistFilter(results)
   albumList.forEach((element) => {
     output += `<a class="col albumCard" href="../../../index.html?albumId=${element.album.id}">
@@ -358,7 +358,7 @@ function displayArtistResults(results, query) {
     return
   }
   let output = `<h3 class="mt-4" style="font-weight: 800;">Artisti</h3>`
-  output += `<div class="row row-cols-6">`
+  output += `<div class="row row-cols-3 row-cols-md-6">`
   //logica per filtrare gli artisti
   const artistList = artistFilter(results)
   artistList.forEach((element) => {
@@ -397,7 +397,7 @@ function displayAlbumResults(results, query) {
     return
   }
   let output = `<h3 class="mt-4" style="font-weight: 800;">Album</h3>`
-  output += `<div class="row row-cols-6" >`
+  output += `<div class="row row-cols-3 row-cols-md-6" >`
   //logica per filtrare gli album
   const albumList = artistFilter(results)
   albumList.forEach((element) => {
