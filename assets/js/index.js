@@ -22,8 +22,6 @@ const limitTrackSearch = 64 // con questa constante posso cambiare il numero di 
 const limitArtistSearch = 24 // con questa constante posso cambiare il numero di Artist QUANDO SI CERCA da visualizzare nella SEARCH ⚠️
 const limitAlbumSearch = 24 // con questa constante posso cambiare il numero di Album QUANDO SI CERCA da visualizzare nella SEARCH ⚠️
 
-
-
 document.addEventListener('DOMContentLoaded', () => {
   if (id) {
     createAlbum()
@@ -54,7 +52,7 @@ homeButton.addEventListener('click', function () {
 
 //creo un piccolo array dove che usamo come queri iniziali per far spawnare la homepage "casuale"
 function searchRandomTracks() {
-  const randomQueries = ['sfera ebbasta', 'guè']
+  const randomQueries = ['sfera ebbasta', 'guè', 'italiano', 'lazza', 'metal']
   const query = randomQueries[Math.floor(Math.random() * randomQueries.length)]
   const urlTrack = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${encodeURIComponent(query)}&limit=${limitTrack}` //URL MANIPOLATO TRAMITE LIMIT questo manipola track homepage
   const options = {
