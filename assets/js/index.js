@@ -16,7 +16,7 @@ const value = params.get('value')
 const limitTrack = 64 // con questa constante posso cambiare il numero di Track da visualizzare nella homepage ⚠️
 const limitArtist = 8  // con questa constante posso cambiare il numero di Artist da visualizzare nella homepage ⚠️
 //quest'ultima siccome usa sempre lo stesso parametro di quantità manipolerà sia homepage che search 🚀🚀🚀🚀🚀
-const limitAlbumAndSearch = 12 // con questa constante posso cambiare il numero di Album da visualizzare nella homepage ⚠️
+const limitAlbumAndSearch = 18 // con questa constante posso cambiare il numero di Album da visualizzare nella homepage ⚠️
 
 //controllo sul cerca (SEARCH)
 const limitTrackSearch = 64 // con questa constante posso cambiare il numero di Track QUANDO SI CERCA da visualizzare nella SEARCH ⚠️
@@ -205,11 +205,11 @@ function displayAlbumResults2(results, query) {
   const containerAlbum = document.getElementById("containerAlbum")
 
   let output = `<h3 class="mt-4">Album</h3>`
-  output += `<div class="row" >`
+  output += `<div class="row row-cols-6" >`
   results.forEach((element) => {
     output += `<a class="col albumCard" href="../../../index.html?albumId=${element.album.id}">
     <div class=" rounded cardContainer text-left">
-      <img style="border-radius: 6px;" src="${element.album.cover}" height="150px">
+      <img style="border-radius: 6px; display:block; aspect-ratio:1/1; " class="w-100" src="${element.album.cover}" >
       <p class="mb-1 fw-bold " style="font-size: 12px;">${element.album.title}</p>
       <p class="mt-0" style="font-size: 10px;">2018 • ${element.artist.name}</p>
     </div>
@@ -392,11 +392,11 @@ function displayAlbumResults(results, query) {
     return
   }
   let output = `<h3 class="mt-4" style="font-weight: 800;">Album</h3>`
-  output += `<div class="row" >`
+  output += `<div class="row row-cols-6" >`
   results.forEach((element) => {
-    output += `<a class="col-3" href="../../../index.html?albumId=${element.album.id}">
+    output += `<a class="col" href="../../../index.html?albumId=${element.album.id}">
                 <div class=" rounded cardContainer text-left">
-                  <img style="border-radius: 6px;" src="${element.album.cover}" height="150px">
+                  <img style="border-radius: 6px; aspect-ratio:1/1;" class="w-100 d-block" src="${element.album.cover}" >
                   <p class="mb-1 fw-bold " style="font-size: 12px;">${element.album.title}</p>
                   <p class="mt-0" style="font-size: 10px;">2018 • ${element.artist.name}</p>
                 </div>
