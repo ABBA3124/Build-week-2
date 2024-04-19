@@ -339,3 +339,28 @@
 #martucci::-webkit-scrollbar-thumb:hover {
   background: #161616;
 }
+
+/* search track style icona grande */
+#martucciTrackSearch:hover {
+  background-color: rgba(61, 60, 60, 0.664);
+}
+
+#martucciTrackSearch {
+  background-color: rgba(24, 23, 23, 0.295);
+}
+
+.icon-play-overlay3:hover .icon-da-sistemare {
+  position: absolute;
+  /* top: 50%;
+  left: 60%;
+  transform: translate(100%, 65%); */
+  bottom: 15px;
+  right: 15px;
+  font-size: 24px;
+  display: block;
+  z-index: 10;
+}
+.icon-da-sistemare {
+  font-size: 24px;
+  display: none;
+}

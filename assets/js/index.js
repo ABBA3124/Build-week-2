@@ -325,17 +325,27 @@ function displayResults(results, query) {
     return
   }
 
-  let output = `<h2>Risultato più rilevante: <span class="fw-bold">${inputCerca.value.trim()}</span></h2>
-  <h3 style="font-weight: 800;">Brani</h3><div class="d-flex" style="height: 260px">
-  <div class="py-4 px-5" style="width:41%;">
+  // <h3 style="font-weight: 800;">Brani</h3><div class="d-flex" style="height: 260px">
+  let output = `
+  <h2 class="fs-6">Risultato più rilevante: <span class="fw-bold">${inputCerca.value.trim()}</span></h2>
+  <div class="d-flex" style="height: 260px">
+  <div id="martucciTrackSearch" class="ms-3 mt-2 p-4 me-3 position-relative rounded icon-play-overlay3" style="width:41%;">
+  <button class="icon-da-sistemare rounded-circle p-2 bg-success border-0 search-result-item" data-audio-src="${results[0].preview}" data-title="${results[0].title}" data-artist="${results[0].artist.name}" data-album-cover="${results[0].album.cover}"> <svg data-encore-id="icon" role="img" fill="black" aria-hidden="true" viewBox="0 0 24 24" " height="50" class="">
+    <path d="m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z"></path>
+  </svg>
+  </button>
     <span class="search-result-item" data-audio-src="${results[0].preview}" data-title="${results[0].title}" data-artist="${results[0].artist.name}" data-album-cover="${results[0].album.cover}"><img class="rounded-circle" src="${results[0].album.cover}" alt="immagine inerente al brano" height="100px"></span>
+    <p class="m-0 fs-5" style="font-size: 12px; font-weight:bold; ">${results[0].artist.name}</p>
     <p class="fw-bold m-0 mb-2 fs-3" style="font-size: 15px;">${results[0].title}</p>
-    <p class="m-0 fs-5" style="font-size: 12px;">${results[0].artist.name}</p>
+    <h6 class="text-secondary">Artista</h6>
   </div>
+  
+  <h3 style="font-weight: 800;">Brani</h3>
   <div id="martucci" class="overflow-scroll overflow-x-hidden d-flex flex-column align-items-baseline" style="height: 259px">`
   const songs = results.slice(1)
   songs.forEach((element) => {
     output += `<ul><li class="search-result-item" data-audio-src="${element.preview}" data-title="${element.title}" data-artist="${element.artist.name}" data-album-cover="${element.album.cover}">
+
                 <div class="d-flex" style="cursor: pointer;">
                   <img src="${element.album.cover}" alt="immagine inerente al brano" height="50">
                   <i class="bi bi-play-fill icon-play-overlay2"></i>
