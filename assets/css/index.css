@@ -1,5 +1,8 @@
 .cardContainer:hover {
-  background-color: black;
+  background-color: rgba(26, 25, 25, 0.616);
+  transform: scale(1.05);
+  box-shadow: 10px 4px 0px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.4s ease-in-out;
 }
 
 /*ANIMAZIONE ICONE PLAYLIST*/
