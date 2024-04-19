@@ -139,7 +139,7 @@ function displayResults2(results, query) {
   let output = `
                 <div id="martucci" class="mt-3 row overflow-scroll overflow-x-hidden" style="height: 280px" >`
   results.forEach((element) => {
-    output += `<div class="col-6 col-sm-6 col-md-4 col-lg-3 ">
+    output += `<div class="col-6 col-md-4 col-lg-3 ">
                     <li class="search-result-item" data-audio-src="${element.preview}" data-title="${element.title}" data-artist="${element.artist.name}" data-album-cover="${element.album.cover}">
                       <div class="d-flex" style="cursor: pointer;">
                         <img src="${element.album.cover}" alt="Copertina dell'album" height="60">
@@ -770,11 +770,11 @@ const createArtist = (artistImage, posizione, titolo, artista, riproduzioni, dur
   pos.innerHTML = `
 
   <div id="hero" class="d-flex mt-3 mt-md-5 ms-md-4">
-    <div class="img ms-3 me-3 me-md-4" id="">
+    <div class="img ms-3 me-3 me-md-4" id="imgArtist">
       <img src="${artistImage}" alt="Immagine dell'artista" id="img-cover" class="rounded" />
     </div>
     <div class="info d-flex flex-column justify-content-between">
-      <p class="display-6 mt-5" style="font-size: 80px; font-weight :900;">${titolo} </p>
+      <p id="testoTitolo" class="display-6 mt-5" font-weight :900;">${titolo} </p>
       <h1 id="album-title" style="font-weight: 700;"></h1>
       <div id="info-cantante" class="d-flex align-items-center">
         <span id="info-album"></span>
