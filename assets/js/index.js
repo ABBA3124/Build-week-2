@@ -376,8 +376,9 @@ function displayArtistResults(results, query) {
     return
   }
   let output = `<h3 class="mt-4" style="font-weight: 800;">Artisti</h3>`
-  output += `<div class="row row-cols-8">`
-  results.forEach((element) => {
+  output += `<div class="row row-cols-6">`
+  const artistList = artistFilter(results)
+  artistList.forEach((element) => {
     output += `<a class="col" href="../../../index.html?artistId=${element.artist.name}">
                 <div class="my-2 py-1 px-2 rounded cardContainer">
                 <img style="border-radius: 50%; display:block; aspect-ratio:1/1;" class="w-100"  src="${element.artist.picture}" >
@@ -394,6 +395,28 @@ function displayArtistResults(results, query) {
     })
   })
 }
+
+
+
+
+
+const artistFilter = (results) => {
+  const list = []
+  results.forEach((song) => {
+    list.push(song.artist.id)
+  })
+  const artistList = results.filter((song, index, self) => self.findIndex((e) => e.artist.id === song.artist.id) === index)
+  console.log(artistList)
+  return artistList
+}
+
+
+
+
+
+
+
+
 
 function displayAlbumResults(results, query) {
   console.log("risultati per ${query}:", results)
